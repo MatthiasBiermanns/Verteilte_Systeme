@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.concurrent.Semaphore;
 
 import Exceptions.PositionOccupied;
 import Exceptions.RouterNotFound;
@@ -8,8 +9,9 @@ import Exceptions.RouterNotFound;
 class Field {
   final static int ID_LENGTH = 16;
   int xLength, yLength;
+  Semaphore fieldSem = new Semaphore(1, true);
   Router[][] field;
-  HashMap<String, Router> router;
+  HashMap<String, Router> router = new HashMap<String, Router>();
 
   public Field(int routerCnt, int xLength, int yLength) {
     this.xLength = xLength;
@@ -22,19 +24,50 @@ class Field {
 
   public void createNewRouter() {
     // createsRouter at random position
-    int x = (int)(Math.random() * xLength); 
-    int y = (int)(Math.random() * yLength);
+    try {
+      fieldSem.acquire();
 
-    do{
-      Router r = new Router(getRandomHexString(ID_LENGTH), x, y);
+      int x, y;
+      do {
+        x = (int) (Math.random() * xLength);
+        y = (int) (Math.random() * yLength);
+      } while (field[x][y] != null);
+      Router r;
+      do {
+        r = new Router(getRandomHexString(ID_LENGTH), x, y);
+      } while (router.containsKey(r.getRouterId()));
 
-    } while ( router.containsKey(r.getId));
+      field[x][y] = r;
+      router.put(r.getRouterId(), r);
 
-    
+      fieldSem.release();
+    } catch (InterruptedException e) {
+
+    }
+
   }
 
   public void createNewRouter(int x, int y) throws PositionOccupied {
     // creates Router at specific position
+    try {
+      fieldSem.acquire();
+
+      if (field[x][y] == null) {
+        throw new PositionOccupied();
+      }
+
+      Router r;
+      do {
+        r = new Router(getRandomHexString(ID_LENGTH), x, y);
+      } while (router.containsKey(r.getRouterId()));
+
+      field[x][y] = r;
+      router.put(r.getRouterId(), r);
+
+      fieldSem.release();
+    } catch (InterruptedException e) {
+
+    }
   }
 
   public void moveRouter(int x, int y) throws RouterNotFound {
@@ -65,6 +98,6 @@ class Field {
   }
 
   public static void main(String[] args) {
-
+    Field field = new Field(10, 8, 10);
   }
 }

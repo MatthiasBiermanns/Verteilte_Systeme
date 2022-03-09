@@ -4,7 +4,10 @@ public class Router extends Thread {
   RoutingTable routingTable;
 
   public Router(String id, int xCoord, int yCoord) {
-
+    this.xCoord = xCoord;
+    this.yCoord = yCoord;
+    this.id = id;
+    checkRoutingTable();
   }
 
   public void run() {
@@ -25,5 +28,13 @@ public class Router extends Thread {
 
   public void flood(String msg) {
     // flooding all routers in 10m range with given message
+  }
+
+  public void checkRoutingTable() {
+
+  }
+
+  public String getRouterId(){
+    return this.id;
   }
 }

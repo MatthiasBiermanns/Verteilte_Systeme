@@ -8,3 +8,7 @@ Semester WWI2020SEA
 - Field-Klasse als Verwaltungsklasse
 - Stellt auch soz. Gottklasse dar, die physikalische Gegebenheiten realisiert
   (bspw. 10m Funkradius)
+
+## Synchronisation
+
+- Zur Synchronisation des betrachteten Feldes werden Semaphoren verwendet
