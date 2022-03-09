@@ -3,35 +3,47 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
 
+
 import Exceptions.PositionOccupied;
 import Exceptions.RouterNotFound;
 
 class Field {
   final static int ID_LENGTH = 16;
-  int xLength, yLength;
-  Semaphore fieldSem = new Semaphore(1, true);
-  Router[][] field;
-  HashMap<String, Router> router = new HashMap<String, Router>();
+  private int xLength, yLength;
+  private Semaphore fieldSem = new Semaphore(1, true);
+  private Router[][] field;
+  private HashMap<String, Router> router = new HashMap<String, Router>();
 
   public Field(int routerCnt, int xLength, int yLength) {
     this.xLength = xLength;
     this.yLength = yLength;
     field = new Router[xLength][yLength];
     for (int i = 0; i < routerCnt; i++) {
-      createNewRouter();
+      try{
+        createNewRouter();
+      } catch (PositionOccupied e) {
+        break;
+      }
     }
   }
 
-  public void createNewRouter() {
+  public void createNewRouter() throws PositionOccupied {
     // createsRouter at random position
     try {
       fieldSem.acquire();
 
       int x, y;
+      int cnt = 0;
       do {
         x = (int) (Math.random() * xLength);
         y = (int) (Math.random() * yLength);
-      } while (field[x][y] != null);
+        cnt++;
+      } while (field[x][y] != null && cnt < 500);
+
+      if (cnt >= 500) {
+        throw new PositionOccupied();
+      }
+
       Router r;
       do {
         r = new Router(getRandomHexString(ID_LENGTH), x, y);
@@ -70,16 +82,55 @@ class Field {
     }
   }
 
-  public void moveRouter(int x, int y) throws RouterNotFound {
-    // moves random
+  public void moveRouter(String id) throws RouterNotFound, PositionOccupied {
+    try {
+      fieldSem.acquire();
+
+      if (!router.containsKey(id)) {
+        throw new RouterNotFound();
+      }
+      Router r = router.get(id);
+
+      int newX, newY;
+      int cnt = 0;
+      do {
+        newX = (int) (Math.random() * xLength);
+        newY = (int) (Math.random() * yLength);
+        cnt++;
+      } while (field[newX][newY] != null && cnt < 500);
+
+      if (cnt >= 500) {
+        throw new PositionOccupied();
+      }
+
+      field[r.getXCoord()][r.getYCoord()] = null;
+
+      fieldSem.release();
+    } catch (InterruptedException e) {
+
+    }
   }
 
-  public void moveRouter(int x, int y, int newX, int newY) throws RouterNotFound, PositionOccupied {
+  public void moveRouter(String id, int newX, int newY) throws RouterNotFound, PositionOccupied {
     // moves specific
   }
 
-  public void deleteRouter(int x, int y) throws RouterNotFound {
+  public void deleteRouter(String id) throws RouterNotFound {
+    try {
+      fieldSem.acquire();
 
+      if (!router.containsKey(id)) {
+        throw new RouterNotFound();
+      }
+
+      Router r = router.get(id);
+      router.remove(id);
+      field[r.getXCoord()][r.getYCoord()] = null;
+
+      fieldSem.release();
+    } catch (InterruptedException e) {
+
+    }
   }
 
   public static String getRandomHexString(int length) {

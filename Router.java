@@ -1,7 +1,7 @@
 public class Router extends Thread {
-  int xCoord, yCoord;
-  String id;
-  RoutingTable routingTable;
+  private int xCoord, yCoord;
+  private String id;
+  private RoutingTable routingTable;
 
   public Router(String id, int xCoord, int yCoord) {
     this.xCoord = xCoord;
@@ -34,7 +34,15 @@ public class Router extends Thread {
 
   }
 
-  public String getRouterId(){
+  public String getRouterId() {
     return this.id;
+  }
+
+  public int getXCoord() {
+    return this.xCoord;
+  }
+
+  public int getYCoord() {
+    return this.yCoord;
   }
 }
