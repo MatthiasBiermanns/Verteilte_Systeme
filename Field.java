@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Map.Entry;
 import java.util.concurrent.Semaphore;
-
 
 import Exceptions.PositionOccupied;
 import Exceptions.RouterNotFound;
@@ -19,7 +19,7 @@ class Field {
     this.yLength = yLength;
     field = new Router[xLength][yLength];
     for (int i = 0; i < routerCnt; i++) {
-      try{
+      try {
         createNewRouter();
       } catch (PositionOccupied e) {
         break;
@@ -148,7 +148,16 @@ class Field {
     return new ArrayList<String>();
   }
 
+  public HashMap<String, Router> getRouterMap() {
+    return this.router;
+  }
+
   public static void main(String[] args) {
     Field field = new Field(10, 8, 10);
+
+    HashMap<String, Router> map = field.getRouterMap();
+    for (Entry<String, Router> entry : map.entrySet()) {
+      System.out.println(entry.getKey());
+    }
   }
 }
