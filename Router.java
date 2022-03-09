@@ -3,7 +3,7 @@ public class Router extends Thread {
   String id;
   RoutingTable routingTable;
 
-  public Router() {
+  public Router(String id, int xCoord, int yCoord) {
 
   }
 
