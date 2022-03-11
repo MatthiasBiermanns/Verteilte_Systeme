@@ -4,7 +4,8 @@ import java.util.Random;
 import java.util.Map.Entry;
 import java.util.concurrent.Semaphore;
 
-import Exceptions.PositionOccupied;
+import Exceptions.InvalidInputException;
+import Exceptions.PlacementException;
 import Exceptions.RouterNotFound;
 
 class Field {
@@ -12,45 +13,49 @@ class Field {
   private int xLength, yLength;
   private Semaphore fieldSem = new Semaphore(1, true);
   private Router[][] field;
-  private HashMap<String, Router> router = new HashMap<String, Router>();
+  private HashMap<String, Router> routerMap = new HashMap<String, Router>();
 
-  public Field(int routerCnt, int xLength, int yLength) {
+  public Field(int routerCnt, int xLength, int yLength) throws InvalidInputException {
+    if(xLength < 0 || yLength < 0 || (xLength == 0 && yLength == 0)) {
+      throw new InvalidInputException();
+    }
+
     this.xLength = xLength;
     this.yLength = yLength;
     field = new Router[xLength][yLength];
     for (int i = 0; i < routerCnt; i++) {
       try {
         createNewRouter();
-      } catch (PositionOccupied e) {
+      } catch (PlacementException e) {
         break;
       }
     }
   }
 
-  public void createNewRouter() throws PositionOccupied {
+  public void createNewRouter() throws PlacementException {
     // createsRouter at random position
     try {
       fieldSem.acquire();
 
-      int x, y;
+      int xCoord, yCoord;
       int cnt = 0;
       do {
-        x = (int) (Math.random() * xLength);
-        y = (int) (Math.random() * yLength);
+        xCoord = (int) (Math.random() * xLength);
+        yCoord = (int) (Math.random() * yLength);
         cnt++;
-      } while (field[x][y] != null && cnt < 500);
+      } while (field[xCoord][yCoord] != null && cnt < 500);
 
       if (cnt >= 500) {
-        throw new PositionOccupied();
+        throw new PlacementException();
       }
 
       Router r;
       do {
-        r = new Router(getRandomHexString(ID_LENGTH), x, y);
-      } while (router.containsKey(r.getRouterId()));
+        r = new Router(getRandomHexString(ID_LENGTH), xCoord, yCoord);
+      } while (routerMap.containsKey(r.getRouterId()));
 
-      field[x][y] = r;
-      router.put(r.getRouterId(), r);
+      field[xCoord][yCoord] = r;
+      routerMap.put(r.getRouterId(), r);
 
       fieldSem.release();
     } catch (InterruptedException e) {
@@ -59,22 +64,22 @@ class Field {
 
   }
 
-  public void createNewRouter(int x, int y) throws PositionOccupied {
+  public void createNewRouter(int xCoord, int yCoord) throws PlacementException {
     // creates Router at specific position
     try {
       fieldSem.acquire();
 
-      if (field[x][y] == null) {
-        throw new PositionOccupied();
+      if (xCoord > this.xLength || yCoord > this.yLength || field[xCoord][yCoord] == null) {
+        throw new PlacementException();
       }
 
       Router r;
       do {
-        r = new Router(getRandomHexString(ID_LENGTH), x, y);
-      } while (router.containsKey(r.getRouterId()));
+        r = new Router(getRandomHexString(ID_LENGTH), xCoord, yCoord);
+      } while (routerMap.containsKey(r.getRouterId()));
 
-      field[x][y] = r;
-      router.put(r.getRouterId(), r);
+      field[xCoord][yCoord] = r;
+      routerMap.put(r.getRouterId(), r);
 
       fieldSem.release();
     } catch (InterruptedException e) {
@@ -82,14 +87,14 @@ class Field {
     }
   }
 
-  public void moveRouter(String id) throws RouterNotFound, PositionOccupied {
+  public void moveRouter(String id) throws RouterNotFound, PlacementException {
     try {
       fieldSem.acquire();
 
-      if (!router.containsKey(id)) {
+      if (!routerMap.containsKey(id)) {
         throw new RouterNotFound();
       }
-      Router r = router.get(id);
+      Router r = routerMap.get(id);
 
       int newX, newY;
       int cnt = 0;
@@ -100,10 +105,13 @@ class Field {
       } while (field[newX][newY] != null && cnt < 500);
 
       if (cnt >= 500) {
-        throw new PositionOccupied();
+        throw new PlacementException();
       }
 
       field[r.getXCoord()][r.getYCoord()] = null;
+      field[newX][newY] = r;
+      r.setXCoord(newX);
+      r.setYCoord(newY);
 
       fieldSem.release();
     } catch (InterruptedException e) {
@@ -111,20 +119,42 @@ class Field {
     }
   }
 
-  public void moveRouter(String id, int newX, int newY) throws RouterNotFound, PositionOccupied {
-    // moves specific
+  public void moveRouter(String id, int newX, int newY) throws RouterNotFound, PlacementException {
+    //moves specific router to specific position
+    try{
+      fieldSem.acquire();
+
+      if (!routerMap.containsKey(id)) {
+        throw new RouterNotFound();
+      }
+      Router r = routerMap.get(id);
+
+      if(newX > this.xLength || newY > this.yLength || field[newX][newY] != null) {
+        throw new PlacementException();
+      }
+
+      field[r.getXCoord()][r.getYCoord()] = null;
+      field[newX][newY] = r;
+      r.setXCoord(newX);
+      r.setYCoord(newY);
+
+      fieldSem.release();
+    } catch (InterruptedException e) {
+
+    }
+
   }
 
   public void deleteRouter(String id) throws RouterNotFound {
     try {
       fieldSem.acquire();
 
-      if (!router.containsKey(id)) {
+      if (!routerMap.containsKey(id)) {
         throw new RouterNotFound();
       }
 
-      Router r = router.get(id);
-      router.remove(id);
+      Router r = routerMap.get(id);
+      routerMap.remove(id);
       field[r.getXCoord()][r.getYCoord()] = null;
 
       fieldSem.release();
@@ -149,15 +179,19 @@ class Field {
   }
 
   public HashMap<String, Router> getRouterMap() {
-    return this.router;
+    return this.routerMap;
   }
 
   public static void main(String[] args) {
-    Field field = new Field(10, 8, 10);
-
-    HashMap<String, Router> map = field.getRouterMap();
-    for (Entry<String, Router> entry : map.entrySet()) {
-      System.out.println(entry.getKey());
+    try{
+      Field field = new Field(10, 8, 10);
+  
+      HashMap<String, Router> map = field.getRouterMap();
+      for (Entry<String, Router> entry : map.entrySet()) {
+        System.out.println(entry.getKey());
+      }
+    } catch (InvalidInputException e) {
+      
     }
   }
 }

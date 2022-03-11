@@ -45,4 +45,12 @@ public class Router extends Thread {
   public int getYCoord() {
     return this.yCoord;
   }
+
+  public void setXCoord(int xCoord) {
+    this.xCoord = xCoord;
+  }
+
+  public void setYCoord(int yCoord) {
+    this.yCoord = yCoord;
+  }
 }
