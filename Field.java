@@ -16,7 +16,7 @@ class Field {
   private HashMap<String, Router> routerMap = new HashMap<String, Router>();
 
   public Field(int routerCnt, int xLength, int yLength) throws InvalidInputException {
-    if(xLength < 0 || yLength < 0 || (xLength == 0 && yLength == 0)) {
+    if (xLength < 0 || yLength < 0 || (xLength == 0 && yLength == 0)) {
       throw new InvalidInputException();
     }
 
@@ -30,6 +30,47 @@ class Field {
         break;
       }
     }
+  }
+
+  public static void main(String[] args) {
+    try {
+      Field field = new Field(10, 8, 10);
+
+      HashMap<String, Router> map = field.getRouterMap();
+      for (Entry<String, Router> entry : map.entrySet()) {
+        System.out.println(entry.getKey());
+      }
+
+      System.out.println(getDistance(1, 0, 3, 3));
+      System.out.println(getDistance(0, 4, 3, 4));
+    } catch (InvalidInputException e) {
+
+    }
+  }
+
+  public ArrayList<Router> getReachableRouter(int x, int y, double range) {
+    ArrayList<Router> reachableRouter = new ArrayList<Router>();
+
+    for (Entry<String, Router> entry : this.getRouterMap().entrySet()) {
+      Router r = entry.getValue();
+      if (getDistance(x, y, r.getXCoord(), r.getYCoord()) <= range) {
+        reachableRouter.add(r);
+      }
+    }
+    return reachableRouter;
+  }
+
+  public static double getDistance(int x1, int y1, int x2, int y2) {
+    int xDist = (x1 - x2) >= 0 ? x1 - x2 : x2 - x1;
+    int yDist = (y1 - y2) >= 0 ? y1 - y2 : y2 - y1;
+
+    if (xDist == 0) {
+      return yDist;
+    }
+    if (yDist == 0) {
+      return xDist;
+    }
+    return Math.sqrt(xDist + yDist);
   }
 
   public void createNewRouter() throws PlacementException {
@@ -120,8 +161,8 @@ class Field {
   }
 
   public void moveRouter(String id, int newX, int newY) throws RouterNotFound, PlacementException {
-    //moves specific router to specific position
-    try{
+    // moves specific router to specific position
+    try {
       fieldSem.acquire();
 
       if (!routerMap.containsKey(id)) {
@@ -129,7 +170,7 @@ class Field {
       }
       Router r = routerMap.get(id);
 
-      if(newX > this.xLength || newY > this.yLength || field[newX][newY] != null) {
+      if (newX > this.xLength || newY > this.yLength || field[newX][newY] != null) {
         throw new PlacementException();
       }
 
@@ -173,25 +214,8 @@ class Field {
     return sb.toString().substring(0, length);
   }
 
-  public ArrayList<String> getRouterInRadius(int x, int y, double radius) {
-
-    return new ArrayList<String>();
-  }
-
   public HashMap<String, Router> getRouterMap() {
     return this.routerMap;
   }
 
-  public static void main(String[] args) {
-    try{
-      Field field = new Field(10, 8, 10);
-  
-      HashMap<String, Router> map = field.getRouterMap();
-      for (Entry<String, Router> entry : map.entrySet()) {
-        System.out.println(entry.getKey());
-      }
-    } catch (InvalidInputException e) {
-      
-    }
-  }
 }
