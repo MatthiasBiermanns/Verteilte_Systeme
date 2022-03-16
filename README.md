@@ -47,7 +47,7 @@ Semester WWI2020SEA
 - Austausch über Flooding, nicht nur Nachbarn
 - Gut bei viel Veränderung (wie z. B. fragile MANets)
 
-**[Link Reversal Routing](https://courses.engr.illinois.edu/ece428/sp2018/link-reversal.pdf)**
+#### [Link Reversal Routing](https://courses.engr.illinois.edu/ece428/sp2018/link-reversal.pdf)
 
 - Hohe Maintaining Kosten
 - Adaptiv und Selbststabilisierend
@@ -75,7 +75,7 @@ Semester WWI2020SEA
 
 ### OnDemand Protokolle
 
-**[Dynamic Source Routing](https://www.vs.inf.ethz.ch/edu/SS2001/MC/slides/02-routing.pdf)**
+#### [Dynamic Source Routing](https://www.vs.inf.ethz.ch/edu/SS2001/MC/slides/02-routing.pdf)
 
 - Suche nach Pfaden nur, wenn gebraucht und nicht vorhanden
 - Nur während gebrauch wird Pfad gepflegt / aufrecht gehalten
@@ -97,7 +97,7 @@ Semester WWI2020SEA
     - Sender entfernt Link aus Cache
     - Senden über anderen Pfad, oder neue _Route Request_
 
-**[Terminode Routing](https://www.vs.inf.ethz.ch/edu/SS2001/MC/slides/02-routing.pdf)**
+#### [Terminode Routing](https://www.vs.inf.ethz.ch/edu/SS2001/MC/slides/02-routing.pdf)
 
 - Permanenter End-System Unique Identifier
 - Temporärer Location-Dependent Address (LDA)
