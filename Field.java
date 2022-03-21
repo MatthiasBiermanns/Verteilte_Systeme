@@ -10,6 +10,7 @@ import Exceptions.RouterNotFound;
 
 class Field {
   final static int ID_LENGTH = 16;
+  static int nextPort = 3000;
   private int xLength, yLength;
   private Semaphore fieldSem = new Semaphore(1, true);
   private Router[][] field;
@@ -92,7 +93,8 @@ class Field {
 
       Router r;
       do {
-        r = new Router(getRandomHexString(ID_LENGTH), xCoord, yCoord);
+        r = new Router(getRandomHexString(ID_LENGTH), xCoord, yCoord, nextPort);
+        nextPort++;
       } while (routerMap.containsKey(r.getRouterId()));
 
       field[xCoord][yCoord] = r;
@@ -116,7 +118,8 @@ class Field {
 
       Router r;
       do {
-        r = new Router(getRandomHexString(ID_LENGTH), xCoord, yCoord);
+        r = new Router(getRandomHexString(ID_LENGTH), xCoord, yCoord, nextPort);
+        nextPort++;
       } while (routerMap.containsKey(r.getRouterId()));
 
       field[xCoord][yCoord] = r;

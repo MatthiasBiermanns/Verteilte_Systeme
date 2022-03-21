@@ -1,24 +1,38 @@
-public class Router extends Thread {
-  private int xCoord, yCoord;
-  private String id;
-  private RoutingTable routingTable;
+import java.time.Instant;
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.net.*;
+import java.io.*;
 
-  public Router(String id, int xCoord, int yCoord) {
+public class Router extends Thread {
+  private int xCoord, yCoord, port;
+  private String id;
+  private HashMap<String, RoutingPath> paths;
+  private byte[] buffer;
+
+  public Router(String id, int xCoord, int yCoord, int port) {
     this.xCoord = xCoord;
     this.yCoord = yCoord;
+    this.port = port;
     this.id = id;
-    checkRoutingTable();
+    this.paths = new HashMap<>();
+    this.buffer = new byte[65507];
   }
 
   public void run() {
-    while (true) {
-      // workflow
-      try {
-        Thread.sleep(1000);
-        System.out.println(id + ": Waiting for packages");
-      } catch (InterruptedException e) {
+    try (DatagramSocket socket = new DatagramSocket(port)) {
+      while (true) {
+        DatagramPacket dp = new DatagramPacket(buffer, buffer.length);
+        try {
+          socket.receive(dp);
+          String packet = new String(dp.getData(), 0, dp.getLength());
 
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
       }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 
@@ -26,12 +40,24 @@ public class Router extends Thread {
 
   }
 
-  public void flood(String msg) {
-    // flooding all routers in 10m range with given message
+  public void sendRouteRequest() {
+
   }
 
-  public void checkRoutingTable() {
+  public void sendRouteReply() {
 
+  }
+
+  public void sendRouteError() {
+
+  }
+
+  public void updateRoutePaths() {
+    for (Entry<String, RoutingPath> path : this.paths.entrySet()) {
+      if (Instant.now().getEpochSecond() - path.getValue().getLastUsed() >= 600) {
+        this.paths.remove(path.getKey());
+      }
+    }
   }
 
   public String getRouterId() {
