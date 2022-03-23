@@ -1,22 +1,31 @@
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map.Entry;
+
+import Exceptions.InvalidMessage;
+
 import java.net.*;
-import java.io.*;
+//import java.io.*;
 
 public class Router extends Thread {
   private int xCoord, yCoord, port;
-  private String id;
+  //private String id;
   private HashMap<String, RoutingPath> paths;
   private byte[] buffer;
+  public Field field;
 
-  public Router(String id, int xCoord, int yCoord, int port) {
+  public Router(int xCoord, int yCoord, int port, Field field) {
     this.xCoord = xCoord;
     this.yCoord = yCoord;
     this.port = port;
-    this.id = id;
+    //this.id = id;
+    this.field = field;
     this.paths = new HashMap<>();
     this.buffer = new byte[65507];
+  }
+
+  public Router() {
+
   }
 
   public void run() {
@@ -25,7 +34,13 @@ public class Router extends Thread {
         DatagramPacket dp = new DatagramPacket(buffer, buffer.length);
         try {
           socket.receive(dp);
-          String packet = new String(dp.getData(), 0, dp.getLength());
+          try {
+            Message message = new Message( new String(dp.getData(), 0, dp.getLength()));
+            evaluateMessage(message);
+          } catch (InvalidMessage e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+          }
 
         } catch (Exception e) {
           e.printStackTrace();
@@ -34,6 +49,10 @@ public class Router extends Thread {
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  public void evaluateMessage(Message msg) {
+
   }
 
   public void send() {
@@ -60,9 +79,9 @@ public class Router extends Thread {
     }
   }
 
-  public String getRouterId() {
-    return this.id;
-  }
+  //public String getRouterId() {
+  //  return this.id;
+  //}
 
   public int getXCoord() {
     return this.xCoord;
@@ -72,6 +91,10 @@ public class Router extends Thread {
     return this.yCoord;
   }
 
+  public int getPort() {
+    return this.port;
+  }
+
   public void setXCoord(int xCoord) {
     this.xCoord = xCoord;
   }
@@ -79,4 +102,5 @@ public class Router extends Thread {
   public void setYCoord(int yCoord) {
     this.yCoord = yCoord;
   }
+
 }

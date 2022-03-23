@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Map.Entry;
 import java.util.concurrent.Semaphore;
@@ -14,7 +15,7 @@ class Field {
   private int xLength, yLength;
   private Semaphore fieldSem = new Semaphore(1, true);
   private Router[][] field;
-  private HashMap<String, Router> routerMap = new HashMap<String, Router>();
+  private HashMap<Integer, Router> routerMap = new HashMap<Integer, Router>();
 
   public Field(int routerCnt, int xLength, int yLength) throws InvalidInputException {
     if (xLength < 0 || yLength < 0 || (xLength == 0 && yLength == 0)) {
@@ -37,8 +38,8 @@ class Field {
     try {
       Field field = new Field(10, 8, 10);
 
-      HashMap<String, Router> map = field.getRouterMap();
-      for (Entry<String, Router> entry : map.entrySet()) {
+      HashMap<Integer, Router> map = field.getRouterMap();
+      for (Entry<Integer, Router> entry : map.entrySet()) {
         System.out.println(entry.getKey());
       }
 
@@ -49,10 +50,31 @@ class Field {
     }
   }
 
+  public Router getClosestReachableRouter(int x, int y, double range) throws RouterNotFound{
+    ArrayList<Router> reachableRouter = getReachableRouter(x, y, range);
+
+    if(reachableRouter.isEmpty()) {
+      throw new RouterNotFound("No router in range");
+    }
+    Router router =  new Router();
+    double closestDist = 99999;
+
+    Iterator<Router> i = reachableRouter.iterator();
+
+    while(i.hasNext()) {
+      Router tempRouter = i.next();
+      double distance = getDistance(x, y, tempRouter.getXCoord(), tempRouter.getYCoord());
+      if(distance < closestDist) {
+        router = tempRouter;
+      }
+    }
+    return router;
+  }
+
   public ArrayList<Router> getReachableRouter(int x, int y, double range) {
     ArrayList<Router> reachableRouter = new ArrayList<Router>();
 
-    for (Entry<String, Router> entry : this.getRouterMap().entrySet()) {
+    for (Entry<Integer, Router> entry : this.getRouterMap().entrySet()) {
       Router r = entry.getValue();
       if (getDistance(x, y, r.getXCoord(), r.getYCoord()) <= range) {
         reachableRouter.add(r);
@@ -91,14 +113,14 @@ class Field {
         throw new PlacementException();
       }
 
-      Router r;
-      do {
-        r = new Router(getRandomHexString(ID_LENGTH), xCoord, yCoord, nextPort);
-        nextPort++;
-      } while (routerMap.containsKey(r.getRouterId()));
+      //Router r;
+      //do {
+      Router r = new Router(xCoord, yCoord, nextPort, this);
+      nextPort++;
+      //} while (routerMap.containsKey(r.getPort()));
 
       field[xCoord][yCoord] = r;
-      routerMap.put(r.getRouterId(), r);
+      routerMap.put(r.getPort(), r);
 
       fieldSem.release();
     } catch (InterruptedException e) {
@@ -116,14 +138,14 @@ class Field {
         throw new PlacementException();
       }
 
-      Router r;
-      do {
-        r = new Router(getRandomHexString(ID_LENGTH), xCoord, yCoord, nextPort);
-        nextPort++;
-      } while (routerMap.containsKey(r.getRouterId()));
+      //Router r;
+      //do {
+      Router r = new Router(xCoord, yCoord, nextPort, this);
+      nextPort++;
+      //} while (routerMap.containsKey(r.getRouterId()));
 
       field[xCoord][yCoord] = r;
-      routerMap.put(r.getRouterId(), r);
+      routerMap.put(r.getPort(), r);
 
       fieldSem.release();
     } catch (InterruptedException e) {
@@ -131,14 +153,14 @@ class Field {
     }
   }
 
-  public void moveRouter(String id) throws RouterNotFound, PlacementException {
+  public void moveRouter(int port) throws RouterNotFound, PlacementException {
     try {
       fieldSem.acquire();
 
-      if (!routerMap.containsKey(id)) {
+      if (!routerMap.containsKey(port)) {
         throw new RouterNotFound();
       }
-      Router r = routerMap.get(id);
+      Router r = routerMap.get(port);
 
       int newX, newY;
       int cnt = 0;
@@ -163,15 +185,15 @@ class Field {
     }
   }
 
-  public void moveRouter(String id, int newX, int newY) throws RouterNotFound, PlacementException {
+  public void moveRouter(int port, int newX, int newY) throws RouterNotFound, PlacementException {
     // moves specific router to specific position
     try {
       fieldSem.acquire();
 
-      if (!routerMap.containsKey(id)) {
+      if (!routerMap.containsKey(port)) {
         throw new RouterNotFound();
       }
-      Router r = routerMap.get(id);
+      Router r = routerMap.get(port);
 
       if (newX > this.xLength || newY > this.yLength || field[newX][newY] != null) {
         throw new PlacementException();
@@ -189,16 +211,16 @@ class Field {
 
   }
 
-  public void deleteRouter(String id) throws RouterNotFound {
+  public void deleteRouter(int port) throws RouterNotFound {
     try {
       fieldSem.acquire();
 
-      if (!routerMap.containsKey(id)) {
+      if (!routerMap.containsKey(port)) {
         throw new RouterNotFound();
       }
 
-      Router r = routerMap.get(id);
-      routerMap.remove(id);
+      Router r = routerMap.get(port);
+      routerMap.remove(port);
       field[r.getXCoord()][r.getYCoord()] = null;
 
       fieldSem.release();
@@ -217,7 +239,7 @@ class Field {
     return sb.toString().substring(0, length);
   }
 
-  public HashMap<String, Router> getRouterMap() {
+  public HashMap<Integer, Router> getRouterMap() {
     return this.routerMap;
   }
 
