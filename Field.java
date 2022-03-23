@@ -7,15 +7,15 @@ import java.util.concurrent.Semaphore;
 
 import Exceptions.InvalidInputException;
 import Exceptions.PlacementException;
-import Exceptions.RouterNotFound;
+import Exceptions.DeviceNotFound;
 
 class Field {
-  final static int ID_LENGTH = 16;
+  final static int ID_LENGTH = 32;
   static int nextPort = 3000;
   private int xLength, yLength;
   private Semaphore fieldSem = new Semaphore(1, true);
   private Router[][] field;
-  private HashMap<Integer, Router> routerMap = new HashMap<Integer, Router>();
+  private HashMap<String, Device> map = new HashMap<String, Device>();
 
   public Field(int routerCnt, int xLength, int yLength) throws InvalidInputException {
     if (xLength < 0 || yLength < 0 || (xLength == 0 && yLength == 0)) {
@@ -38,8 +38,8 @@ class Field {
     try {
       Field field = new Field(10, 8, 10);
 
-      HashMap<Integer, Router> map = field.getRouterMap();
-      for (Entry<Integer, Router> entry : map.entrySet()) {
+      HashMap<String, Device> map = field.getMap();
+      for (Entry<String, Device> entry : map.entrySet()) {
         System.out.println(entry.getKey());
       }
 
@@ -50,21 +50,21 @@ class Field {
     }
   }
 
-  public Router getClosestReachableRouter(int x, int y, double range) throws RouterNotFound{
+  public Router getClosestReachableRouter(int x, int y, double range) throws DeviceNotFound {
     ArrayList<Router> reachableRouter = getReachableRouter(x, y, range);
 
-    if(reachableRouter.isEmpty()) {
-      throw new RouterNotFound("No router in range");
+    if (reachableRouter.isEmpty()) {
+      throw new DeviceNotFound("No router in range");
     }
-    Router router =  new Router();
+    Router router = new Router();
     double closestDist = 99999;
 
     Iterator<Router> i = reachableRouter.iterator();
 
-    while(i.hasNext()) {
+    while (i.hasNext()) {
       Router tempRouter = i.next();
       double distance = getDistance(x, y, tempRouter.getXCoord(), tempRouter.getYCoord());
-      if(distance < closestDist) {
+      if (distance < closestDist) {
         router = tempRouter;
       }
     }
@@ -74,10 +74,13 @@ class Field {
   public ArrayList<Router> getReachableRouter(int x, int y, double range) {
     ArrayList<Router> reachableRouter = new ArrayList<Router>();
 
-    for (Entry<Integer, Router> entry : this.getRouterMap().entrySet()) {
-      Router r = entry.getValue();
-      if (getDistance(x, y, r.getXCoord(), r.getYCoord()) <= range) {
-        reachableRouter.add(r);
+    for (Entry<String, Device> entry : this.getMap().entrySet()) {
+      Device d = entry.getValue();
+      if (d instanceof Router) {
+        Router r = (Router) d;
+        if (getDistance(x, y, r.getXCoord(), r.getYCoord()) <= range) {
+          reachableRouter.add(r);
+        }
       }
     }
     return reachableRouter;
@@ -113,14 +116,16 @@ class Field {
         throw new PlacementException();
       }
 
-      //Router r;
-      //do {
-      Router r = new Router(xCoord, yCoord, nextPort, this);
+      String id;
+      do {
+        id = getRandomHexString(ID_LENGTH);
+      } while (map.containsKey(id));
+
+      Router r = new Router(id, xCoord, yCoord, nextPort, this);
       nextPort++;
-      //} while (routerMap.containsKey(r.getPort()));
 
       field[xCoord][yCoord] = r;
-      routerMap.put(r.getPort(), r);
+      map.put(r.getDeviceId(), r);
 
       fieldSem.release();
     } catch (InterruptedException e) {
@@ -138,29 +143,37 @@ class Field {
         throw new PlacementException();
       }
 
-      //Router r;
-      //do {
-      Router r = new Router(xCoord, yCoord, nextPort, this);
+      String id;
+      do {
+        id = getRandomHexString(ID_LENGTH);
+      } while (map.containsKey(id));
+
+      Router r = new Router(id, xCoord, yCoord, nextPort, this);
       nextPort++;
-      //} while (routerMap.containsKey(r.getRouterId()));
 
       field[xCoord][yCoord] = r;
-      routerMap.put(r.getPort(), r);
+      map.put(r.getDeviceId(), r);
 
       fieldSem.release();
     } catch (InterruptedException e) {
-
+      System.out.println(e.getMessage());
+      e.printStackTrace();
     }
   }
 
-  public void moveRouter(int port) throws RouterNotFound, PlacementException {
+  public void moveRouter(String deviceId) throws DeviceNotFound, PlacementException {
     try {
       fieldSem.acquire();
 
-      if (!routerMap.containsKey(port)) {
-        throw new RouterNotFound();
+      if (!map.containsKey(deviceId)) {
+        throw new DeviceNotFound();
       }
-      Router r = routerMap.get(port);
+
+      Device d = map.get(deviceId);
+      if (!(d instanceof Router)) {
+        throw new DeviceNotFound("Device is not a router");
+      }
+      Router r = (Router) d;
 
       int newX, newY;
       int cnt = 0;
@@ -185,15 +198,20 @@ class Field {
     }
   }
 
-  public void moveRouter(int port, int newX, int newY) throws RouterNotFound, PlacementException {
+  public void moveRouter(String deviceId, int newX, int newY) throws DeviceNotFound, PlacementException {
     // moves specific router to specific position
     try {
       fieldSem.acquire();
 
-      if (!routerMap.containsKey(port)) {
-        throw new RouterNotFound();
+      if (!map.containsKey(deviceId)) {
+        throw new DeviceNotFound();
       }
-      Router r = routerMap.get(port);
+
+      Device d = map.get(deviceId);
+      if (!(d instanceof Router)) {
+        throw new DeviceNotFound("Device is not a router");
+      }
+      Router r = (Router) d;
 
       if (newX > this.xLength || newY > this.yLength || field[newX][newY] != null) {
         throw new PlacementException();
@@ -211,16 +229,16 @@ class Field {
 
   }
 
-  public void deleteRouter(int port) throws RouterNotFound {
+  public void deleteDevice(String deviceId) throws DeviceNotFound {
     try {
       fieldSem.acquire();
 
-      if (!routerMap.containsKey(port)) {
-        throw new RouterNotFound();
+      if (!map.containsKey(deviceId)) {
+        throw new DeviceNotFound();
       }
 
-      Router r = routerMap.get(port);
-      routerMap.remove(port);
+      Device r = map.get(deviceId);
+      map.remove(deviceId);
       field[r.getXCoord()][r.getYCoord()] = null;
 
       fieldSem.release();
@@ -239,8 +257,8 @@ class Field {
     return sb.toString().substring(0, length);
   }
 
-  public HashMap<Integer, Router> getRouterMap() {
-    return this.routerMap;
+  public HashMap<String, Device> getMap() {
+    return this.map;
   }
 
 }

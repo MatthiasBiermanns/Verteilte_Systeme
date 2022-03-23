@@ -7,25 +7,20 @@ import Exceptions.InvalidMessage;
 import java.net.*;
 //import java.io.*;
 
-public class Router extends Thread {
-  private int xCoord, yCoord, port;
-  //private String id;
+public class Router extends Device {
+  private int port;
   private HashMap<String, RoutingPath> paths;
   private byte[] buffer;
-  public Field field;
 
-  public Router(int xCoord, int yCoord, int port, Field field) {
-    this.xCoord = xCoord;
-    this.yCoord = yCoord;
+  public Router(String deviceId, int xCoord, int yCoord, int port, Field field) {
+    super(deviceId, xCoord, yCoord, field);
     this.port = port;
-    //this.id = id;
-    this.field = field;
     this.paths = new HashMap<>();
     this.buffer = new byte[65507];
   }
 
   public Router() {
-
+    super();
   }
 
   public void run() {
@@ -79,10 +74,6 @@ public class Router extends Thread {
     }
   }
 
-  //public String getRouterId() {
-  //  return this.id;
-  //}
-
   public int getXCoord() {
     return this.xCoord;
   }
@@ -94,7 +85,7 @@ public class Router extends Thread {
   public int getPort() {
     return this.port;
   }
-
+  
   public void setXCoord(int xCoord) {
     this.xCoord = xCoord;
   }
