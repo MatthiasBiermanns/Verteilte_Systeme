@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -16,7 +18,24 @@ class Field {
   private HashMap<Integer, Device> map = new HashMap<Integer, Device>();
 
   public static void main(String[] args) {
+    try {
+      Field myField = new Field(20, 10, 10);
+      try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+        while (true) {
+          myField.printField();
 
+          String line = reader.readLine();
+          String[] parts = line.split(" ");
+
+          myField.moveDevice(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2]),
+              Integer.parseInt(parts[3]));
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   public Field(int routerCnt, int xLength, int yLength) throws InvalidInputException {
@@ -26,11 +45,12 @@ class Field {
 
     this.xLength = xLength;
     this.yLength = yLength;
-    field = new Router[xLength][yLength][2];
+    field = new Device[xLength][yLength][2];
     for (int i = 0; i < routerCnt; i++) {
       try {
         createNewDevice();
       } catch (PlacementException e) {
+        e.printStackTrace();
         break;
       }
     }
@@ -46,14 +66,14 @@ class Field {
         xCoord = (int) (Math.random() * xLength);
         yCoord = (int) (Math.random() * yLength);
         cnt++;
-      } while (field[xCoord][yCoord] != null && cnt < 500);
+      } while (field[xCoord][yCoord][0] != null && cnt < 500);
 
       if (cnt >= 500) {
         throw new PlacementException();
       }
 
-      Router r = new Router(xCoord, yCoord, nextPort, this, nextPort+1);
-      EndDevice d = new EndDevice(xCoord, yCoord, this, nextPort+1, nextPort);
+      Router r = new Router(xCoord, yCoord, nextPort, this, nextPort + 1);
+      EndDevice d = new EndDevice(xCoord, yCoord, this, nextPort + 1, nextPort);
       nextPort++;
       nextPort++;
 
@@ -74,12 +94,12 @@ class Field {
     try {
       fieldSem.acquire();
 
-      if (xCoord > this.xLength || yCoord > this.yLength || field[xCoord][yCoord] == null) {
+      if (xCoord > this.xLength || yCoord > this.yLength || field[xCoord][yCoord][0] == null) {
         throw new PlacementException();
       }
 
-      Router r = new Router(xCoord, yCoord, nextPort, this, nextPort+1);
-      EndDevice d = new EndDevice(xCoord, yCoord, this, nextPort+1, nextPort);
+      Router r = new Router(xCoord, yCoord, nextPort, this, nextPort + 1);
+      EndDevice d = new EndDevice(xCoord, yCoord, this, nextPort + 1, nextPort);
       nextPort++;
       nextPort++;
 
@@ -99,7 +119,7 @@ class Field {
     try {
       fieldSem.acquire();
 
-      if (field[oldX][oldY] == null) {
+      if (field[oldX][oldY][0] == null) {
         throw new DeviceNotFound();
       }
 
@@ -109,19 +129,22 @@ class Field {
         newX = (int) (Math.random() * xLength);
         newY = (int) (Math.random() * yLength);
         cnt++;
-      } while (field[newX][newY] != null && cnt < 500);
+      } while (field[newX][newY][0] != null && cnt < 500);
 
       if (cnt >= 500) {
         throw new PlacementException();
       }
 
-      Device[] device = field[oldX][oldY];
-      field[newX][newY] = device;
-      field[oldX][oldY] = null;
-      device[0].setXCoord(newX);
-      device[0].setYCoord(newY);
-      device[1].setXCoord(newX);
-      device[1].setYCoord(newY);
+      Router r = (Router) field[oldX][oldY][0];
+      EndDevice d = (EndDevice) field[oldX][oldY][1];
+      r.setXCoord(newX);
+      r.setYCoord(newY);
+      d.setXCoord(newX);
+      d.setYCoord(newY);
+      field[newX][newY][0] = r;
+      field[newX][newY][1] = d;
+      field[oldX][oldY][0] = null;
+      field[oldX][oldY][1] = null;
 
       fieldSem.release();
     } catch (InterruptedException e) {
@@ -134,21 +157,24 @@ class Field {
     try {
       fieldSem.acquire();
 
-      if (field[oldX][oldY] == null) {
+      if (field[oldX][oldY][0] == null) {
         throw new DeviceNotFound();
       }
 
-      if (newX > this.xLength || newY > this.yLength || field[newX][newY] != null) {
+      if (newX > this.xLength || newY > this.yLength || field[newX][newY][0] != null) {
         throw new PlacementException();
       }
 
-      Device[] device = field[oldX][oldY];
-      field[newX][newY] = device;
-      field[oldX][oldY] = null;
-      device[0].setXCoord(newX);
-      device[0].setYCoord(newY);
-      device[1].setXCoord(newX);
-      device[1].setYCoord(newY);
+      Router r = (Router) field[oldX][oldY][0];
+      EndDevice d = (EndDevice) field[oldX][oldY][1];
+      r.setXCoord(newX);
+      r.setYCoord(newY);
+      d.setXCoord(newX);
+      d.setYCoord(newY);
+      field[newX][newY][0] = r;
+      field[newX][newY][1] = d;
+      field[oldX][oldY][0] = null;
+      field[oldX][oldY][1] = null;
 
       fieldSem.release();
     } catch (InterruptedException e) {
@@ -184,26 +210,40 @@ class Field {
     return Math.sqrt(xDist + yDist);
   }
 
-  
-
-  
-
   public void deleteDevice(int x, int y) throws DeviceNotFound {
     try {
       fieldSem.acquire();
 
-      if(field[x][y] == null) {
+      if (field[x][y] == null) {
         throw new DeviceNotFound();
       }
 
       Device[] device = field[x][y];
       map.remove(device[0].getPort());
       map.remove(device[1].getPort());
-      field[x][y] = null;
+      field[x][y][0] = null;
+      field[x][y][1] = null;
 
       fieldSem.release();
     } catch (InterruptedException e) {
 
     }
+  }
+
+  public void printField() {
+    for (int i = 0; i < field.length; i++) {
+      for (int j = 0; j < field[i].length; j++) {
+        if (field[i][j][0] != null) {
+          System.out.print(field[i][j][0].getPort() + " - ");
+        } else {
+          System.out.print("___ - ");
+        }
+      }
+      System.out.println("\n");
+    }
+  }
+
+  public HashMap<Integer, Device> getMap() {
+    return this.map;
   }
 }
