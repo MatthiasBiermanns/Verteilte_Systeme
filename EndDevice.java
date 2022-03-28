@@ -1,28 +1,42 @@
 import java.net.*;
+import java.util.LinkedList;
+import java.util.UUID;
 
-import Exceptions.DeviceNotFound;
 import java.io.*;
 
-public class EndDevice extends Device{
-  private static String EXIT_STRING = "EXIT"; 
+public class EndDevice extends Device {
+  private static String EXIT_STRING = "EXIT";
+  private int myRouterPort;
 
-  public EndDevice(String deviceId, int xCoord, int yCoord, Field field) {
-    super(deviceId, xCoord, yCoord, field);
+  public EndDevice(int xCoord, int yCoord, Field field, int port, int myRouterPort) {
+    super(xCoord, yCoord, field, port);
+    this.myRouterPort = myRouterPort;
   }
 
-  public void run(){
-
+  public void run() {
+    while (true) {
+      try {
+        sleep(5000);
+        this.sendMessage(this.port + 5, "Hallo", false);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
   }
 
-  public void readAndSend(String dest, boolean withResponse) {
-    try (BufferedReader reader = new BufferedReader( new InputStreamReader(System.in))) {
+  private static String getUUID() {
+    return UUID.randomUUID().toString();
+  }
+
+  public void readAndSend(int dest, boolean withResponse) {
+    try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
       System.out.println("End your Message with " + EXIT_STRING + "\n");
       String msg = "";
-      while(true) {
-        try{
+      while (true) {
+        try {
           String line = reader.readLine();
-          if(line.equals(EXIT_STRING)) {
-            break; 
+          if (line.equals(EXIT_STRING)) {
+            break;
           }
           msg = msg + "\n" + line;
         } catch (Exception e) {
@@ -30,31 +44,32 @@ public class EndDevice extends Device{
         }
       }
       sendMessage(dest, msg, withResponse);
-    } catch(Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  public void sendMessage(String dest, String msg, boolean withResponse) {
-    try(DatagramSocket socket = new DatagramSocket()) {
+  public void sendMessage(int dest, String msg, boolean withResponse) {
+    try (DatagramSocket socket = new DatagramSocket()) {
       InetAddress serverAddress = InetAddress.getByName("localhost");
-      byte[] message = msg.getBytes();
+      Message message = new Message(getUUID(), Command.Send, this.port, dest, new LinkedList<String>(), msg);
+      byte[] bytes = message.toString().getBytes();
 
-      try {
-        Router router = this.field.getClosestReachableRouter(this.xCoord, this.yCoord, 10);
-        DatagramPacket packet = new DatagramPacket(message, message.length, serverAddress, router.getPort());
-        socket.send(packet);
-      } catch( DeviceNotFound e) {
-        System.out.println();
-        e.printStackTrace();
+      DatagramPacket packet = new DatagramPacket(bytes, bytes.length, serverAddress, myRouterPort);
+      socket.send(packet);
+      if (withResponse) {
+        this.receiveMessage();
       }
-
-    } catch(Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
   public void receiveMessage() {
 
+  }
+
+  public int getMyRouterPort() {
+    return this.myRouterPort;
   }
 }

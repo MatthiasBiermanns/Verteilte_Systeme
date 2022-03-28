@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Random;
 import java.util.Map.Entry;
 import java.util.concurrent.Semaphore;
 
@@ -14,8 +12,12 @@ class Field {
   static int nextPort = 3000;
   private int xLength, yLength;
   private Semaphore fieldSem = new Semaphore(1, true);
-  private Router[][] field;
-  private HashMap<String, Device> map = new HashMap<String, Device>();
+  private Device[][][] field;
+  private HashMap<Integer, Device> map = new HashMap<Integer, Device>();
+
+  public static void main(String[] args) {
+
+  }
 
   public Field(int routerCnt, int xLength, int yLength) throws InvalidInputException {
     if (xLength < 0 || yLength < 0 || (xLength == 0 && yLength == 0)) {
@@ -24,61 +26,144 @@ class Field {
 
     this.xLength = xLength;
     this.yLength = yLength;
-    field = new Router[xLength][yLength];
+    field = new Router[xLength][yLength][2];
     for (int i = 0; i < routerCnt; i++) {
       try {
-        createNewRouter();
+        createNewDevice();
       } catch (PlacementException e) {
         break;
       }
     }
   }
 
-  public static void main(String[] args) {
+  public void createNewDevice() throws PlacementException {
     try {
-      Field field = new Field(10, 8, 10);
+      fieldSem.acquire();
 
-      HashMap<String, Device> map = field.getMap();
-      for (Entry<String, Device> entry : map.entrySet()) {
-        System.out.println(entry.getKey());
+      int xCoord, yCoord;
+      int cnt = 0;
+      do {
+        xCoord = (int) (Math.random() * xLength);
+        yCoord = (int) (Math.random() * yLength);
+        cnt++;
+      } while (field[xCoord][yCoord] != null && cnt < 500);
+
+      if (cnt >= 500) {
+        throw new PlacementException();
       }
 
-      System.out.println(getDistance(1, 0, 3, 3));
-      System.out.println(getDistance(0, 4, 3, 4));
-    } catch (InvalidInputException e) {
+      Router r = new Router(xCoord, yCoord, nextPort, this, nextPort+1);
+      EndDevice d = new EndDevice(xCoord, yCoord, this, nextPort+1, nextPort);
+      nextPort++;
+      nextPort++;
+
+      field[xCoord][yCoord][0] = r;
+      field[xCoord][yCoord][1] = d;
+      map.put(r.getPort(), r);
+      map.put(d.getPort(), d);
+
+      fieldSem.release();
+    } catch (InterruptedException e) {
+
+    }
+
+  }
+
+  public void createNewDevice(int xCoord, int yCoord) throws PlacementException {
+    // creates Router at specific position
+    try {
+      fieldSem.acquire();
+
+      if (xCoord > this.xLength || yCoord > this.yLength || field[xCoord][yCoord] == null) {
+        throw new PlacementException();
+      }
+
+      Router r = new Router(xCoord, yCoord, nextPort, this, nextPort+1);
+      EndDevice d = new EndDevice(xCoord, yCoord, this, nextPort+1, nextPort);
+      nextPort++;
+      nextPort++;
+
+      field[xCoord][yCoord][0] = r;
+      field[xCoord][yCoord][1] = d;
+      map.put(r.getPort(), r);
+      map.put(d.getPort(), d);
+
+      fieldSem.release();
+    } catch (InterruptedException e) {
+      System.out.println(e.getMessage());
+      e.printStackTrace();
+    }
+  }
+
+  public void moveDevice(int oldX, int oldY) throws DeviceNotFound, PlacementException {
+    try {
+      fieldSem.acquire();
+
+      if (field[oldX][oldY] == null) {
+        throw new DeviceNotFound();
+      }
+
+      int newX, newY;
+      int cnt = 0;
+      do {
+        newX = (int) (Math.random() * xLength);
+        newY = (int) (Math.random() * yLength);
+        cnt++;
+      } while (field[newX][newY] != null && cnt < 500);
+
+      if (cnt >= 500) {
+        throw new PlacementException();
+      }
+
+      Device[] device = field[oldX][oldY];
+      field[newX][newY] = device;
+      field[oldX][oldY] = null;
+      device[0].setXCoord(newX);
+      device[0].setYCoord(newY);
+      device[1].setXCoord(newX);
+      device[1].setYCoord(newY);
+
+      fieldSem.release();
+    } catch (InterruptedException e) {
 
     }
   }
 
-  public Router getClosestReachableRouter(int x, int y, double range) throws DeviceNotFound {
-    ArrayList<Router> reachableRouter = getReachableRouter(x, y, range);
+  public void moveDevice(int oldX, int oldY, int newX, int newY) throws DeviceNotFound, PlacementException {
+    // moves specific router to specific position
+    try {
+      fieldSem.acquire();
 
-    if (reachableRouter.isEmpty()) {
-      throw new DeviceNotFound("No router in range");
-    }
-    Router router = new Router();
-    double closestDist = 99999;
-
-    Iterator<Router> i = reachableRouter.iterator();
-
-    while (i.hasNext()) {
-      Router tempRouter = i.next();
-      double distance = getDistance(x, y, tempRouter.getXCoord(), tempRouter.getYCoord());
-      if (distance < closestDist) {
-        router = tempRouter;
+      if (field[oldX][oldY] == null) {
+        throw new DeviceNotFound();
       }
+
+      if (newX > this.xLength || newY > this.yLength || field[newX][newY] != null) {
+        throw new PlacementException();
+      }
+
+      Device[] device = field[oldX][oldY];
+      field[newX][newY] = device;
+      field[oldX][oldY] = null;
+      device[0].setXCoord(newX);
+      device[0].setYCoord(newY);
+      device[1].setXCoord(newX);
+      device[1].setYCoord(newY);
+
+      fieldSem.release();
+    } catch (InterruptedException e) {
+
     }
-    return router;
   }
 
-  public ArrayList<Router> getReachableRouter(int x, int y, double range) {
+  public ArrayList<Router> getReachableRouter(int x, int y) {
     ArrayList<Router> reachableRouter = new ArrayList<Router>();
 
-    for (Entry<String, Device> entry : this.getMap().entrySet()) {
+    for (Entry<Integer, Device> entry : this.map.entrySet()) {
       Device d = entry.getValue();
       if (d instanceof Router) {
         Router r = (Router) d;
-        if (getDistance(x, y, r.getXCoord(), r.getYCoord()) <= range) {
+        if (getDistance(x, y, r.getXCoord(), r.getYCoord()) <= 10) {
           reachableRouter.add(r);
         }
       }
@@ -99,166 +184,26 @@ class Field {
     return Math.sqrt(xDist + yDist);
   }
 
-  public void createNewRouter() throws PlacementException {
-    // createsRouter at random position
+  
+
+  
+
+  public void deleteDevice(int x, int y) throws DeviceNotFound {
     try {
       fieldSem.acquire();
 
-      int xCoord, yCoord;
-      int cnt = 0;
-      do {
-        xCoord = (int) (Math.random() * xLength);
-        yCoord = (int) (Math.random() * yLength);
-        cnt++;
-      } while (field[xCoord][yCoord] != null && cnt < 500);
-
-      if (cnt >= 500) {
-        throw new PlacementException();
-      }
-
-      String id;
-      do {
-        id = getRandomHexString(ID_LENGTH);
-      } while (map.containsKey(id));
-
-      Router r = new Router(id, xCoord, yCoord, nextPort, this);
-      nextPort++;
-
-      field[xCoord][yCoord] = r;
-      map.put(r.getDeviceId(), r);
-
-      fieldSem.release();
-    } catch (InterruptedException e) {
-
-    }
-
-  }
-
-  public void createNewRouter(int xCoord, int yCoord) throws PlacementException {
-    // creates Router at specific position
-    try {
-      fieldSem.acquire();
-
-      if (xCoord > this.xLength || yCoord > this.yLength || field[xCoord][yCoord] == null) {
-        throw new PlacementException();
-      }
-
-      String id;
-      do {
-        id = getRandomHexString(ID_LENGTH);
-      } while (map.containsKey(id));
-
-      Router r = new Router(id, xCoord, yCoord, nextPort, this);
-      nextPort++;
-
-      field[xCoord][yCoord] = r;
-      map.put(r.getDeviceId(), r);
-
-      fieldSem.release();
-    } catch (InterruptedException e) {
-      System.out.println(e.getMessage());
-      e.printStackTrace();
-    }
-  }
-
-  public void moveRouter(String deviceId) throws DeviceNotFound, PlacementException {
-    try {
-      fieldSem.acquire();
-
-      if (!map.containsKey(deviceId)) {
+      if(field[x][y] == null) {
         throw new DeviceNotFound();
       }
 
-      Device d = map.get(deviceId);
-      if (!(d instanceof Router)) {
-        throw new DeviceNotFound("Device is not a router");
-      }
-      Router r = (Router) d;
-
-      int newX, newY;
-      int cnt = 0;
-      do {
-        newX = (int) (Math.random() * xLength);
-        newY = (int) (Math.random() * yLength);
-        cnt++;
-      } while (field[newX][newY] != null && cnt < 500);
-
-      if (cnt >= 500) {
-        throw new PlacementException();
-      }
-
-      field[r.getXCoord()][r.getYCoord()] = null;
-      field[newX][newY] = r;
-      r.setXCoord(newX);
-      r.setYCoord(newY);
+      Device[] device = field[x][y];
+      map.remove(device[0].getPort());
+      map.remove(device[1].getPort());
+      field[x][y] = null;
 
       fieldSem.release();
     } catch (InterruptedException e) {
 
     }
   }
-
-  public void moveRouter(String deviceId, int newX, int newY) throws DeviceNotFound, PlacementException {
-    // moves specific router to specific position
-    try {
-      fieldSem.acquire();
-
-      if (!map.containsKey(deviceId)) {
-        throw new DeviceNotFound();
-      }
-
-      Device d = map.get(deviceId);
-      if (!(d instanceof Router)) {
-        throw new DeviceNotFound("Device is not a router");
-      }
-      Router r = (Router) d;
-
-      if (newX > this.xLength || newY > this.yLength || field[newX][newY] != null) {
-        throw new PlacementException();
-      }
-
-      field[r.getXCoord()][r.getYCoord()] = null;
-      field[newX][newY] = r;
-      r.setXCoord(newX);
-      r.setYCoord(newY);
-
-      fieldSem.release();
-    } catch (InterruptedException e) {
-
-    }
-
-  }
-
-  public void deleteDevice(String deviceId) throws DeviceNotFound {
-    try {
-      fieldSem.acquire();
-
-      if (!map.containsKey(deviceId)) {
-        throw new DeviceNotFound();
-      }
-
-      Device r = map.get(deviceId);
-      map.remove(deviceId);
-      field[r.getXCoord()][r.getYCoord()] = null;
-
-      fieldSem.release();
-    } catch (InterruptedException e) {
-
-    }
-  }
-
-  public static String getRandomHexString(int length) {
-    Random r = new Random();
-    StringBuffer sb = new StringBuffer();
-    while (sb.length() < length) {
-      sb.append(Integer.toHexString(r.nextInt()));
-    }
-
-    return sb.toString().substring(0, length);
-  }
-
-  public HashMap<String, Device> getMap() {
-    return this.map;
-  }
-
 }

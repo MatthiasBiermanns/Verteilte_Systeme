@@ -3,29 +3,45 @@ import java.util.LinkedList;
 import Exceptions.InvalidMessage;
 
 public class Message {
-  //Aufbau des Nachrichten-Strings:
-  //Befehl(Send,forword,RouteReply_RouteError,RouteRequest)/3000/2658(bei Send: 2700,2800)/3000-->2000-->2001-->2658/lorem ipsum dolor sit amen
+  // Aufbau des Nachrichten-Strings:
+  // MessageId/Befehl(Send,Forward,RouteReply,RouteError,RouteRequest)/3000/2658/3000-->2000-->2001-->2658/lorem
+  // ipsum dolor sit amen
 
   private Command command;
   private int sourcePort;
   private int destPort;
   private LinkedList<String> path;
-  private String content;
+  private String messageId, content;
 
-  public Message(String encodedPacket) throws InvalidMessage{
-    String[] parts = encodedPacket.split("/", 5);
-    if(parts.length != 5) {
+  public Message(String encodedPacket) throws InvalidMessage {
+    String[] parts = encodedPacket.split("/", 6);
+    if (parts.length != 5) {
       throw new InvalidMessage();
     }
-    this.command = evaluateCommand(parts[0]);
-    this.sourcePort = Integer.parseInt(parts[1]);
-    this.destPort = Integer.parseInt(parts[2]);
-    this.path = parseList(parts[3]);
-    this.content = parts[4];
+    this.messageId = parts[0];
+    this.command = evaluateCommand(parts[1]);
+    this.sourcePort = Integer.parseInt(parts[2]);
+    this.destPort = Integer.parseInt(parts[3]);
+    this.path = parseList(parts[4]);
+    this.content = parts[5];
+  }
+
+  public Message(String messageId, Command command, int sourcePort, int destPort, LinkedList<String> path, String content) {
+    this.messageId = messageId;
+    this.command = command;
+    this.sourcePort = sourcePort;
+    this.destPort = destPort;
+    this.path = path;
+    this.content = content;
+  }
+
+  @Override
+  public String toString() {
+    return this.command + "/" + sourcePort + "/" + destPort + "/" + path.toString() + "/" + this.content;
   }
 
   public Command evaluateCommand(String str) {
-    if(str.equals("SEND")) {
+    if (str.equals("SEND")) {
       return Command.Send;
     } else if (str.equals("FORWARD")) {
       return Command.Forward;
@@ -42,12 +58,16 @@ public class Message {
 
   public LinkedList<String> parseList(String str) {
     LinkedList<String> list = new LinkedList<>();
-    str = str.substring(1, str.length()-1);
+    str = str.substring(1, str.length() - 1);
     String[] parts = str.split(", ");
-    for(int i = 0; i < parts.length; i++) {
+    for (int i = 0; i < parts.length; i++) {
       list.add(parts[i]);
     }
     return list;
+  }
+
+  public String getMessageId() {
+    return this.messageId;
   }
 
   public Command getCommand() {

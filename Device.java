@@ -1,13 +1,12 @@
 public abstract class Device extends Thread {
-  protected int xCoord, yCoord;
+  protected int xCoord, yCoord, port;
   protected Field field;
-  protected String deviceId;
 
-  public Device(String deviceId, int xCoord, int yCoord, Field field) {
-    this.deviceId = deviceId;
+  public Device(int xCoord, int yCoord, Field field, int port) {
     this.xCoord = xCoord;
     this.yCoord = yCoord;
     this.field = field;
+    this.port = port;
   }
 
   public Device() {
@@ -28,8 +27,8 @@ public abstract class Device extends Thread {
     return this.field;
   }
 
-  public String getDeviceId() {
-    return this.deviceId;
+  public int getPort() {
+    return this.port;
   }
   
   public void setXCoord(int xCoord) {
