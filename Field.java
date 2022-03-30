@@ -39,7 +39,7 @@ class Field {
   }
 
   public Field(int routerCnt, int xLength, int yLength) throws InvalidInputException {
-    if (xLength < 0 || yLength < 0 || (xLength == 0 && yLength == 0)) {
+    if (xLength < 0 || yLength < 0 || (xLength == 0 && yLength == 0)) { //TODO: Warum nicht <= 0 ?
       throw new InvalidInputException();
     }
 

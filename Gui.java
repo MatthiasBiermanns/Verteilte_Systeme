@@ -2,6 +2,8 @@ import Exceptions.InvalidInputException;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Random;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
@@ -88,20 +90,32 @@ public class Gui extends JFrame implements ActionListener {
   }
 
   private void moveDeviceInGui() {
+    // Get device object
     HashMap<Integer, Device> map = this.map;
-    Device dev = map.values().iterator().next();
+    int hops = (int) (Math.random() * map.size()) - 1;
+    Iterator<Device> iter = map.values().iterator();
+    Device dev = iter.next();
+    for (int i = hops; i > 0; i--) {
+      dev = iter.next();
+    }
+
+    // Find device in GUI
     int x = dev.getXCoord();
     int y = dev.getYCoord();
     feld[x][y].setBackground(Color.BLUE);
 
+    // Move device in Field
     try {
       myField.moveDevice(dev.getXCoord(), dev.getYCoord());
     } catch (Exception ex) {
       ex.printStackTrace();
     }
+
+    // Move device in GUI
     x = dev.getXCoord();
     y = dev.getYCoord();
     feld[x][y].setBackground(Color.RED);
+    
     revalidate();
     repaint();
   }
