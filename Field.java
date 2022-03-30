@@ -246,4 +246,8 @@ class Field {
   public HashMap<Integer, Device> getMap() {
     return this.map;
   }
+
+  public Device[][][] getField(){
+    return this.field;
+  }
 }
