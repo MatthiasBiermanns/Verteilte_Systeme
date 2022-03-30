@@ -52,8 +52,8 @@ public class Gui {
     Insets insets = myFrame.getInsets();
     myFrame.setSize(
       new Dimension(
-        insets.left + insets.right + 500,
-        insets.top + insets.bottom + 500
+        insets.left + insets.right + 800,
+        insets.top + insets.bottom + 800
       )
     );
     myFrame.setVisible(true);
