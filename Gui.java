@@ -1,6 +1,4 @@
-import Exceptions.DeviceNotFound;
 import Exceptions.InvalidInputException;
-import Exceptions.PlacementException;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
@@ -13,7 +11,7 @@ public class Gui extends JFrame implements ActionListener {
     Field myField;
     try {
       myField = new Field(30, 100, 100);
-      Gui g = new Gui(myField, "Mein Fenster");
+      new Gui(myField, "Mein Fenster");
     } catch (InvalidInputException e) {
       e.printStackTrace();
     }
@@ -85,7 +83,7 @@ public class Gui extends JFrame implements ActionListener {
 
   public void actionPerformed(ActionEvent e) {
     if (e.getActionCommand().equals("start")) {
-        moveDeviceInGui();
+      moveDeviceInGui();
     }
   }
 
