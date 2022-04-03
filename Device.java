@@ -1,3 +1,5 @@
+import java.util.UUID;
+
 public abstract class Device extends Thread {
   protected int xCoord, yCoord, port;
   protected Field field;
@@ -37,6 +39,10 @@ public abstract class Device extends Thread {
 
   public void setYCoord(int yCoord) {
     this.yCoord = yCoord;
+  }
+
+  protected static String getUUID() {
+    return UUID.randomUUID().toString();
   }
 
 }

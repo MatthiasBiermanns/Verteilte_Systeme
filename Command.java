@@ -4,5 +4,6 @@ public enum Command{
   RouteError,
   Forward,
   Send,
+  Retry,
   Unknown
 }

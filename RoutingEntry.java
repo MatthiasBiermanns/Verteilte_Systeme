@@ -1,18 +1,18 @@
 import java.time.Instant;
 import java.util.LinkedList;
 
-public class RoutingPath {
-  private LinkedList<String> path;
+public class RoutingEntry {
+  private LinkedList<Integer> path;
   private int cost;
   private long lastUsed;
 
-  public RoutingPath() {
+  public RoutingEntry() {
     this.path = new LinkedList<>();
     this.cost = 0;
     this.lastUsed = Instant.now().getEpochSecond();
   }
 
-  public LinkedList<String> getPath() {
+  public LinkedList<Integer> getPath() {
     return this.path;
   }
 
@@ -24,7 +24,7 @@ public class RoutingPath {
     return this.lastUsed;
   }
 
-  public void setPath(LinkedList<String> path) {
+  public void setPath(LinkedList<Integer> path) {
     this.path = path;
   }
 

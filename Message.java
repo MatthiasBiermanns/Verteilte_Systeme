@@ -10,7 +10,7 @@ public class Message {
   private Command command;
   private int sourcePort;
   private int destPort;
-  private LinkedList<String> path;
+  private LinkedList<Integer> path;
   private String messageId, content;
 
   public Message(String encodedPacket) throws InvalidMessage {
@@ -26,7 +26,7 @@ public class Message {
     this.content = parts[5];
   }
 
-  public Message(String messageId, Command command, int sourcePort, int destPort, LinkedList<String> path, String content) {
+  public Message(String messageId, Command command, int sourcePort, int destPort, LinkedList<Integer> path, String content) {
     this.messageId = messageId;
     this.command = command;
     this.sourcePort = sourcePort;
@@ -34,6 +34,7 @@ public class Message {
     this.path = path;
     this.content = content;
   }
+
 
   @Override
   public String toString() {
@@ -56,12 +57,12 @@ public class Message {
     }
   }
 
-  public LinkedList<String> parseList(String str) {
-    LinkedList<String> list = new LinkedList<>();
+  public LinkedList<Integer> parseList(String str) {
+    LinkedList<Integer> list = new LinkedList<>();
     str = str.substring(1, str.length() - 1);
     String[] parts = str.split(", ");
     for (int i = 0; i < parts.length; i++) {
-      list.add(parts[i]);
+      list.add(Integer.parseInt(parts[i]));
     }
     return list;
   }
@@ -82,12 +83,16 @@ public class Message {
     return this.destPort;
   }
 
-  public LinkedList<String> getPath() {
+  public LinkedList<Integer> getPath() {
     return this.path;
   }
 
   public String getContent() {
     return this.content;
+  }
+
+  public void setMessageId(String id) {
+    this.messageId = id;
   }
 
   public void setCommand(Command command) {
@@ -102,7 +107,7 @@ public class Message {
     this.destPort = port;
   }
 
-  public void setPath(LinkedList<String> path) {
+  public void setPath(LinkedList<Integer> path) {
     this.path = path;
   }
 
@@ -110,7 +115,7 @@ public class Message {
     this.content = content;
   }
 
-  public void addToPath(String knot) {
-    this.path.add(knot);
+  public void addToPath(int port) {
+    this.path.add(port);
   }
 }
