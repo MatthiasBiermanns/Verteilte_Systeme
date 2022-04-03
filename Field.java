@@ -18,6 +18,36 @@ class Field {
   private HashMap<Integer, Device> map = new HashMap<Integer, Device>();
 
   public static void main(String[] args) {
+    
+  }
+
+  public static void testRouteRequest() {
+    try {
+      Field myField = new Field(20 , 30, 30);
+      myField.startDevices();
+      try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+        while (true) {
+          myField.printField();
+
+          String line = reader.readLine();
+          String[] parts = line.split(" ");
+
+          HashMap<Integer, Device> myDevices = myField.getMap();
+          EndDevice handy = (EndDevice) myDevices.get(Integer.parseInt(parts[0]));
+          Router router = (Router) myDevices.get(Integer.parseInt(parts[0])-1);
+          handy.sendMessage(Integer.parseInt(parts[1]), parts[2]);
+          System.out.println("geschafft!");
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void testFieldCreaetion() {
     try {
       Field myField = new Field(20, 10, 10);
       try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
@@ -53,6 +83,12 @@ class Field {
         e.printStackTrace();
         break;
       }
+    }
+  }
+
+  public void startDevices() {
+    for( Entry<Integer, Device> e : this.map.entrySet() ) {
+      e.getValue().start();
     }
   }
 

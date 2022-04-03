@@ -16,14 +16,14 @@ public class EndDevice extends Device {
   }
 
   public void run() {
-    while (true) {
-      try {
-        sleep(5000);
-        this.sendMessage(this.port + 5, "Hallo");
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
-    }
+    // while (true) {
+    //   try {
+    //     sleep(5000);
+    //     this.sendMessage(this.port + 5, "Hallo");
+    //   } catch (InterruptedException e) {
+    //     e.printStackTrace();
+    //   }
+    // }
   }
 
   public void readAndSend(int dest) {
@@ -67,7 +67,7 @@ public class EndDevice extends Device {
   public void receiveMessage() {
     try (DatagramSocket socket = new DatagramSocket(this.port)) {
       DatagramPacket dp = new DatagramPacket(new byte[65507], 65507);
-      socket.setSoTimeout(10000);
+      // socket.setSoTimeout(10000);
       socket.receive(dp);
 
       Message msg = new Message(new String(dp.getData(), 0, dp.getLength()));

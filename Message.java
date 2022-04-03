@@ -15,7 +15,7 @@ public class Message {
 
   public Message(String encodedPacket) throws InvalidMessage {
     String[] parts = encodedPacket.split("/", 6);
-    if (parts.length != 5) {
+    if (parts.length != 6) {
       throw new InvalidMessage();
     }
     this.messageId = parts[0];
@@ -38,19 +38,20 @@ public class Message {
 
   @Override
   public String toString() {
-    return this.command + "/" + sourcePort + "/" + destPort + "/" + path.toString() + "/" + this.content;
+    return this.messageId + "/" + this.command + "/" + sourcePort + "/" + destPort + "/" + path.toString() + "/" + this.content;
   }
 
   public Command evaluateCommand(String str) {
+    str = str.toUpperCase();
     if (str.equals("SEND")) {
       return Command.Send;
     } else if (str.equals("FORWARD")) {
       return Command.Forward;
-    } else if (str.equals("ROUTE_REQUEST")) {
+    } else if (str.equals("ROUTEREQUEST")) {
       return Command.RouteRequest;
-    } else if (str.equals("ROUTE_REPLY")) {
+    } else if (str.equals("ROUTEREPLY")) {
       return Command.RouteReply;
-    } else if (str.equals("ROUTE_ERROR")) {
+    } else if (str.equals("ROUTEERROR")) {
       return Command.RouteError;
     } else {
       return Command.Unknown;
@@ -60,9 +61,13 @@ public class Message {
   public LinkedList<Integer> parseList(String str) {
     LinkedList<Integer> list = new LinkedList<>();
     str = str.substring(1, str.length() - 1);
-    String[] parts = str.split(", ");
-    for (int i = 0; i < parts.length; i++) {
-      list.add(Integer.parseInt(parts[i]));
+    if(!str.equals("")) {
+      String[] parts = str.split(", ");
+      if(parts.length > 0) {
+        for (int i = 0; i < parts.length; i++) {
+          list.add(Integer.parseInt(parts[i]));
+        }
+      }
     }
     return list;
   }

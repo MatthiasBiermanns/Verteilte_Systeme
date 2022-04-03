@@ -36,7 +36,8 @@ public class Router extends Device {
         try {
           socket.receive(dp);
           try {
-            Message message = new Message(new String(dp.getData(), 0, dp.getLength()));
+            String messageString = new String(dp.getData(), 0, dp.getLength());
+            Message message = new Message(messageString);
             DatagramPacket[] toSend = evaluateMessage(message);
 
             for (int i = 0; i < toSend.length; i++) {
@@ -75,7 +76,7 @@ public class Router extends Device {
           toSend = this.processSend(msg);
           break;
         case RouteRequest:
-          if (msg.getDestPort() == this.port) {
+          if (msg.getDestPort() == this.myDevicePort) {
             msg.setCommand(Command.RouteReply);
             msg.addToPath(this.port);
             msg.setDestPort(msg.getSourcePort());
@@ -109,7 +110,8 @@ public class Router extends Device {
           }
           break;
         default:
-          System.out.println("Error: Command unkwon");
+          System.out.println(msg.getCommand());
+          System.out.println("Error: Command unknown");
       }
     } catch (Exception e) {
       e.printStackTrace();
@@ -118,8 +120,9 @@ public class Router extends Device {
   }
 
   public DatagramPacket[] processSend(Message msg) throws UnknownHostException {
-    DatagramPacket[] packet = new DatagramPacket[1];
+    DatagramPacket[] packet;
     if (paths.containsKey(msg.getDestPort())) {
+      packet = new DatagramPacket[1];
       msg.setCommand(Command.Forward);
       RoutingEntry entry = paths.get(msg.getDestPort());
       entry.updateUsage();
@@ -132,7 +135,7 @@ public class Router extends Device {
       list.add(this.port);
       Message newMessage = new Message(getUUID(), Command.RouteRequest, this.port, msg.getDestPort(), list, "");
 
-      packet[0] = createDatagramPacket(newMessage, getNextPort(msg));
+      packet = getMulticastPackets(newMessage);
       waiting.put(newMessage.getMessageId(), msg);
     }
     return packet;
@@ -178,26 +181,33 @@ public class Router extends Device {
     } else {
       knownIds.put(msg.getMessageId(), Instant.now().getEpochSecond());
       msg.addToPath(this.port);
-      LinkedList<Router> reachable = this.field.getReachableRouter(this.xCoord, this.yCoord);
-      Iterator<Router> it = reachable.iterator();
-      packet = new DatagramPacket[reachable.size()];
-      int i = 0;
-      while (it.hasNext()) {
-        packet[i] = createDatagramPacket(msg, it.next().getPort());
-        i++;
-      }
+      packet = getMulticastPackets(msg);
     }
     return packet;
   }
-  
+
+  public DatagramPacket[] getMulticastPackets(Message msg) throws UnknownHostException {
+    DatagramPacket[] packet;
+    LinkedList<Router> reachable = this.field.getReachableRouter(this.xCoord, this.yCoord);
+    Iterator<Router> it = reachable.iterator();
+    packet = new DatagramPacket[reachable.size()];
+    int i = 0;
+    while (it.hasNext()) {
+      packet[i] = createDatagramPacket(msg, it.next().getPort());
+      i++;
+    }
+    return packet;
+  }
+
   public DatagramPacket processRouteReply(Message msg) throws UnknownHostException {
-    for(Entry<Integer, RoutingEntry> e : this.paths.entrySet()) {
+    for (Entry<Integer, RoutingEntry> e : this.paths.entrySet()) {
       long currTime = Instant.now().getEpochSecond();
-      if(currTime - e.getValue().getLastUsed() >= 300) {
+      if (currTime - e.getValue().getLastUsed() >= 300) {
         paths.remove(e.getKey());
       }
     }
     this.paths.put(msg.getDestPort(), new RoutingEntry(msg.getPath()));
+    System.out.println(msg.getPath());
     Message toSend = waiting.get(msg.getMessageId());
     toSend.setPath(msg.getPath());
     return this.createDatagramPacket(toSend, getNextPort(toSend));
@@ -210,7 +220,6 @@ public class Router extends Device {
     // --> Nicht erfolgreich => RouteError Schicken
 
   }
-
 
   public void sendRouteRequest() {
 
