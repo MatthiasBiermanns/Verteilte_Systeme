@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map.Entry;
 import java.util.concurrent.Semaphore;
 
@@ -182,8 +182,8 @@ class Field {
     }
   }
 
-  public ArrayList<Router> getReachableRouter(int x, int y) {
-    ArrayList<Router> reachableRouter = new ArrayList<Router>();
+  public LinkedList<Router> getReachableRouter(int x, int y) {
+    LinkedList<Router> reachableRouter = new LinkedList<Router>();
 
     for (Entry<Integer, Device> entry : this.map.entrySet()) {
       Device d = entry.getValue();

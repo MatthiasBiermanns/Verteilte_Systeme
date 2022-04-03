@@ -12,6 +12,12 @@ public class RoutingEntry {
     this.lastUsed = Instant.now().getEpochSecond();
   }
 
+  public RoutingEntry(LinkedList<Integer> path) {
+    this.path = path;
+    this.cost = 0;
+    this.lastUsed = Instant.now().getEpochSecond();
+  }
+
   public LinkedList<Integer> getPath() {
     return this.path;
   }
