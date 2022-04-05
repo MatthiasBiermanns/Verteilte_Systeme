@@ -18,12 +18,15 @@ class Field {
   private HashMap<Integer, Device> map = new HashMap<Integer, Device>();
 
   public static void main(String[] args) {
-    
+    // System.out.println(getDistance(1, 1, 1, 15));
+    // System.out.println(getDistance(1, 1, 5, 15));
+    // System.out.println(getDistance(12, 1, 33, 15));
+    testRouteRequest();
   }
 
   public static void testRouteRequest() {
     try {
-      Field myField = new Field(20 , 30, 30);
+      Field myField = new Field(25 , 25, 25);
       myField.startDevices();
       try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
         while (true) {
@@ -218,14 +221,14 @@ class Field {
     }
   }
 
-  public LinkedList<Router> getReachableRouter(int x, int y) {
+  public LinkedList<Router> getReachableRouter(int port, int x, int y) {
     LinkedList<Router> reachableRouter = new LinkedList<Router>();
 
     for (Entry<Integer, Device> entry : this.map.entrySet()) {
       Device d = entry.getValue();
       if (d instanceof Router) {
         Router r = (Router) d;
-        if (getDistance(x, y, r.getXCoord(), r.getYCoord()) <= 10) {
+        if (getDistance(x, y, r.getXCoord(), r.getYCoord()) <= 10 && r.getPort() != port) {
           reachableRouter.add(r);
         }
       }
@@ -243,7 +246,7 @@ class Field {
     if (yDist == 0) {
       return xDist;
     }
-    return Math.sqrt(xDist + yDist);
+    return Math.sqrt(xDist * xDist + yDist * yDist);
   }
 
   public void deleteDevice(int x, int y) throws DeviceNotFound {

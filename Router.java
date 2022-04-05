@@ -76,7 +76,8 @@ public class Router extends Device {
           toSend = this.processSend(msg);
           break;
         case RouteRequest:
-          if (msg.getDestPort() == this.myDevicePort) {
+          if (msg.getDestPort() == this.myDevicePort && !knownIds.containsKey(msg.getMessageId())) {
+            knownIds.put(msg.getMessageId(), Instant.now().getEpochSecond());
             msg.setCommand(Command.RouteReply);
             msg.addToPath(this.port);
             msg.setDestPort(msg.getSourcePort());
@@ -134,9 +135,11 @@ public class Router extends Device {
       LinkedList<Integer> list = new LinkedList<Integer>();
       list.add(this.port);
       Message newMessage = new Message(getUUID(), Command.RouteRequest, this.port, msg.getDestPort(), list, "");
-
-      packet = getMulticastPackets(newMessage);
+      
+      msg.setCommand(Command.Forward);
       waiting.put(newMessage.getMessageId(), msg);
+      knownIds.put(newMessage.getMessageId(), Instant.now().getEpochSecond());
+      packet = getMulticastPackets(newMessage);
     }
     return packet;
   }
@@ -175,10 +178,8 @@ public class Router extends Device {
   }
 
   public DatagramPacket[] processRouteRequest(Message msg) throws UnknownHostException {
-    DatagramPacket[] packet;
-    if (knownIds.containsKey(msg.getMessageId())) {
-      packet = new DatagramPacket[0];
-    } else {
+    DatagramPacket[] packet = new DatagramPacket[0];
+    if (!knownIds.containsKey(msg.getMessageId())) {
       knownIds.put(msg.getMessageId(), Instant.now().getEpochSecond());
       msg.addToPath(this.port);
       packet = getMulticastPackets(msg);
@@ -188,7 +189,7 @@ public class Router extends Device {
 
   public DatagramPacket[] getMulticastPackets(Message msg) throws UnknownHostException {
     DatagramPacket[] packet;
-    LinkedList<Router> reachable = this.field.getReachableRouter(this.xCoord, this.yCoord);
+    LinkedList<Router> reachable = this.field.getReachableRouter(this.port, this.xCoord, this.yCoord);
     Iterator<Router> it = reachable.iterator();
     packet = new DatagramPacket[reachable.size()];
     int i = 0;
@@ -207,7 +208,7 @@ public class Router extends Device {
       }
     }
     this.paths.put(msg.getDestPort(), new RoutingEntry(msg.getPath()));
-    System.out.println(msg.getPath());
+    System.out.println(this.port + ": the routing path is " + msg.getPath());
     Message toSend = waiting.get(msg.getMessageId());
     toSend.setPath(msg.getPath());
     return this.createDatagramPacket(toSend, getNextPort(toSend));

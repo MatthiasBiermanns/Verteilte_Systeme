@@ -57,8 +57,7 @@ public class EndDevice extends Device {
       DatagramPacket packet = new DatagramPacket(bytes, bytes.length, serverAddress, myRouterPort);
       socket.send(packet);
       
-        this.receiveMessage();
-      
+      this.receiveMessage();
     } catch (Exception e) {
       e.printStackTrace();
     }
