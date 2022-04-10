@@ -53,6 +53,8 @@ public class Message {
       return Command.RouteReply;
     } else if (str.equals("ROUTEERROR")) {
       return Command.RouteError;
+    } else if (str.equals("ACK")) {
+      return Command.Ack;
     } else {
       return Command.Unknown;
     }

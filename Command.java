@@ -5,5 +5,6 @@ public enum Command{
   Forward,
   Send,
   Retry,
+  Ack,
   Unknown
 }

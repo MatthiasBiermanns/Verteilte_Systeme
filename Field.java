@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map.Entry;
 import java.util.concurrent.Semaphore;
@@ -37,7 +38,7 @@ class Field {
 
           HashMap<Integer, Device> myDevices = myField.getMap();
           EndDevice handy = (EndDevice) myDevices.get(Integer.parseInt(parts[0]));
-          Router router = (Router) myDevices.get(Integer.parseInt(parts[0])-1);
+          // Router router = (Router) myDevices.get(Integer.parseInt(parts[0])-1);
           handy.sendMessage(Integer.parseInt(parts[1]), parts[2]);
           System.out.println("geschafft!");
         }
@@ -234,6 +235,18 @@ class Field {
       }
     }
     return reachableRouter;
+  }
+
+  public boolean isRouterInRange(int routerPort, int x, int y) {
+    LinkedList<Router> reachable = this.getReachableRouter(-1, x, y);
+    Iterator<Router> it = reachable.iterator();
+
+    while(it.hasNext()) {
+      if(it.next().getPort() == routerPort) {
+        return true;
+      }
+    }
+    return false;
   }
 
   public static double getDistance(int x1, int y1, int x2, int y2) {
