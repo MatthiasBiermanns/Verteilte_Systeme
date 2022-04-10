@@ -38,6 +38,7 @@ public class Router extends Device {
         try {
           socket.receive(dp);
           try {
+            // Routine aufbauen um wartenden ACKs zu überprüfen
             String messageString = new String(dp.getData(), 0, dp.getLength());
             Message message = new Message(messageString);
             DatagramPacket[] toSend = evaluateMessage(message);
@@ -59,20 +60,12 @@ public class Router extends Device {
   }
 
   public DatagramPacket[] evaluateMessage(Message msg) {
-    // Prüfen, ob MessageId schonmal angekommen
-    // Prüfen, ob für mich
-
-    // Send: kommt von Endgerät --> Routing Routine durchgehen
-    // Forward: einfaches Weiterleiten, kommt von anderem Router
-    // RouteRequest: kommt von Router --> Pfad erweitern ggf. Zurücksenden
-    // RouteReply: kommt von Zielrouter --> Einpflegen in Routes + Senden
     // RouteError: kommt von Router auf Pfad --> Neusenden einer Nachricht -->
     // RoutingRoutine
     // --> Im Content steht die Id für die verlorene Message
-
     DatagramPacket[] toSend = new DatagramPacket[0];
 
-    if(msg.getCommand() != Command.RouteRequest) {
+    if (msg.getCommand() != Command.RouteRequest) {
       System.out.println(this.port + ": " + msg.getCommand());
     }
     try {
@@ -103,9 +96,10 @@ public class Router extends Device {
           break;
         case Forward:
           if (msg.getDestPort() == this.myDevicePort) {
-            //weitere Code, falls Enddevice die Nachricht erreichen soll
+            // weitere Code, falls Enddevice die Nachricht erreichen soll
             toSend = new DatagramPacket[1];
-            Message ack = new Message(msg.getMessageId(), Command.Ack, this.port, this.getPreviousPort(msg), msg.getPath(), "");
+            Message ack = new Message(msg.getMessageId(), Command.Ack, this.port, this.getPreviousPort(msg),
+                msg.getPath(), "");
             toSend[0] = this.createDatagramPacket(ack, ack.getDestPort());
             System.out.println("Router " + this.port + ": " + msg.getContent());
           } else {
@@ -114,9 +108,13 @@ public class Router extends Device {
           break;
         case RouteError:
           if (msg.getDestPort() == this.port) {
-            this.processRouteError(msg);
+            toSend = this.processRouteError(msg);
           } else {
-            this.forwardMessage(msg);
+            int prevRouter = getPreviousPort(msg);
+            if (field.isRouterInRange(prevRouter, this.xCoord, this.yCoord)) {
+              toSend = new DatagramPacket[1];
+              toSend[0] = createDatagramPacket(msg, prevRouter);
+            }
           }
           break;
         case Ack:
@@ -136,24 +134,30 @@ public class Router extends Device {
     DatagramPacket[] packet;
     if (paths.containsKey(msg.getDestPort())) {
       packet = new DatagramPacket[1];
+
       msg.setCommand(Command.Forward);
       RoutingEntry entry = paths.get(msg.getDestPort());
       entry.updateUsage();
       msg.setPath(entry.getPath());
       msg.setSourcePort(port);
+      this.waitingForAck.put(msg.getMessageId(), Instant.now().getEpochSecond());
 
       packet[0] = createDatagramPacket(msg, getNextPort(msg));
     } else {
-      LinkedList<Integer> list = new LinkedList<Integer>();
-      list.add(this.port);
-      Message newMessage = new Message(getUUID(), Command.RouteRequest, this.port, msg.getDestPort(), list, "");
-      
-      msg.setCommand(Command.Forward);
-      waiting.put(newMessage.getMessageId(), msg);
-      knownIds.put(newMessage.getMessageId(), Instant.now().getEpochSecond());
-      packet = getMulticastPackets(newMessage);
+      packet = createRouteRequest(msg);
     }
     return packet;
+  }
+
+  public DatagramPacket[] createRouteRequest(Message msg) throws UnknownHostException {
+    LinkedList<Integer> list = new LinkedList<Integer>();
+    list.add(this.port);
+    Message newMessage = new Message(getUUID(), Command.RouteRequest, this.port, msg.getDestPort(), list, "");
+
+    msg.setCommand(Command.Forward);
+    waiting.put(newMessage.getMessageId(), msg);
+    knownIds.put(newMessage.getMessageId(), Instant.now().getEpochSecond());
+    return getMulticastPackets(newMessage);
   }
 
   public DatagramPacket createDatagramPacket(Message msg, int port) throws UnknownHostException {
@@ -222,6 +226,7 @@ public class Router extends Device {
     this.paths.put(msg.getDestPort(), new RoutingEntry(msg.getPath()));
     System.out.println(this.port + ": the routing path is " + msg.getPath());
     Message toSend = waiting.get(msg.getMessageId());
+    waiting.remove(msg.getMessageId());
     toSend.setPath(msg.getPath());
     return this.createDatagramPacket(toSend, getNextPort(toSend));
   }
@@ -229,43 +234,66 @@ public class Router extends Device {
   public DatagramPacket[] processForward(Message msg) throws UnknownHostException {
     DatagramPacket[] toSend = new DatagramPacket[1];
     int nextRouter = this.getNextPort(msg);
-    if( field.isRouterInRange(nextRouter, this.xCoord, this.yCoord) ) {
-      if( field.isRouterInRange(this.getPreviousPort(msg), this.xCoord, this.yCoord)) {
+    if (field.isRouterInRange(nextRouter, this.xCoord, this.yCoord)) {
+      if (field.isRouterInRange(this.getPreviousPort(msg), this.xCoord, this.yCoord)) {
         toSend = new DatagramPacket[2];
-        Message ack = new Message(msg.getMessageId(), Command.Ack, this.port, this.getPreviousPort(msg), msg.getPath(), "");
+        Message ack = new Message(msg.getMessageId(), Command.Ack, this.port, this.getPreviousPort(msg), msg.getPath(),
+            "");
         toSend[1] = this.createDatagramPacket(ack, ack.getDestPort());
-      } 
+      }
       toSend[0] = this.createDatagramPacket(msg, nextRouter);
       waitingForAck.put(msg.getMessageId(), Instant.now().getEpochSecond());
     } else {
-      msg.setCommand(Command.RouteError);
-      msg.setDestPort(msg.getSourcePort());
-      msg.setSourcePort(this.port);
-      
-      toSend[0] = createDatagramPacket(msg, this.getPreviousPort(msg));
+      Message errMessage = new Message(getUUID(), Command.RouteError, this.port, msg.getSourcePort(), msg.getPath(),
+          msg.getMessageId());
+      toSend[0] = createDatagramPacket(errMessage, this.getPreviousPort(errMessage));
     }
     return toSend;
   }
 
-  public void receiveMessage(Message msg) {
+  public DatagramPacket[] processRouteError(Message msg) throws UnknownHostException{
+    this.paths.remove(msg.getDestPort());
+    DatagramPacket[] toSend = new DatagramPacket[1];
+    LinkedList<Integer> newPath = new LinkedList<>();
+    for( Entry<Integer, RoutingEntry> e: this.paths.entrySet()) {
+      RoutingEntry re = e.getValue();
+      //destPort -1, da endDevicePort als destPort angegeben wird
+      if( isInPath(re.getPath(), msg.getDestPort() - 1)) {
+        newPath = getSubPath(re.getPath(), msg.getDestPort() - 1);
+      }
+    }
 
+    if(newPath.size() != 0) {
+      this.paths.put(msg.getDestPort(), new RoutingEntry(newPath));
+      msg.setPath(newPath);
+      toSend[0] = this.createDatagramPacket(msg, this.getNextPort(msg));
+    } else {
+      toSend = this.createRouteRequest(msg);
+    }
+    return toSend;
   }
 
-  public void processRouteError(Message msg) {
-
+  public boolean isInPath(LinkedList<Integer> path, int port) {
+    Iterator<Integer> it = path.iterator();
+    while( it.hasNext() ) {
+      if(it.next() == port ) {
+        return true;
+      }
+    }
+    return false;
   }
 
-
-  public void forwardMessage(Message msg) {
-
-  }
-
-  public void sendRouteReply(Message msg) {
-
-  }
-
-  public void sendRouteError() {
-
+  public LinkedList<Integer> getSubPath(LinkedList<Integer> longPath, int destPort) {
+    LinkedList<Integer> newPath = new LinkedList<>();
+    Iterator<Integer> it = longPath.iterator();
+    while ( it.hasNext() ) {
+      int currPort = it.next();
+      newPath.add(currPort);
+      if( currPort == destPort) {
+        break;
+      }
+    }
+    return newPath;
   }
 
   public void updateRoutePaths() {

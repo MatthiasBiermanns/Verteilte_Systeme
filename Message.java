@@ -55,6 +55,8 @@ public class Message {
       return Command.RouteError;
     } else if (str.equals("ACK")) {
       return Command.Ack;
+    } else if (str.equals("RETRY")) {
+      return Command.Retry;
     } else {
       return Command.Unknown;
     }
