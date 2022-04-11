@@ -19,9 +19,6 @@ class Field {
   private HashMap<Integer, Device> map = new HashMap<Integer, Device>();
 
   public static void main(String[] args) {
-    // System.out.println(getDistance(1, 1, 1, 15));
-    // System.out.println(getDistance(1, 1, 5, 15));
-    // System.out.println(getDistance(12, 1, 33, 15));
     testRouteRequest();
   }
 
