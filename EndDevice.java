@@ -56,7 +56,7 @@ public class EndDevice extends Device {
 
       DatagramPacket packet = new DatagramPacket(bytes, bytes.length, serverAddress, myRouterPort);
       socket.send(packet);
-      
+      socket.close();
       this.receiveMessage();
     } catch (Exception e) {
       e.printStackTrace();
@@ -66,15 +66,20 @@ public class EndDevice extends Device {
   public void receiveMessage() {
     try (DatagramSocket socket = new DatagramSocket(this.port)) {
       DatagramPacket dp = new DatagramPacket(new byte[65507], 65507);
-      // socket.setSoTimeout(10000);
-      socket.receive(dp);
-
-      Message msg = new Message(new String(dp.getData(), 0, dp.getLength()));
-      if(msg.getCommand() == Command.Retry) {
-        Message oldMsg = sendMessages.get(msg.getMessageId());
-        sendMessage(oldMsg.getDestPort(), oldMsg.getContent());
-      } else {
-        // wenn eine nachricht als Antowrt erwartet wird
+      try {
+        socket.setSoTimeout(10000);
+        socket.receive(dp);
+        System.out.println("Message Received");
+        Message msg = new Message(new String(dp.getData(), 0, dp.getLength()));
+        if(msg.getCommand() == Command.Retry) {
+          Message oldMsg = sendMessages.get(msg.getContent());
+          socket.close();
+          sendMessage(oldMsg.getDestPort(), oldMsg.getContent());
+        } else {
+          // wenn eine nachricht als Antwort erwartet wird
+        }
+      } catch (SocketTimeoutException e) {
+        System.out.println(this.port + ": ran in timeout");
       }
     } catch ( Exception e) {
       e.printStackTrace();

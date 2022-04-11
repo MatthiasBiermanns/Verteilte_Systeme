@@ -27,7 +27,7 @@ class Field {
 
   public static void testRouteRequest() {
     try {
-      Field myField = new Field(25 , 25, 25);
+      Field myField = new Field(25, 25, 25);
       myField.startDevices();
       try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
         while (true) {
@@ -35,12 +35,24 @@ class Field {
 
           String line = reader.readLine();
           String[] parts = line.split(" ");
-
           HashMap<Integer, Device> myDevices = myField.getMap();
-          EndDevice handy = (EndDevice) myDevices.get(Integer.parseInt(parts[0]));
-          // Router router = (Router) myDevices.get(Integer.parseInt(parts[0])-1);
-          handy.sendMessage(Integer.parseInt(parts[1]), parts[2]);
-          System.out.println("geschafft!");
+          int port = Integer.parseInt(parts[1]);
+          if(port % 2 == 0) {
+            port++;
+          }
+          EndDevice handy = (EndDevice) myDevices.get(port);
+          switch (parts[0].toUpperCase()) {
+            case "MOVE":
+              myField.moveDevice(handy.getXCoord(), handy.getYCoord(), Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
+              break;
+            case "SEND":
+              handy.sendMessage(Integer.parseInt(parts[2]), parts[3]);
+              System.out.println("geschafft!");
+              break;
+            default:
+              break;
+          }
+
         }
       } catch (Exception e) {
         e.printStackTrace();
@@ -73,7 +85,7 @@ class Field {
   }
 
   public Field(int routerCnt, int xLength, int yLength) throws InvalidInputException {
-    if (xLength <= 0 || yLength <= 0 ) { 
+    if (xLength <= 0 || yLength <= 0) {
       throw new InvalidInputException();
     }
 
@@ -91,7 +103,7 @@ class Field {
   }
 
   public void startDevices() {
-    for( Entry<Integer, Device> e : this.map.entrySet() ) {
+    for (Entry<Integer, Device> e : this.map.entrySet()) {
       e.getValue().start();
     }
   }
@@ -193,7 +205,7 @@ class Field {
   }
 
   public void moveDevice(int oldX, int oldY, int newX, int newY) throws DeviceNotFound, PlacementException {
-    // moves specific router to specific position
+    // moves specific router and enddevice to specific position
     try {
       fieldSem.acquire();
 
@@ -241,8 +253,8 @@ class Field {
     LinkedList<Router> reachable = this.getReachableRouter(-1, x, y);
     Iterator<Router> it = reachable.iterator();
 
-    while(it.hasNext()) {
-      if(it.next().getPort() == routerPort) {
+    while (it.hasNext()) {
+      if (it.next().getPort() == routerPort) {
         return true;
       }
     }
@@ -299,7 +311,7 @@ class Field {
     return this.map;
   }
 
-  public Device[][][] getField(){
+  public Device[][][] getField() {
     return this.field;
   }
 }

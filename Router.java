@@ -223,7 +223,8 @@ public class Router extends Device {
         paths.remove(e.getKey());
       }
     }
-    this.paths.put(msg.getDestPort(), new RoutingEntry(msg.getPath()));
+    //source port + 1 to get port of the receiver enddevice
+    this.paths.put(msg.getSourcePort() + 1, new RoutingEntry(msg.getPath()));
     System.out.println(this.port + ": the routing path is " + msg.getPath());
     Message toSend = waiting.get(msg.getMessageId());
     waiting.remove(msg.getMessageId());
@@ -244,32 +245,35 @@ public class Router extends Device {
       toSend[0] = this.createDatagramPacket(msg, nextRouter);
       waitingForAck.put(msg.getMessageId(), Instant.now().getEpochSecond());
     } else {
-      Message errMessage = new Message(getUUID(), Command.RouteError, this.port, msg.getSourcePort(), msg.getPath(),
-          msg.getMessageId());
+      String content = msg.getDestPort() + " " + msg.getMessageId();
+      Message errMessage = new Message(getUUID(), Command.RouteError, this.port, msg.getSourcePort(), msg.getPath(), content );
       toSend[0] = createDatagramPacket(errMessage, this.getPreviousPort(errMessage));
     }
     return toSend;
   }
 
   public DatagramPacket[] processRouteError(Message msg) throws UnknownHostException{
-    this.paths.remove(msg.getDestPort());
     DatagramPacket[] toSend = new DatagramPacket[1];
+
+    String[] contentParts = msg.getContent().split(" ",2);
+    this.paths.remove(Integer.parseInt(contentParts[0]));
+    Message retryMessage = new Message(getUUID(), Command.Retry, this.port, this.myDevicePort, new LinkedList<>(), contentParts[1]); 
+
     LinkedList<Integer> newPath = new LinkedList<>();
+    // destPort -1 to get the routerPort (routerPort ist in dem path gespeichert)
+    int destPort = Integer.parseInt(contentParts[0]) - 1;
     for( Entry<Integer, RoutingEntry> e: this.paths.entrySet()) {
       RoutingEntry re = e.getValue();
-      //destPort -1, da endDevicePort als destPort angegeben wird
-      if( isInPath(re.getPath(), msg.getDestPort() - 1)) {
-        newPath = getSubPath(re.getPath(), msg.getDestPort() - 1);
+      if( isInPath(re.getPath(), destPort)) {
+        newPath = getSubPath(re.getPath(), destPort);
+        
+        //destPort + 1 to get the EnddevicePort
+        this.paths.put(destPort + 1, new RoutingEntry(newPath));
+        break;
       }
     }
 
-    if(newPath.size() != 0) {
-      this.paths.put(msg.getDestPort(), new RoutingEntry(newPath));
-      msg.setPath(newPath);
-      toSend[0] = this.createDatagramPacket(msg, this.getNextPort(msg));
-    } else {
-      toSend = this.createRouteRequest(msg);
-    }
+    toSend[0] = createDatagramPacket(retryMessage, this.myDevicePort);
     return toSend;
   }
 
