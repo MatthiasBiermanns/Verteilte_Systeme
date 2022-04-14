@@ -1,10 +1,18 @@
-public class ackTimer extends Thread {
-    private int count;
-    private Message msg;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 
-    public ackTimer(Message msg) {
-        this.msg = msg;
+public class ackTimer extends Thread {
+    // TODO: Konzept überarbeiten
+    // Idee noch nicht ausgereift
+    private int count;
+    private int routerPort;
+    private String msgId;
+
+    public ackTimer(String msgId, int routerPort) {
+        this.msgId = msgId;
         this.count = 300;
+        this.routerPort = routerPort;
         this.start();
     }
 
@@ -21,8 +29,11 @@ public class ackTimer extends Thread {
     }
 
     public void sendAckMissing() {
-        try{
-            
+        try (DatagramSocket socket = new DatagramSocket()){
+            InetAddress destAddress = InetAddress.getByName("localhost");
+            byte[] message = this.msgId.getBytes();
+            DatagramPacket dp = new DatagramPacket(message, message.length, destAddress, this.routerPort); 
+            socket.send(dp);
         } catch ( Exception e) {
             e.printStackTrace();
         }
