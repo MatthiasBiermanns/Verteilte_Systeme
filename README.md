@@ -5,6 +5,14 @@ Semester WWI2020SEA
 
 ## Realisierung des MANets-Szenario
 
+- Die generelle Kommunikation wird über die Verwendung des UDP-Protokolls umgesetzt (Verwendung von Ports statt IP-Adressen)
+- Jedes physische Gerät (Handy, Tablet, etc) wird im Code durch 2 Threads realisiert: Dem Router und dem EndDevice
+  - Der Router übernimmt den am MANet beteiligten Routing Teil
+  - Das EndDevice realisiert die "normalen" - hier abgespeckten - Funktionalitäten eines physischen Gerätes
+  - Versenden von Nachrichten wird ausgelöst durch ein EndDevice
+  - Jedes EndDevice kann nur mit einem, sich zugeordneten Router direkt kommunizieren
+  - Router und Device besitzen jeweils einen eigenen Port (EndDevice-Port = Router-Port + 1)
+  
 ---
 
 - Field-Klasse als Verwaltungsklasse
