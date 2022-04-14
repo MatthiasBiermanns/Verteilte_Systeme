@@ -44,7 +44,6 @@ public class Router extends Device {
       while (true) {
         DatagramPacket dp = new DatagramPacket(buffer, buffer.length);
         try {
-          socket.setSoTimeout(500);
           socket.receive(dp);
           try {
             // TODO: Routine aufbauen um wartenden ACKs zu überprüfen

@@ -26,6 +26,7 @@ class Field {
     try {
       Field myField = new Field(25, 25, 25);
       myField.startDevices();
+      //myField.createNewDevice()
       try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
         while (true) {
           myField.printField();
@@ -40,6 +41,8 @@ class Field {
           EndDevice handy = (EndDevice) myDevices.get(port);
           switch (parts[0].toUpperCase()) {
             case "MOVE":
+              // 23, 12, 0, 0 
+              // myField.moveDevice(handy.getXCoord(), handy.getYCoord());
               myField.moveDevice(handy.getXCoord(), handy.getYCoord(), Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
               break;
             case "SEND":
