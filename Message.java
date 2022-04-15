@@ -63,6 +63,12 @@ public class Message {
     return this.messageId + "/" + this.command + "/" + sourcePort + "/" + destPort + "/" + path.toString() + "/" + this.content;
   }
 
+  public String toBeautyString() {
+    return "\nID: \t\t\t" + this.messageId + "\nCommand:\t\t\t" + this.command 
+         + "\nSource Port:\t\t\t" + sourcePort + "\nDestination Port: \t\t" 
+         + destPort + "\nPath:\t\t\t\t" + path.toString() + "\nContent:\t\t\t" + this.content + "\n";
+  }
+
   /**
      * Evaluiert aus einem String, welcher Enumeration-Instanz dieser entspricht und gibt diese zurück.
      * Sollte der String nicht zugeordnet werden können, wird Command.Unkown zurückgegeben.

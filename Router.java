@@ -11,7 +11,6 @@ import java.util.logging.*;
 
 public class Router extends Device {
 
-  private final static String STANDARD_PATH = System.getProperty("user.home") + "/Desktop/DSR_Logs/";
   private HashMap<Integer, RoutingEntry> paths;
   private byte[] buffer;
   private int myDevicePort;
@@ -97,9 +96,7 @@ public class Router extends Device {
   public DatagramPacket[] evaluateMessage(Message msg) {
     DatagramPacket[] toSend = new DatagramPacket[0];
 
-    if (msg.getCommand() != Command.RouteRequest) {
-      System.out.println(this.port + ": " + msg.getCommand());
-    }
+    this.logger.info(msg.toBeautyString());
     try {
       switch (msg.getCommand()) {
         case Send:
@@ -542,7 +539,8 @@ public class Router extends Device {
 
   public void setUpLogger() {
     try {
-      FileHandler handler = new FileHandler(Router.STANDARD_PATH + "log_" + this.port + ".txt");
+      this.logger.setLevel(Level.ALL);
+      FileHandler handler = new FileHandler(Field.STANDARD_PATH + "log_" + this.port + ".txt");
       SimpleFormatter formatter = new SimpleFormatter();
       this.logger.addHandler(handler);
       handler.setFormatter(formatter);

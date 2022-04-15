@@ -336,6 +336,13 @@ class Field {
     }
   }
 
+  public Device getDevice(int port) throws DeviceNotFound {
+    if(this.map.containsKey(port)) {
+      return this.map.get(port);
+    }
+    throw new DeviceNotFound("There is no Device with the given Port");
+  }
+
   public HashMap<Integer, Device> getMap() {
     return this.map;
   }

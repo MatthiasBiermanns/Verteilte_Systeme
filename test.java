@@ -5,7 +5,14 @@ import java.util.HashMap;
 public class test {
     private final static String STANDARD_PATH = System.getProperty("user.home") + "/Desktop/DSR_Logs/";
     public static void main(String[] args) {
-
+        try {
+            Field myField = new Field(10, 10, 10);
+            myField.startDevices();
+            EndDevice handy = (EndDevice) myField.getDevice(3001);
+            handy.sendMessage(3005, "Hi");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void testLogging() {
