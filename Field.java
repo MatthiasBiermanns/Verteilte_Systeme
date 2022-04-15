@@ -84,8 +84,19 @@ class Field {
     }
   }
 
+  /**
+     * Erzeugt ein neues Feld zum Testen des implementierten Routing-Verfahrens. Die 
+     * automatisch erzeugten Router auf dem Feld, werden zufällig platziert.
+     * 
+     * @param      routerCnt Anzahl der Router auf dem Feld
+     * @param      xLenth Breite des Feldes
+     * @param      yLength Länge des Feldes
+     * @throws     InvalidInputException - Wird geworfen, wenn kein Feld mit 
+     *             diesen Eingabeparametern erzeugt werden kann
+     * @return     Ein der Message entsprechendes DatagramPacket
+     */
   public Field(int routerCnt, int xLength, int yLength) throws InvalidInputException {
-    if (xLength <= 0 || yLength <= 0) {
+    if (xLength <= 0 || yLength <= 0 || xLength * yLength < routerCnt) {
       throw new InvalidInputException();
     }
 
@@ -102,12 +113,23 @@ class Field {
     }
   }
 
+  /**
+     * Startet alle Router- und EndDevice-Threads innerhalb des Feldes
+     */
   public void startDevices() {
     for (Entry<Integer, Device> e : this.map.entrySet()) {
       e.getValue().start();
     }
   }
 
+  /**
+     * Erzeugt einen neuen Router und zugehöriges EndDevice an einer zufälligen Stelle im Feld.
+     * Sollte an 500 zufälligen Stellen kein Router platziert werden könne, so wird eine Exception 
+     * geworfen. Der Router und das EndDevice bekommen die 2 nächsten freien Ports.
+     * 
+     * @throws PlacementException - Wird geworfen, wenn nach 500 zufällig ausgewählten Stellen
+     *         kein freier Platz für einen Router gefunden wurde.
+     */
   public void createNewDevice() throws PlacementException {
     try {
       fieldSem.acquire();
@@ -141,8 +163,17 @@ class Field {
 
   }
 
+  /**
+     * Erzeugt einen neuen Router und zugehöriges EndDevice an der angegebenen Stelle im Feld.
+     * Ist die Stelle bereits belegt, so wird eine Exception geworfen. Der Router und das 
+     * EndDevice bekommen die 2 nächsten freien Ports.
+     * 
+     * @param  xCoord x-Koordinate des neuen Routers/EndDevice
+     * @param  yCoord y-Koordinate des neuen Routers/EndDevice
+     * @throws PlacementException - Wird geworfen, wenn die angegebene Stelle bereits belegt ist 
+     *         oder sich die Stelle außerhalb des Feldes befindet.
+     */
   public void createNewDevice(int xCoord, int yCoord) throws PlacementException {
-    // creates Router at specific position
     try {
       fieldSem.acquire();
 
@@ -167,6 +198,16 @@ class Field {
     }
   }
 
+  /**
+     * Bewegt den Router und das EndDevice, welches an der gegebenen Stelle ist, an eine zufällige
+     * neue Position im Feld.
+     * 
+     * @param  oldX Alte x-Koordinate, des zu bewegenden Routers/EndDevices
+     * @param  oldY Alte x-Koordinate, des zu bewegenden Routers/EndDevices
+     * @throws DeviceNotFound - Wird geworfen, wenn sich an der gegebenen Stelle kein Router/EndDEvice befindet
+     * @throws PlacementException - Wird geworfen, wenn nach 500 zufällig ausgewählten Stellen
+     *         kein freier Platz den Router/ das EndDevice gefunden wurde.
+     */
   public void moveDevice(int oldX, int oldY) throws DeviceNotFound, PlacementException {
     try {
       fieldSem.acquire();
@@ -204,8 +245,19 @@ class Field {
     }
   }
 
+  /**
+     * Bewegt den Router und das EndDevice, welches an der gegebenen Stelle ist, an die angegebene Stelle im Feld,
+     * falls möglich.
+     * 
+     * @param  oldX Alte x-Koordinate, des zu bewegenden Routers/EndDevices
+     * @param  oldY Alte x-Koordinate, des zu bewegenden Routers/EndDevices
+     * @param  newX X-Koordinate, an die der Router/ das EndDevice bewegt werden soll 
+     * @param  newY y-Koordinate, an die der Router/ das EndDevice bewegt werden soll
+     * @throws DeviceNotFound - Wird geworfen, wenn sich an der gegebenen Stelle kein Router/EndDEvice befindet
+     * @throws PlacementException - Wird geworfen, wenn die neue angegebene Stelle bereits belegt ist, 
+     *         oder die Stelle außerhalb des aufgespannten Feldes liegt
+     */
   public void moveDevice(int oldX, int oldY, int newX, int newY) throws DeviceNotFound, PlacementException {
-    // moves specific router and enddevice to specific position
     try {
       fieldSem.acquire();
 
@@ -234,6 +286,14 @@ class Field {
     }
   }
 
+  /**
+     * Gibt eine Liste der Router in einem 10m (1 Array-Feld = 1m) Umkreis an, die mit einer Nachricht
+     * direkt erreicht werden könnten.
+     * 
+     * @param  port Port des aufrufenden Routers, damit dieser in der Rückgabeliste nicht enthalten ist
+     * @param  x X-Koordinate des aufrufenden Routers
+     * @param  y Y-Koordinate des aufrufenden Routers
+     */
   public LinkedList<Router> getReachableRouter(int port, int x, int y) {
     LinkedList<Router> reachableRouter = new LinkedList<Router>();
 
@@ -249,6 +309,13 @@ class Field {
     return reachableRouter;
   }
 
+  /**
+     * Gibt zurück, ob ein bestimmter Router direkt von einer Position aus zu erreichen ist.
+     * 
+     * @param  routerPort Port des zu erreichenden Routers
+     * @param  oldX Alte x-Koordinate, des zu bewegenden Routers/EndDevices
+     * @param  oldY Alte x-Koordinate, des zu bewegenden Routers/EndDevices
+     */
   public boolean isRouterInRange(int routerPort, int x, int y) {
     LinkedList<Router> reachable = this.getReachableRouter(-1, x, y);
     Iterator<Router> it = reachable.iterator();
@@ -261,6 +328,14 @@ class Field {
     return false;
   }
 
+  /**
+     * Gibt den abstand von 2 Positionen im Feld wieder.
+     * 
+     * @param  x1 x-Koordinate der ersten Position
+     * @param  y1 y-Koordinate der ersten Position
+     * @param  x2 x-Koordinate der zweiten Position
+     * @param  y2 y-Koordinate der zweiten Position
+     */
   public static double getDistance(int x1, int y1, int x2, int y2) {
     int xDist = (x1 - x2) >= 0 ? x1 - x2 : x2 - x1;
     int yDist = (y1 - y2) >= 0 ? y1 - y2 : y2 - y1;
@@ -274,6 +349,13 @@ class Field {
     return Math.sqrt(xDist * xDist + yDist * yDist);
   }
 
+  /**
+     * Löscht den Router und das EndDevice, welches an der gegebenen Stelle zu finden ist.
+     * 
+     * @param  x X-Koordinate des zu löschenden Routers/EndDevices
+     * @param  y y-Koordinate des zu löschenden Routers/EndDevices
+     * @throws DeviceNotFound - Wird geworfen, wenn sich an der gegebenen Stelle kein Router/EndDEvice befindet
+     */
   public void deleteDevice(int x, int y) throws DeviceNotFound {
     try {
       fieldSem.acquire();
@@ -290,10 +372,13 @@ class Field {
 
       fieldSem.release();
     } catch (InterruptedException e) {
-
+      e.printStackTrace();
     }
   }
 
+  /**
+     * Gibt eine 2-Dimensionale Darstellung samt allen Routern (in Form von deren Ports) auf der Konsole aus
+     */
   public void printField() {
     for (int i = 0; i < field.length; i++) {
       for (int j = 0; j < field[i].length; j++) {
