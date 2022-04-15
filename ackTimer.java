@@ -6,12 +6,12 @@ public class ackTimer extends Thread {
     // TODO: Konzept überarbeiten
     // Idee noch nicht ausgereift
     private int count;
+    private Message msg;
     private int routerPort;
-    private String msgId;
 
-    public ackTimer(String msgId, int routerPort) {
-        this.msgId = msgId;
+    public ackTimer(Message msg, int routerPort) {
         this.count = 300;
+        this.msg = msg;
         this.routerPort = routerPort;
         this.start();
     }
@@ -31,7 +31,8 @@ public class ackTimer extends Thread {
     public void sendAckMissing() {
         try (DatagramSocket socket = new DatagramSocket()){
             InetAddress destAddress = InetAddress.getByName("localhost");
-            byte[] message = this.msgId.getBytes();
+            Message ackMissMessage = new Message(msg.getMessageId(), Command.AckNeeded, msg.getSourcePort(), msg.getDestPort(), msg.getPath(), "");
+            byte[] message = ackMissMessage.toString().getBytes();
             DatagramPacket dp = new DatagramPacket(message, message.length, destAddress, this.routerPort); 
             socket.send(dp);
         } catch ( Exception e) {

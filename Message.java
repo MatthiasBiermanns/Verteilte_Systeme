@@ -84,6 +84,8 @@ public class Message {
       return Command.RouteError;
     } else if (str.equals("ACK")) {
       return Command.Ack;
+    } else if (str.equals("ACKNEEDED")) {
+      return Command.AckNeeded;
     } else if (str.equals("RETRY")) {
       return Command.Retry;
     } else {

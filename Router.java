@@ -12,10 +12,10 @@ public class Router extends Device {
   private byte[] buffer;
   private int myDevicePort;
   private HashMap<String, Message> waiting;
+  private HashMap<String, ackTimer> timer;
 
   // TODO: weiter bearbeiten --> Zuordnung nicht optimal
   // Idee: Maybe Message Objekt in Map speichern --> Lösung suchen
-  private HashMap<String, Long> waitingForAck;
   private HashMap<String, Long> knownIds;
 
   /**
@@ -40,8 +40,8 @@ public class Router extends Device {
     this.myDevicePort = myDevicePort;
     this.paths = new HashMap<>();
     this.waiting = new HashMap<>();
-    this.waitingForAck = new HashMap<>();
     this.knownIds = new HashMap<>();
+    this.timer = new HashMap<>();
     this.buffer = new byte[65507];
   }
 
@@ -57,7 +57,6 @@ public class Router extends Device {
         try {
           socket.receive(dp);
           try {
-            // TODO: Routine aufbauen um wartenden ACKs zu überprüfen
             String messageString = new String(dp.getData(), 0, dp.getLength());
             Message message = new Message(messageString);
             DatagramPacket[] toSend = evaluateMessage(message);
@@ -163,7 +162,12 @@ public class Router extends Device {
           }
           break;
         case Ack:
-          waitingForAck.remove(msg.getMessageId());
+          ackTimer myAckTimer = timer.get(msg.getMessageId());
+          timer.remove(msg.getMessageId());
+          myAckTimer.stop();
+          break;
+        case AckNeeded:
+          //TODO: Routine einbauen
           break;
         default:
           System.out.println(msg.getCommand());
@@ -196,12 +200,10 @@ public class Router extends Device {
       entry.updateUsage();
       msg.setPath(entry.getPath());
       msg.setSourcePort(port);
-      this.waitingForAck.put(
-          msg.getMessageId(),
-          Instant.now().getEpochSecond()
-        );
 
       packet[0] = createDatagramPacket(msg, getNextPort(msg));
+      ackTimer myAckTimer = new ackTimer(msg, this.port);
+      timer.put(msg.getMessageId(), myAckTimer);
     } else {
       packet = createRouteRequest(msg);
     }
@@ -406,7 +408,8 @@ public class Router extends Device {
         toSend[1] = this.createDatagramPacket(ack, ack.getDestPort());
       }
       toSend[0] = this.createDatagramPacket(msg, nextRouter);
-      waitingForAck.put(msg.getMessageId(), Instant.now().getEpochSecond());
+      ackTimer myAckTimer = new ackTimer(msg, this.port);
+      timer.put(msg.getMessageId(), myAckTimer);
     } else {
       String content = msg.getDestPort() + " " + msg.getMessageId();
       Message errMessage = new Message(
