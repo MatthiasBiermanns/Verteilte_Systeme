@@ -177,7 +177,7 @@ class Field {
     try {
       fieldSem.acquire();
 
-      if (xCoord > this.xLength || yCoord > this.yLength || field[xCoord][yCoord][0] == null) {
+      if (xCoord > this.xLength || yCoord > this.yLength || field[xCoord][yCoord][0] != null) {
         throw new PlacementException();
       }
 

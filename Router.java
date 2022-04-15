@@ -164,7 +164,13 @@ public class Router extends Device {
         case Ack:
           ackTimer myAckTimer = timer.get(msg.getMessageId());
           timer.remove(msg.getMessageId());
-          myAckTimer.stop();
+          try {
+            myAckTimer.stop();
+          } catch (NullPointerException e) {
+            System.out.println("Exception in " + this.port);
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+          }
           break;
         case AckNeeded:
           toSend = new DatagramPacket[1];
@@ -363,6 +369,8 @@ public class Router extends Device {
       System.out.println(this.port + ": the routing path is " + msg.getPath());
       Message oldMessage = waiting.get(msg.getMessageId());
       waiting.remove(msg.getMessageId());
+      ackTimer myAckTimer = new ackTimer(oldMessage, this.port);
+      timer.put(oldMessage.getMessageId(), myAckTimer);
       oldMessage.setPath(msg.getPath());
       toSend[0] =
         this.createDatagramPacket(oldMessage, getNextPort(oldMessage));

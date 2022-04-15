@@ -9,6 +9,7 @@ public class EndDevice extends Device {
   private int myRouterPort;
   private HashMap<String, Message> sendMessages;
 
+  
   public EndDevice(int xCoord, int yCoord, Field field, int port, int myRouterPort) {
     super(xCoord, yCoord, field, port);
     this.myRouterPort = myRouterPort;
@@ -67,7 +68,7 @@ public class EndDevice extends Device {
     try (DatagramSocket socket = new DatagramSocket(this.port)) {
       DatagramPacket dp = new DatagramPacket(new byte[65507], 65507);
       try {
-        socket.setSoTimeout(10000);
+        //socket.setSoTimeout(10000);
         socket.receive(dp);
         System.out.println("Message Received");
         Message msg = new Message(new String(dp.getData(), 0, dp.getLength()));
