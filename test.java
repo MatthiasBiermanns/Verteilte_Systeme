@@ -1,10 +1,30 @@
+import java.util.logging.*;
 import java.io.*;
 import java.util.HashMap;
 
 public class test {
-
+    private final static String STANDARD_PATH = System.getProperty("user.home") + "/Desktop/DSR_Logs/";
     public static void main(String[] args) {
-        testRouteRequest();
+
+    }
+
+    public static void testLogging() {
+        Logger logger = Logger.getLogger("log_" + 100);
+        logger.setLevel(Level.ALL);
+        try {
+            FileHandler handler = new FileHandler(STANDARD_PATH + "testlogging.txt");
+            logger.addHandler(handler);
+            SimpleFormatter sf = new SimpleFormatter();
+            handler.setFormatter(sf);
+
+            logger.warning("Warning");
+            logger.info("Info");
+            logger.severe("Severe");
+            logger.fine("fine");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
     }
 
     public static void testAcks() {
@@ -33,7 +53,6 @@ public class test {
         try {
           Field myField = new Field(25, 25, 25);
           myField.startDevices();
-          //myField.createNewDevice()
           try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             while (true) {
               myField.printField();
@@ -48,8 +67,6 @@ public class test {
               EndDevice handy = (EndDevice) myDevices.get(port);
               switch (parts[0].toUpperCase()) {
                 case "MOVE":
-                  // 23, 12, 0, 0 
-                  // myField.moveDevice(handy.getXCoord(), handy.getYCoord());
                   myField.moveDevice(handy.getXCoord(), handy.getYCoord(), Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
                   break;
                 case "SEND":
@@ -59,7 +76,6 @@ public class test {
                 default:
                   break;
               }
-    
             }
           } catch (Exception e) {
             e.printStackTrace();

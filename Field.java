@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -12,6 +13,7 @@ import Exceptions.DeviceNotFound;
 
 class Field {
   final static int ID_LENGTH = 32;
+  final static String STANDARD_PATH = System.getProperty("user.home") + "/Desktop/DSR_Logs/";
   static int nextPort = 3000;
   private int xLength, yLength;
   private Semaphore fieldSem = new Semaphore(1, true);
@@ -45,6 +47,7 @@ class Field {
         break;
       }
     }
+    this.cleanDir();
   }
 
   /**
@@ -53,6 +56,13 @@ class Field {
   public void startDevices() {
     for (Entry<Integer, Device> e : this.map.entrySet()) {
       e.getValue().start();
+    }
+  }
+
+  public void cleanDir() {
+    File dir = new File(Field.STANDARD_PATH);
+    for( File file: dir.listFiles()) {
+      file.delete();
     }
   }
 

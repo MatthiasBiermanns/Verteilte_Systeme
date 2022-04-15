@@ -1,18 +1,23 @@
 import Exceptions.InvalidMessage;
+
+import java.io.IOException;
 import java.net.*;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map.Entry;
+import java.util.logging.*;
 
 public class Router extends Device {
 
+  private final static String STANDARD_PATH = System.getProperty("user.home") + "/Desktop/DSR_Logs/";
   private HashMap<Integer, RoutingEntry> paths;
   private byte[] buffer;
   private int myDevicePort;
   private HashMap<String, Message> waiting;
   private HashMap<String, ackTimer> timer;
+  private Logger logger;
 
   // TODO: weiter bearbeiten --> Zuordnung nicht optimal
   // Idee: Maybe Message Objekt in Map speichern --> Lösung suchen
@@ -43,6 +48,8 @@ public class Router extends Device {
     this.knownIds = new HashMap<>();
     this.timer = new HashMap<>();
     this.buffer = new byte[65507];
+    this.logger = Logger.getLogger("Logger_" + this.port);
+    this.setUpLogger();
   }
 
   /**
@@ -527,11 +534,25 @@ public class Router extends Device {
      * Räumt den Pfad-Cache des Routers auf. Sortiert alle Pfade aus, 
      * die 5 Minuten oder länge nicht genutzt wurden.
      */
-    public void groomPaths() {
-      long currTime = Instant.now().getEpochSecond();
-      this.paths.entrySet()
-        .removeIf(e -> (currTime - e.getValue().getLastUsed() >= 300));
+  public void groomPaths() {
+    long currTime = Instant.now().getEpochSecond();
+    this.paths.entrySet()
+      .removeIf(e -> (currTime - e.getValue().getLastUsed() >= 300));
+  }
+
+  public void setUpLogger() {
+    try {
+      FileHandler handler = new FileHandler(Router.STANDARD_PATH + "log_" + this.port + ".txt");
+      SimpleFormatter formatter = new SimpleFormatter();
+      this.logger.addHandler(handler);
+      handler.setFormatter(formatter);
+      this.logger.info("Router startet logging");
+    } catch (IOException e) {
+      e.printStackTrace();
+      System.out.println(e.getMessage());
     }
+
+  }
 
   public int getXCoord() {
     return this.xCoord;
