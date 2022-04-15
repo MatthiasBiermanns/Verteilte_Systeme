@@ -167,7 +167,8 @@ public class Router extends Device {
           myAckTimer.stop();
           break;
         case AckNeeded:
-          //TODO: Routine einbauen
+          toSend = new DatagramPacket[1];
+          toSend[0] = createRouteError(msg);
           break;
         default:
           System.out.println(msg.getCommand());
@@ -411,7 +412,13 @@ public class Router extends Device {
       ackTimer myAckTimer = new ackTimer(msg, this.port);
       timer.put(msg.getMessageId(), myAckTimer);
     } else {
-      String content = msg.getDestPort() + " " + msg.getMessageId();
+      toSend[0] = createRouteError(msg);
+    }
+    return toSend;
+  }
+
+  public DatagramPacket createRouteError(Message msg) throws UnknownHostException {
+    String content = msg.getDestPort() + " " + msg.getMessageId();
       Message errMessage = new Message(
         getUUID(),
         Command.RouteError,
@@ -420,10 +427,7 @@ public class Router extends Device {
         msg.getPath(),
         content
       );
-      toSend[0] =
-        createDatagramPacket(errMessage, this.getPreviousPort(errMessage));
-    }
-    return toSend;
+      return createDatagramPacket(errMessage, this.getPreviousPort(errMessage));
   }
 
   /**
