@@ -56,9 +56,10 @@ public class test {
         }
     }
     
-    public static void testRouteRequest() {
+    // Needs to get field form outside, so Gui works on the same Field.
+    public static void testRouteRequest(Field myField) {
         try {
-          Field myField = new Field(25, 25, 25);
+          // Field myField = new Field(25, 25, 25);
           myField.startDevices();
           try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             while (true) {

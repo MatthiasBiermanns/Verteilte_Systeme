@@ -65,6 +65,8 @@ public class Router extends Device {
             String messageString = new String(dp.getData(), 0, dp.getLength());
             Message message = new Message(messageString);
             DatagramPacket[] toSend = evaluateMessage(message);
+
+            // Builds necessary data for Guiserver.
             byte[] data = new GuiUpdateMessage(
               this.xCoord,
               this.yCoord,
@@ -73,6 +75,7 @@ public class Router extends Device {
             )
               .toString()
               .getBytes();
+            // sends data to Gui Server for visual updates
             socket.send(
               new DatagramPacket(
                 data,

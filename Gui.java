@@ -1,8 +1,8 @@
 import Exceptions.InvalidInputException;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.HashMap;
-import java.util.Iterator;
+// import java.util.HashMap; // only for moveDeviceInGui()
+// import java.util.Iterator; // only for moveDeviceInGui()
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
@@ -19,7 +19,7 @@ public class Gui extends JFrame implements ActionListener {
   }
 
   private Device[][][] field;
-  private HashMap<Integer, Device> map;
+  // private HashMap<Integer, Device> map; // only for moveDeviceInGui()
   private Field myField;
   private JLabel[][] feld;
   private GuiServer gs;
@@ -27,7 +27,7 @@ public class Gui extends JFrame implements ActionListener {
 
   public Gui(Field myField, String title) {
     this.field = myField.getField();
-    this.map = myField.getMap();
+    // this.map = myField.getMap(); // only for moveDeviceInGui()
     this.myField = myField;
     gs = new GuiServer();
     t1 = new Thread(gs, "GuiServer");
@@ -92,37 +92,6 @@ public class Gui extends JFrame implements ActionListener {
     }
   }
 
-  private void moveDeviceInGui() {
-    // Get device object
-    HashMap<Integer, Device> map = this.map;
-    int hops = (int) (Math.random() * map.size()) - 1;
-    Iterator<Device> iter = map.values().iterator();
-    Device dev = iter.next();
-    for (int i = hops; i > 0; i--) {
-      dev = iter.next();
-    }
-
-    // Find device in GUI
-    int x = dev.getXCoord();
-    int y = dev.getYCoord();
-    feld[x][y].setBackground(Color.BLUE);
-
-    // Move device in Field
-    try {
-      myField.moveDevice(dev.getXCoord(), dev.getYCoord());
-    } catch (Exception ex) {
-      ex.printStackTrace();
-    }
-
-    // Move device in GUI
-    x = dev.getXCoord();
-    y = dev.getYCoord();
-    feld[x][y].setBackground(Color.RED);
-
-    revalidate();
-    repaint();
-  }
-
   /**
    * Starts simulation and Updates Grid with Server-Input.
    */
@@ -135,31 +104,10 @@ public class Gui extends JFrame implements ActionListener {
         public void actionPerformed(ActionEvent e) {
           GuiUpdateMessage m = gs.getX();
 
-          // TODO Farbzuweisung auslagern?
-          Color color;
           if (m != null) {
-            switch (m.getCommand()) {
-              case Send:
-                color = Color.CYAN;
-                break;
-              case Forward:
-                color = Color.GREEN;
-                break;
-              case RouteRequest:
-                color = Color.MAGENTA;
-                break;
-              case RouteError:
-                color = Color.RED;
-                break;
-              case Retry:
-                color = Color.WHITE;
-                break;
-              default:
-                color = Color.BLACK;
-                break;
-            }
-
-            feld[m.getXCord()][m.getYCord()].setBackground(color);
+            feld[m.getXCord()][m.getYCord()].setBackground(
+                getColorToCommand(m.getCommand())
+              );
             revalidate();
 
             repaint();
@@ -169,11 +117,74 @@ public class Gui extends JFrame implements ActionListener {
     )
       .start();
   }
- /**
-  * Defines which example should be simulated.
-  */
-  // TODO make paralell
+
+  /**
+   * Defines which example should be simulated.
+   */
   private void toSimulate() {
-    test.testRouteRequest();
+    Thread t2 = new Thread(new GuiWorker(this.myField));
+    t2.start();
   }
+
+  /**
+   * Method to determine which color the panel should get regarding to the command the Router got.
+   * @param command Command router received.
+   * @return Color for respective command.
+   */
+  private Color getColorToCommand(Command command) {
+    Color color;
+
+    switch (command) {
+      case Send:
+        color = Color.CYAN;
+        break;
+      case Forward:
+        color = Color.GREEN;
+        break;
+      case RouteRequest:
+        color = Color.MAGENTA;
+        break;
+      case RouteError:
+        color = Color.RED;
+        break;
+      case Retry:
+        color = Color.WHITE;
+        break;
+      default:
+        color = Color.BLACK;
+        break;
+    }
+    return color;
+  }
+  // private void moveDeviceInGui() {
+  // Get device object
+  //   HashMap<Integer, Device> map = this.map;
+  //   int hops = (int) (Math.random() * map.size()) - 1;
+  //   Iterator<Device> iter = map.values().iterator();
+  //   Device dev = iter.next();
+  //   for (int i = hops; i > 0; i--) {
+  //     dev = iter.next();
+  //   }
+
+  // Find device in GUI
+  //   int x = dev.getXCoord();
+  //   int y = dev.getYCoord();
+  //   feld[x][y].setBackground(Color.BLUE);
+
+  // Move device in Field
+  //   try {
+  //     myField.moveDevice(dev.getXCoord(), dev.getYCoord());
+  //   } catch (Exception ex) {
+  //     ex.printStackTrace();
+  //   }
+
+  // Move device in GUI
+  //   x = dev.getXCoord();
+  //   y = dev.getYCoord();
+  //   feld[x][y].setBackground(Color.RED);
+
+  //   revalidate();
+  //   repaint();
+  // }
+
 }
