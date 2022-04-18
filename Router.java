@@ -614,11 +614,15 @@ public class Router extends Device {
       SimpleFormatter formatter = new SimpleFormatter();
       this.logger.addHandler(handler);
       handler.setFormatter(formatter);
-      this.logger.info("Router startet logging\n");
+      this.logger.info("Router startet logging\n Position: ( x: " + this.xCoord + "; y: " + this.yCoord + " )\nPort: " + this.port + "\n");
     } catch (IOException e) {
       e.printStackTrace();
       System.out.println(e.getMessage());
     }
+  }
+
+  public void logNewPosition() {
+    this.logger.info("\nNew Position: ( x: " + this.xCoord + "; y: " + this.yCoord + " )\n");
   }
 
   public void logStatus() {

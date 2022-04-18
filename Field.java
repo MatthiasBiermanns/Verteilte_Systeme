@@ -1,9 +1,11 @@
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map.Entry;
 import java.util.concurrent.Semaphore;
+import java.util.logging.*;
 
 import Exceptions.InvalidInputException;
 import Exceptions.PlacementException;
@@ -17,6 +19,7 @@ class Field {
   private Semaphore fieldSem = new Semaphore(1, true);
   private Device[][][] field;
   private HashMap<Integer, Device> map = new HashMap<Integer, Device>();
+  private Logger logger;
 
   /**
      * Erzeugt ein neues Feld zum Testen des implementierten Routing-Verfahrens. Die 
@@ -37,6 +40,8 @@ class Field {
     this.xLength = xLength;
     this.yLength = yLength;
     field = new Device[xLength][yLength][2];
+    this.logger = Logger.getLogger("Logger_field");
+    this.setUpLogger();
     for (int i = 0; i < routerCnt; i++) {
       try {
         createNewDevice();
@@ -48,6 +53,22 @@ class Field {
     this.cleanDir();
   }
 
+  public void setUpLogger() {
+    try {
+      this.logger.setLevel(Level.ALL);
+        FileHandler handler = new FileHandler(
+          Field.STANDARD_PATH + "log_field.txt"
+        );
+        SimpleFormatter formatter = new SimpleFormatter();
+        this.logger.addHandler(handler);
+        handler.setFormatter(formatter);
+        logger.info("Startet Logging");
+    } catch (IOException e) {
+      e.printStackTrace();
+      System.out.println(e.getMessage());
+    }
+  }
+
   /**
      * Startet alle Router- und EndDevice-Threads innerhalb des Feldes
      */
@@ -55,6 +76,7 @@ class Field {
     for (Entry<Integer, Device> e : this.map.entrySet()) {
       e.getValue().start();
     }
+    logger.info("Devices startet successfully");
   }
 
   public void cleanDir() {
@@ -98,6 +120,7 @@ class Field {
       map.put(r.getPort(), r);
       map.put(d.getPort(), d);
 
+      logger.info("Device created at x: " + xCoord + ", y: " + yCoord + " with Ports: " + r.getPort() + ", " + d.getPort() + "\n");
       fieldSem.release();
     } catch (InterruptedException e) {
 
@@ -133,6 +156,7 @@ class Field {
       map.put(r.getPort(), r);
       map.put(d.getPort(), d);
 
+      logger.info("Device created at x: " + xCoord + ", y: " + yCoord + " with Ports: " + r.getPort() + ", " + d.getPort() + "\n");
       fieldSem.release();
     } catch (InterruptedException e) {
       System.out.println(e.getMessage());
@@ -181,6 +205,7 @@ class Field {
       field[oldX][oldY][0] = null;
       field[oldX][oldY][1] = null;
 
+      logger.info("Devices " + r.getPort() + ", " +d.getPort() + " moved from x: " + oldX + ", y: " + oldY + " to x: " + newX + ", y: " + newY +"\n");
       fieldSem.release();
     } catch (InterruptedException e) {
 
@@ -222,6 +247,7 @@ class Field {
       field[oldX][oldY][0] = null;
       field[oldX][oldY][1] = null;
 
+      logger.info("Devices " + r.getPort() + ", " +d.getPort() + " moved from x: " + oldX + ", y: " + oldY + " to x: " + newX + ", y: " + newY +"\n");
       fieldSem.release();
     } catch (InterruptedException e) {
 
