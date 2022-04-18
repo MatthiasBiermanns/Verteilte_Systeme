@@ -1,7 +1,6 @@
 import Exceptions.InvalidMessage;
 import java.io.IOException;
 import java.net.*;
-import java.rmi.activation.UnknownObjectException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
@@ -110,16 +109,15 @@ public class Router extends Device {
   /**
    * Wird von Router-Thread automatisch durch die run() Methode aufgerufen
    *
-   * Interpretiert den Inhalt einer Message anhand des Commands und dem Ziel- bzw. Ausgangsrouter (Port)
-   *
+   * Interpretiert den Inhalt einer Message anhand des Commands und dem Ziel- bzw. Ausgangsrouter 
+   * (Port). In Abhängigkeit des inhaltes wird die Nachrict verarbeitet oder weitere Methoden 
+   * aufgerufen. Die eingehende Nachricht und der Status des Routers nach Verarbeitung wird geloggt.
    *
    * @param      msg   Die Nachricht, die zu interpretieren ist
    * @return     Ein Array der zu versendenden DatagramPackets
-   *
    */
   public DatagramPacket[] evaluateMessage(Message msg) {
     DatagramPacket[] toSend = new DatagramPacket[0];
-
     
     try {
       switch (msg.getCommand()) {
@@ -205,9 +203,20 @@ public class Router extends Device {
           }
           break;
         case AckNeeded:
-          //TODO: sonderfall für wir sind der sourceRouter
           toSend = new DatagramPacket[1];
-          toSend[0] = createRouteError(msg);
+          if(msg.getSourcePort() == this.myDevicePort) {
+            Message retryMessage = new Message(
+              getUUID(),
+              Command.Retry,
+              this.port,
+              this.myDevicePort,
+              new LinkedList<>(),
+              msg.getMessageId()
+            );
+            toSend[0] = createDatagramPacket(retryMessage, myDevicePort);
+          } else {
+            toSend[0] = createRouteError(msg);
+          }
           break;
         default:
           System.out.println(msg.getCommand());

@@ -1,5 +1,23 @@
 # Funktion des Dynamic-Source-Routing Programms
 
+## Interne Strukturen
+
+--
+
+- Router und entsprechendes EndDevice haben immer aufeinanderfolgende Ports <br> --> Router gerade; EndDevice ungerade
+- Eine Retry Message enthält im Content die ID der vorlorenen Message
+
+### RouteError
+
+- Im Content eines routeErrors sind die MessageId der verlorenen Message und der Zielport dieser enthalten
+- Die Trennung erfolgt durch 
+- Aufbau "<destPort> <Message Id>"
+
+### RouteReply Message
+
+- Bei der RouteReply ist der Path in umgekehrter Reihenfolge <br> --> er entspricht dem Pfad der von der RouteRequest zusammengebaut wurde
+- Im Vergleich zur RouteRequest wurden lediglich source- und destination-Router gewechselt
+
 ## Setup
 
 ---
