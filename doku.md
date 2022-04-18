@@ -13,8 +13,7 @@
 - Für jeden Router wird eine Log-Datei im Vereichnis "Desktop/DSR_Logs" erstellt
 - Aktuell wird geloggt (Bitte bei Veränderungen erweitern):
   - Jede einkommende Nachricht
-  - Pfade nach eingehendem RouteReply
-  - Pfade nach eingehendem RouteError 
+  - Routerstatus nach jedem Durchlauf
 - Eigene Log-Einträge in diese File können durch folgenden Befehl im Code des Routers hinzugefügt werden:
 
 ```java
