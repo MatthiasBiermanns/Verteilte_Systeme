@@ -206,6 +206,7 @@ class Field {
       field[oldX][oldY][1] = null;
 
       logger.info("Devices " + r.getPort() + ", " +d.getPort() + " moved from x: " + oldX + ", y: " + oldY + " to x: " + newX + ", y: " + newY +"\n");
+      r.logNewPosition();
       fieldSem.release();
     } catch (InterruptedException e) {
 
@@ -248,6 +249,7 @@ class Field {
       field[oldX][oldY][1] = null;
 
       logger.info("Devices " + r.getPort() + ", " +d.getPort() + " moved from x: " + oldX + ", y: " + oldY + " to x: " + newX + ", y: " + newY +"\n");
+      r.logNewPosition();
       fieldSem.release();
     } catch (InterruptedException e) {
 
