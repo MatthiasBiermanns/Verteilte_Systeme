@@ -5,13 +5,12 @@ import java.util.HashMap;
 public class test {
     private final static String STANDARD_PATH = System.getProperty("user.home") + "/Desktop/DSR_Logs/";
     public static void main(String[] args) {
-        try {
+      try {
             Field myField = new Field(30, 25, 25);
             testRouteRequest(myField);
         } catch ( Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public static void testLogging() {
@@ -60,6 +59,7 @@ public class test {
           myField.startDevices();
           try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             while (true) {
+              Thread.sleep(1000);
               myField.printField();
     
               String line = reader.readLine();

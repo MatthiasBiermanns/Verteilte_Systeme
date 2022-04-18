@@ -67,7 +67,6 @@ public class Router extends Device {
           try {
             String messageString = new String(dp.getData(), 0, dp.getLength());
             Message message = new Message(messageString);
-            this.log(message);
             DatagramPacket[] toSend = evaluateMessage(message);
 
             // Builds necessary data for Guiserver.
@@ -105,10 +104,6 @@ public class Router extends Device {
     }
   }
 
-  public void log(Message msg) {
-    
-  }
-
   /**
    * Wird von Router-Thread automatisch durch die run() Methode aufgerufen
    *
@@ -122,7 +117,7 @@ public class Router extends Device {
   public DatagramPacket[] evaluateMessage(Message msg) {
     DatagramPacket[] toSend = new DatagramPacket[0];
 
-    this.logger.info(msg.toBeautyString());
+    
     try {
       switch (msg.getCommand()) {
         case Send:
@@ -148,7 +143,6 @@ public class Router extends Device {
         case RouteReply:
           if (msg.getDestPort() == this.port) {
             toSend = this.processRouteReply(msg);
-            this.logger.info(this.pathLogging());
           } else {
             if (
               field.isRouterInRange(
@@ -184,7 +178,6 @@ public class Router extends Device {
         case RouteError:
           if (msg.getDestPort() == this.port) {
             toSend = this.processRouteError(msg);
-            this.logger.info(this.pathLogging());
           } else {
             int prevRouter = getPreviousPort(msg);
             if (field.isRouterInRange(prevRouter, this.xCoord, this.yCoord)) {
@@ -215,6 +208,12 @@ public class Router extends Device {
       }
     } catch (Exception e) {
       e.printStackTrace();
+    }
+
+    // verhindert logging von RReqs, die vom Router ignoriert werden
+    if(!this.knownIds.containsKey(msg.getMessageId()) || msg.getCommand() != Command.RouteRequest) {
+      this.logger.info(msg.toBeautyString());
+      this.logStatus();
     }
     return toSend;
   }
@@ -577,29 +576,51 @@ public class Router extends Device {
       SimpleFormatter formatter = new SimpleFormatter();
       this.logger.addHandler(handler);
       handler.setFormatter(formatter);
-      this.logger.info("Router startet logging");
+      this.logger.info("Router startet logging\n");
     } catch (IOException e) {
       e.printStackTrace();
       System.out.println(e.getMessage());
     }
   }
 
+  public void logStatus() {
+    String toLog = "\n" + this.pathLogging() + "\n" + this.timerLogging() + "\n" + this.knownIdLogging() + "\n";
+    this.logger.info(toLog);
+  }
+
   public String pathLogging() {
-    String res = "";
-    //TODO: Problemlösung
+    String res = "Path Cache:";
+    SimpleDateFormat format = new SimpleDateFormat("H:mm:ss", Locale.GERMANY);
     for( Entry<Integer, RoutingEntry> e : this.paths.entrySet()) {
       Long timestamp = e.getValue().getLastUsed();
-      Date time = new java.sql.Date(timestamp);
-      SimpleDateFormat format = new SimpleDateFormat("H:mm:ss", Locale.GERMANY);
-      String line = Integer.toString(e.getKey())+ "( " + format.format(time) + " ): " + e.getValue().getPath().toString() + "\n";
+      // *1000, da time von 1970 in Millisekunden angegeben sein muss (timestamp ist in Sek)
+      Date time = new java.sql.Date(timestamp*1000);
+      String line = "\n" + Integer.toString(e.getKey())+ "( " + format.format(time) + " ): " + e.getValue().getPath().toString();
       res += line;
     }
     return res;
   }
 
   public String timerLogging() {
-    //TODO: Logging complete
-    return "";
+    String res = "Running Timer (Id - Sekunden):";
+    for(Entry<String, ackTimer> e: this.timer.entrySet()) {
+      res += "\n" + e.getKey() + " - " + e.getValue().getCount();
+    }
+    return res;
+  }
+
+  public String knownIdLogging() {
+    int count = 0;
+    String res = "Known Ids:";
+    for(Entry<String, Long> e : this.knownIds.entrySet()) {
+      if(count % 3 == 0) {
+        res += "\n\t" + e.getKey();
+      } else {
+        res += "\t" + e.getKey();
+      }
+      count++;
+    }
+    return res;
   }
 
   public int getXCoord() {

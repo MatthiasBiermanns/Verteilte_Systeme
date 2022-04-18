@@ -3,8 +3,6 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 
 public class ackTimer extends Thread {
-    // TODO: Konzept überarbeiten
-    // Idee noch nicht ausgereift
     private int count;
     private Message msg;
     private int routerPort;
@@ -38,5 +36,9 @@ public class ackTimer extends Thread {
         } catch ( Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public int getCount() {
+        return this.count;
     }
 }

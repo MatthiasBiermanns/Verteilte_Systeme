@@ -64,7 +64,7 @@ public class Message {
   }
 
   public String toBeautyString() {
-    return "\nID: \t\t\t" + this.messageId + "\nCommand:\t\t\t" + this.command 
+    return "\nID: \t\t\t\t" + this.messageId + "\nCommand:\t\t\t" + this.command 
          + "\nSource Port:\t\t\t" + sourcePort + "\nDestination Port: \t\t" 
          + destPort + "\nPath:\t\t\t\t" + path.toString() + "\nContent:\t\t\t" + this.content + "\n";
   }
