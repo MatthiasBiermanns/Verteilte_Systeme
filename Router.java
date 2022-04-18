@@ -263,8 +263,9 @@ public class Router extends Device {
     throws UnknownHostException {
     LinkedList<Integer> list = new LinkedList<Integer>();
     list.add(this.port);
+    String id = msg.getCommand() == Command.RouteRequest ? msg.getMessageId() : getUUID();
     Message newMessage = new Message(
-      getUUID(),
+      id,
       Command.RouteRequest,
       this.port,
       msg.getDestPort(),
