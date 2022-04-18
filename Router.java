@@ -21,10 +21,10 @@ public class Router extends Device {
   private HashMap<String, Message> waiting;
   private HashMap<String, ackTimer> timer;
   private Logger logger;
+  private HashMap<String, Long> knownIds;
 
   // TODO: weiter bearbeiten --> Zuordnung nicht optimal
   // Idee: Maybe Message Objekt in Map speichern --> Lösung suchen
-  private HashMap<String, Long> knownIds;
 
   /**
    * Erzeugt einen neuen komplett unbelasteten Router
@@ -129,7 +129,6 @@ public class Router extends Device {
       switch (msg.getCommand()) {
         case Send:
           toSend = this.processSend(msg);
-
           break;
         case RouteRequest:
           if (
