@@ -1,6 +1,10 @@
 import java.util.logging.*;
+
+import Exceptions.InvalidInputException;
+
 import java.io.*;
 import java.util.HashMap;
+import java.util.Random;
 
 public class test {
     private final static String STANDARD_PATH = System.getProperty("user.home") + "/Desktop/DSR_Logs/";
@@ -112,4 +116,161 @@ public class test {
           e.printStackTrace();
         }
       }
+
+//-------------------------------------------
+//----------------Test A---------------------
+//-------------------------------------------
+
+public static void diffrentNumberOfRouters (){
+  /*
+  Random r = new Random();
+  int randomNumber = r.nextInt(50);
+  System.out.println(randomNumber);
+  */
+    Field myField;
+    try {
+      myField = new Field(500, 100, 100);
+      myField.startDevices();
+    } catch (InvalidInputException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    
+
+}
+
+public static void sendRandomMessage (){
+  try{
+  Field myField = new Field(0, 25, 25);
+  myField.createNewDevice(0, 0);
+  myField.createNewDevice(5, 5);
+  myField.createNewDevice(10, 10);
+  myField.createNewDevice(15, 15);
+  myField.createNewDevice(20, 20);
+  myField.createNewDevice(24, 24);
+  myField.startDevices();
+  HashMap<Integer, Device> fieldMap = myField.getMap();
+  EndDevice handy = (EndDevice) fieldMap.get(3001);
+  handy.sendMessage(3010, "Hallöchen");
+
+  } catch(Exception e){
+      e.printStackTrace();
+  }
+
+}
+
+public static void zweiRouterAufEinemFeld (){
+
+  try {
+      Field myField = new Field(0, 100, 100);
+      myField.createNewDevice(0, 0);
+      myField.createNewDevice(0, 0);
+      myField.createNewDevice(5, 5);
+      myField.createNewDevice(10, 10);
+      myField.startDevices();
+      new Gui(myField, "Mein Fenster");
+  } catch (Exception e) {
+      e.printStackTrace();
+  }
+}
+
+public static void sendMessage (){
+  try {
+      Field myField = new Field(5, 10, 10);
+      myField.startDevices();
+      myField.printField();
+      EndDevice handy = (EndDevice) myField.getDevice(3001);
+      handy.sendMessage(3005, "Hallo");
+  } catch (Exception e) {
+      e.printStackTrace();
+  }
+}
+
+public static void sendMessageBack (){
+  try{
+      Field myField = new Field(10, 10, 10);
+      myField.startDevices();
+      myField.printField();
+      EndDevice handy = (EndDevice) myField.getDevice(3001);
+      handy.sendMessage(3003, "Hallo");
+      EndDevice handy2 = (EndDevice) myField.getDevice(3003);
+      handy2.sendMessage(3001, "Hallo zurück");
+  }catch(Exception e) {
+      e.printStackTrace();
+  }
+}
+
+public static void sendMessageParallel (){
+  try {
+      Field myField = new Field(5, 10, 10);
+      myField.startDevices();
+      myField.printField();
+
+      EndDevice handy1 = (EndDevice) myField.getDevice(3001);
+      handy1.sendMessage(3005, "Hallo1");
+      //handy.sendMessage(3003, "Hi");
+
+      EndDevice handy2 = (EndDevice) myField.getDevice(3003);
+      handy2.sendMessage(3005, "Hallo2");
+
+  } catch (Exception e) {
+      e.printStackTrace();
+  }
+}
+
+//-------------------------------------------
+//----------------Test B---------------------
+//-------------------------------------------
+
+
+public static void sendMessage (Field myField, int startPort, int dest){ 
+  try {
+      EndDevice handy = (EndDevice) myField.getDevice(startPort);
+      handy.sendMessage(dest, "Hallo");
+  } catch (Exception e) {
+      e.printStackTrace();
+  }
+}
+
+public static void moveRouter(Field myField){
+  Random r = new Random();
+  
+  while(true){
+
+      /*
+      int randomStartDevice = r.nextInt(25) * 2; 
+      randomStartDevice = 3000 + randomStartDevice -1;
+      System.out.println(randomStartDevice);
+
+      int randomDestDevice = r.nextInt(25) * 2; 
+      randomDestDevice = 3000 + randomDestDevice -1 ;
+      System.out.println(randomDestDevice);
+
+      sendMessage(myField, randomStartDevice, randomDestDevice);
+      */
+
+      myField.startDevices();
+
+      int randomDevice = r.nextInt(25) * 2; 
+      randomDevice = 3000 + randomDevice;
+      int randomXCoord = r.nextInt(100); 
+      int randomYCoord = r.nextInt(100); 
+
+      try {
+        
+          Thread.sleep(2000);
+          HashMap<Integer, Device> myDevices = myField.getMap();
+          int port = randomDevice;
+          if(port % 2 == 0) {
+            port++;
+          }
+          EndDevice handy = (EndDevice) myDevices.get(port);
+
+          myField.moveDevice(handy.getXCoord(), handy.getYCoord(), randomXCoord, randomYCoord);
+      } catch (Exception e) {
+          e.printStackTrace();
+      } 
+  }
+
+}
 }
