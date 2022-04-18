@@ -1,10 +1,15 @@
 import Exceptions.InvalidMessage;
 import java.io.IOException;
 import java.net.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Locale;
+import java.util.TimeZone;
 import java.util.Map.Entry;
 import java.util.logging.*;
 
@@ -64,6 +69,7 @@ public class Router extends Device {
           try {
             String messageString = new String(dp.getData(), 0, dp.getLength());
             Message message = new Message(messageString);
+            this.log(message);
             DatagramPacket[] toSend = evaluateMessage(message);
 
             // Builds necessary data for Guiserver.
@@ -101,6 +107,10 @@ public class Router extends Device {
     }
   }
 
+  public void log(Message msg) {
+    
+  }
+
   /**
    * Wird von Router-Thread automatisch durch die run() Methode aufgerufen
    *
@@ -119,6 +129,7 @@ public class Router extends Device {
       switch (msg.getCommand()) {
         case Send:
           toSend = this.processSend(msg);
+
           break;
         case RouteRequest:
           if (
@@ -140,6 +151,7 @@ public class Router extends Device {
         case RouteReply:
           if (msg.getDestPort() == this.port) {
             toSend = this.processRouteReply(msg);
+            this.logger.info(this.pathLogging());
           } else {
             if (
               field.isRouterInRange(
@@ -175,6 +187,7 @@ public class Router extends Device {
         case RouteError:
           if (msg.getDestPort() == this.port) {
             toSend = this.processRouteError(msg);
+            this.logger.info(this.pathLogging());
           } else {
             int prevRouter = getPreviousPort(msg);
             if (field.isRouterInRange(prevRouter, this.xCoord, this.yCoord)) {
@@ -195,6 +208,7 @@ public class Router extends Device {
           }
           break;
         case AckNeeded:
+          //TODO: sonderfall für wir sind der sourceRouter
           toSend = new DatagramPacket[1];
           toSend[0] = createRouteError(msg);
           break;
@@ -570,6 +584,24 @@ public class Router extends Device {
       e.printStackTrace();
       System.out.println(e.getMessage());
     }
+  }
+
+  public String pathLogging() {
+    String res = "";
+    //TODO: Problemlösung
+    for( Entry<Integer, RoutingEntry> e : this.paths.entrySet()) {
+      Long timestamp = e.getValue().getLastUsed();
+      Date time = new java.sql.Date(timestamp);
+      SimpleDateFormat format = new SimpleDateFormat("H:mm:ss", Locale.GERMANY);
+      String line = Integer.toString(e.getKey())+ "( " + format.format(time) + " ): " + e.getValue().getPath().toString() + "\n";
+      res += line;
+    }
+    return res;
+  }
+
+  public String timerLogging() {
+    //TODO: Logging complete
+    return "";
   }
 
   public int getXCoord() {

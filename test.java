@@ -6,13 +6,12 @@ public class test {
     private final static String STANDARD_PATH = System.getProperty("user.home") + "/Desktop/DSR_Logs/";
     public static void main(String[] args) {
         try {
-            Field myField = new Field(10, 10, 10);
-            myField.startDevices();
-            EndDevice handy = (EndDevice) myField.getDevice(3001);
-            handy.sendMessage(3005, "Hi");
-        } catch (Exception e) {
+            Field myField = new Field(30, 25, 25);
+            testRouteRequest(myField);
+        } catch ( Exception e) {
             e.printStackTrace();
         }
+
     }
 
     public static void testLogging() {
@@ -47,8 +46,6 @@ public class test {
             myField.printField();
             HashMap<Integer, Device> fieldMap = myField.getMap();
             EndDevice handy = (EndDevice) fieldMap.get(3001);
-            Router router = (Router) fieldMap.get(3000);
-            System.out.println(myField.getReachableRouter(router.getPort(), router.getXCoord(), router.getYCoord()));
             handy.sendMessage(3010, "Hi");
         } catch ( Exception e) {
             e.printStackTrace();
