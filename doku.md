@@ -16,3 +16,8 @@
 ```java
     this.logger.info("Logging String");
 ```
+
+## GUI-Simulation
+
+- Erstelle eine Testvariation in test.java
+- Lass GuiWorker.java in der run()-Methode diese Simulation ausführen
