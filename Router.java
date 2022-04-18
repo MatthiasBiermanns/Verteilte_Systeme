@@ -1,6 +1,7 @@
 import Exceptions.InvalidMessage;
 import java.io.IOException;
 import java.net.*;
+import java.rmi.activation.UnknownObjectException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Map.Entry;
+import java.util.concurrent.Semaphore;
 import java.util.logging.*;
 
 public class Router extends Device {
@@ -16,13 +18,11 @@ public class Router extends Device {
   private HashMap<Integer, RoutingEntry> paths;
   private byte[] buffer;
   private int myDevicePort;
+  private Semaphore sem;
   private HashMap<String, Message> waiting;
   private HashMap<String, ackTimer> timer;
   private Logger logger;
   private HashMap<String, Long> knownIds;
-
-  // TODO: weiter bearbeiten --> Zuordnung nicht optimal
-  // Idee: Maybe Message Objekt in Map speichern --> Lösung suchen
 
   /**
    * Erzeugt einen neuen komplett unbelasteten Router
@@ -32,6 +32,7 @@ public class Router extends Device {
    * @param port UDP-Port über den der Router zu erreichen ist
    * @param field das feld in dem der Router sich befindet
    * @param myDevicePort Port des zugewiesenen Devices (Typischerweise: eigener Port + 1)
+   * @param sem Semaphore für Interaktionen mit dem Field (muss gleiche wie bei Field-Objekt sein)
    *
    * @return ein neues Router-Objekt
    */
@@ -40,10 +41,12 @@ public class Router extends Device {
     int yCoord,
     int port,
     Field field,
-    int myDevicePort
+    int myDevicePort,
+    Semaphore sem
   ) {
     super(xCoord, yCoord, field, port);
     this.myDevicePort = myDevicePort;
+    this.sem = sem;
     this.paths = new HashMap<>();
     this.waiting = new HashMap<>();
     this.knownIds = new HashMap<>();
@@ -144,6 +147,7 @@ public class Router extends Device {
           if (msg.getDestPort() == this.port) {
             toSend = this.processRouteReply(msg);
           } else {
+            sem.acquire();
             if (
               field.isRouterInRange(
                 this.getPreviousPort(msg),
@@ -155,6 +159,7 @@ public class Router extends Device {
               toSend[0] =
                 this.createDatagramPacket(msg, this.getPreviousPort(msg));
             }
+            sem.release();
           }
           break;
         case Forward:
@@ -180,10 +185,12 @@ public class Router extends Device {
             toSend = this.processRouteError(msg);
           } else {
             int prevRouter = getPreviousPort(msg);
+            sem.acquire();
             if (field.isRouterInRange(prevRouter, this.xCoord, this.yCoord)) {
               toSend = new DatagramPacket[1];
               toSend[0] = createDatagramPacket(msg, prevRouter);
             }
+            sem.release();
           }
           break;
         case Ack:
@@ -368,15 +375,21 @@ public class Router extends Device {
    */
   public DatagramPacket[] getMulticastPackets(Message msg)
     throws UnknownHostException {
-    DatagramPacket[] packet;
-    LinkedList<Router> reachable =
-      this.field.getReachableRouter(this.port, this.xCoord, this.yCoord);
-    Iterator<Router> it = reachable.iterator();
-    packet = new DatagramPacket[reachable.size()];
-    int i = 0;
-    while (it.hasNext()) {
-      packet[i] = createDatagramPacket(msg, it.next().getPort());
-      i++;
+    DatagramPacket[] packet = new DatagramPacket[0];
+    try {
+      sem.acquire(); 
+      LinkedList<Router> reachable =
+        this.field.getReachableRouter(this.port, this.xCoord, this.yCoord);
+      sem.release();
+        Iterator<Router> it = reachable.iterator();
+      packet = new DatagramPacket[reachable.size()];
+      int i = 0;
+      while (it.hasNext()) {
+        packet[i] = createDatagramPacket(msg, it.next().getPort());
+        i++;
+      }
+    } catch (InterruptedException e) {
+
     }
     return packet;
   }
@@ -396,20 +409,28 @@ public class Router extends Device {
     throws UnknownHostException {
     DatagramPacket[] toSend = new DatagramPacket[1];
 
-    if (field.isRouterInRange(getNextPort(msg), this.xCoord, this.yCoord)) {
-      //source port + 1 to get port of the receiver enddevice
-      this.paths.put(msg.getSourcePort() + 1, new RoutingEntry(msg.getPath()));
-      System.out.println(this.port + ": the routing path is " + msg.getPath());
-      Message oldMessage = waiting.get(msg.getMessageId());
-      waiting.remove(msg.getMessageId());
-      ackTimer myAckTimer = new ackTimer(oldMessage, this.port);
-      timer.put(oldMessage.getMessageId(), myAckTimer);
-      oldMessage.setPath(msg.getPath());
-      toSend[0] =
-        this.createDatagramPacket(oldMessage, getNextPort(oldMessage));
-    } else {
-      Message oldMessage = waiting.get(msg.getMessageId());
-      toSend = createRouteRequest(oldMessage);
+    try {
+      sem.acquire();
+      if (field.isRouterInRange(getNextPort(msg), this.xCoord, this.yCoord)) {
+        sem.release();
+        //source port + 1 to get port of the receiver enddevice
+        this.paths.put(msg.getSourcePort() + 1, new RoutingEntry(msg.getPath()));
+        System.out.println(this.port + ": the routing path is " + msg.getPath());
+        Message oldMessage = waiting.get(msg.getMessageId());
+        waiting.remove(msg.getMessageId());
+        ackTimer myAckTimer = new ackTimer(oldMessage, this.port);
+        timer.put(oldMessage.getMessageId(), myAckTimer);
+        oldMessage.setPath(msg.getPath());
+        toSend[0] =
+          this.createDatagramPacket(oldMessage, getNextPort(oldMessage));
+      } else {
+        sem.release();
+        Message oldMessage = waiting.get(msg.getMessageId());
+        toSend = createRouteRequest(oldMessage);
+      }
+    } catch ( InterruptedException e ) {
+      e.printStackTrace();
+      System.out.println(e.getMessage());
     }
     return toSend;
   }
@@ -430,30 +451,38 @@ public class Router extends Device {
     throws UnknownHostException {
     DatagramPacket[] toSend = new DatagramPacket[1];
     int nextRouter = this.getNextPort(msg);
-    if (field.isRouterInRange(nextRouter, this.xCoord, this.yCoord)) {
-      if (
-        field.isRouterInRange(
-          this.getPreviousPort(msg),
-          this.xCoord,
-          this.yCoord
-        )
-      ) {
-        toSend = new DatagramPacket[2];
-        Message ack = new Message(
-          msg.getMessageId(),
-          Command.Ack,
-          this.port,
-          this.getPreviousPort(msg),
-          msg.getPath(),
-          ""
-        );
-        toSend[1] = this.createDatagramPacket(ack, ack.getDestPort());
+    try {
+      sem.acquire();
+      if (field.isRouterInRange(nextRouter, this.xCoord, this.yCoord)) {
+        if (
+          field.isRouterInRange(
+            this.getPreviousPort(msg),
+            this.xCoord,
+            this.yCoord
+          )
+        ) {
+          toSend = new DatagramPacket[2];
+          Message ack = new Message(
+            msg.getMessageId(),
+            Command.Ack,
+            this.port,
+            this.getPreviousPort(msg),
+            msg.getPath(),
+            ""
+          );
+          toSend[1] = this.createDatagramPacket(ack, ack.getDestPort());
+        }
+        sem.release();
+        toSend[0] = this.createDatagramPacket(msg, nextRouter);
+        ackTimer myAckTimer = new ackTimer(msg, this.port);
+        timer.put(msg.getMessageId(), myAckTimer);
+      } else {
+        sem.release();
+        toSend[0] = createRouteError(msg);
       }
-      toSend[0] = this.createDatagramPacket(msg, nextRouter);
-      ackTimer myAckTimer = new ackTimer(msg, this.port);
-      timer.put(msg.getMessageId(), myAckTimer);
-    } else {
-      toSend[0] = createRouteError(msg);
+    } catch ( InterruptedException e ) {
+      e.printStackTrace();
+      System.out.println(e.getMessage());
     }
     return toSend;
   }

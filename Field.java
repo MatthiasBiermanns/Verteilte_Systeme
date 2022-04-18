@@ -88,7 +88,7 @@ class Field {
         throw new PlacementException();
       }
 
-      Router r = new Router(xCoord, yCoord, nextPort, this, nextPort + 1);
+      Router r = new Router(xCoord, yCoord, nextPort, this, nextPort + 1, this.fieldSem);
       EndDevice d = new EndDevice(xCoord, yCoord, this, nextPort + 1, nextPort);
       nextPort++;
       nextPort++;
@@ -123,7 +123,7 @@ class Field {
         throw new PlacementException();
       }
 
-      Router r = new Router(xCoord, yCoord, nextPort, this, nextPort + 1);
+      Router r = new Router(xCoord, yCoord, nextPort, this, nextPort + 1, this.fieldSem);
       EndDevice d = new EndDevice(xCoord, yCoord, this, nextPort + 1, nextPort);
       nextPort++;
       nextPort++;
