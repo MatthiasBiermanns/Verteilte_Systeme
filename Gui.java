@@ -2,6 +2,11 @@ import Exceptions.DeviceNotFound;
 import Exceptions.InvalidInputException;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.SocketException;
+import java.util.List;
 // import java.util.HashMap; // only for moveDeviceInGui()
 // import java.util.Iterator; // only for moveDeviceInGui()
 import javax.swing.*;
@@ -20,25 +25,18 @@ public class Gui extends JFrame implements ActionListener {
   }
 
   private Device[][][] field;
-  // private HashMap<Integer, Device> map; // only for moveDeviceInGui()
   private Field myField;
   private JLabel[][] feld;
-  private GuiServer gs;
-  private Thread t1;
 
   public Gui(Field myField, String title) {
     this.field = myField.getField();
-    // this.map = myField.getMap(); // only for moveDeviceInGui()
     this.myField = myField;
-    gs = new GuiServer();
-    t1 = new Thread(gs, "GuiServer");
-    t1.start();
     createAndShowApp(title);
   }
 
   private void createAndShowApp(String title) {
     this.setTitle(title);
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     JPanel topPanel = new JPanel();
     topPanel.setLayout(new BorderLayout());
@@ -97,26 +95,64 @@ public class Gui extends JFrame implements ActionListener {
    * Starts simulation and Updates Grid with Server-Input.
    */
   private void startSimulation() {
-    int timerDelay = 20;
     toSimulate();
-    new Timer(
-      timerDelay,
-      new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-          GuiUpdateMessage m = gs.getX();
+    SwingWorker<Void, GuiUpdateMessage> guiServer = new SwingWorker<>() {
+      @Override
+      protected Void doInBackground() throws Exception {
+        byte[] buf = new byte[256];
 
-          if (m != null) {
-            feld[m.getXCord()][m.getYCord()].setBackground(
-                getColorToCommand(m.getCommand(), m.getPort())
-              );
-            revalidate();
+        try (DatagramSocket socket = new DatagramSocket(4998)) {
+          while (true) {
+            DatagramPacket packet = new DatagramPacket(buf, buf.length);
+            System.out.println("Receiving now:");
+            socket.receive(packet);
 
-            repaint();
+            String received = new String(
+              packet.getData(),
+              0,
+              packet.getLength()
+            );
+            System.out.println(packet.getPort() + ": " + received);
+            publish(new GuiUpdateMessage(received));
           }
+        } catch (SocketException e1) {
+          e1.printStackTrace();
+        } catch (IOException e2) {
+          e2.printStackTrace();
+        }
+        return null;
+      }
+
+      @Override
+      protected void process(List<GuiUpdateMessage> chunks) {
+        repaintGrid();
+        System.out.println(">>>>>>>>>Chunk size = " + chunks.size());
+        for (int i = 0; i < chunks.size(); i++) {
+          GuiUpdateMessage m = chunks.remove(i);
+          feld[m.getXCord()][m.getYCord()].setBackground(
+              getColorToCommand(m.getCommand(), m.getPort())
+            );
+          revalidate();
+
+          repaint();
+        }
+        System.out.println("<<<<<<<<<Chunk size = " + chunks.size());
+      }
+    };
+
+    guiServer.execute();
+  }
+
+  private void repaintGrid() {
+    for (int i = 0; i < field.length; i++) {
+      for (int j = 0; j < field[i].length; j++) {
+        if (field[i][j][0] != null) {
+          this.feld[i][j].setBackground(Color.BLACK);
+        } else {
+          this.feld[i][j].setBackground(UIManager.getColor("Panel.background"));
         }
       }
-    )
-      .start();
+    }
   }
 
   /**
@@ -152,7 +188,6 @@ public class Gui extends JFrame implements ActionListener {
         color = Color.WHITE;
         break;
       case Unknown:
-        System.out.println("<<<<<<<<<MOVE>>>>>>>>>");
         try {
           Device dev = myField.getDevice(port);
           feld[dev.xCoord][dev.yCoord].setBackground(Color.BLACK);
@@ -167,35 +202,4 @@ public class Gui extends JFrame implements ActionListener {
     }
     return color;
   }
-  // private void moveDeviceInGui() {
-  // Get device object
-  //   HashMap<Integer, Device> map = this.map;
-  //   int hops = (int) (Math.random() * map.size()) - 1;
-  //   Iterator<Device> iter = map.values().iterator();
-  //   Device dev = iter.next();
-  //   for (int i = hops; i > 0; i--) {
-  //     dev = iter.next();
-  //   }
-
-  // Find device in GUI
-  //   int x = dev.getXCoord();
-  //   int y = dev.getYCoord();
-  //   feld[x][y].setBackground(Color.BLUE);
-
-  // Move device in Field
-  //   try {
-  //     myField.moveDevice(dev.getXCoord(), dev.getYCoord());
-  //   } catch (Exception ex) {
-  //     ex.printStackTrace();
-  //   }
-
-  // Move device in GUI
-  //   x = dev.getXCoord();
-  //   y = dev.getYCoord();
-  //   feld[x][y].setBackground(Color.RED);
-
-  //   revalidate();
-  //   repaint();
-  // }
-
 }

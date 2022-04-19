@@ -6,7 +6,8 @@ public class Visualisierung {
   }
 
   private static Field sampleMethod() throws Exception {
-    Field myField = new Field(50, 100, 100);
+    Field myField = new Field(100, 100, 100);
+    // myField.createNewDevice();
     return myField;
   }
 }
