@@ -221,7 +221,7 @@ public class test {
   public static void moveRandomRandomRouter(Field myField){
     Random r = new Random();
     try {
-      myField.startDevices();
+      myField.startRouter();
 
       while (true) {
         int randomTime = r.nextInt(5) * 1000;
