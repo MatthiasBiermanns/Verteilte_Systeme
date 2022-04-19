@@ -73,6 +73,7 @@ public class Router extends Device {
 
             // Builds necessary data for Guiserver.
             byte[] data = new GuiUpdateMessage(
+              this.port,
               this.xCoord,
               this.yCoord,
               message.getCommand(),
@@ -109,8 +110,8 @@ public class Router extends Device {
   /**
    * Wird von Router-Thread automatisch durch die run() Methode aufgerufen
    *
-   * Interpretiert den Inhalt einer Message anhand des Commands und dem Ziel- bzw. Ausgangsrouter 
-   * (Port). In Abhängigkeit des inhaltes wird die Nachrict verarbeitet oder weitere Methoden 
+   * Interpretiert den Inhalt einer Message anhand des Commands und dem Ziel- bzw. Ausgangsrouter
+   * (Port). In Abhängigkeit des inhaltes wird die Nachrict verarbeitet oder weitere Methoden
    * aufgerufen. Die eingehende Nachricht und der Status des Routers nach Verarbeitung wird geloggt.
    *
    * @param      msg   Die Nachricht, die zu interpretieren ist
@@ -118,7 +119,10 @@ public class Router extends Device {
    */
   public DatagramPacket[] evaluateMessage(Message msg) {
     DatagramPacket[] toSend = new DatagramPacket[0];
-    if(!this.knownIds.containsKey(msg.getMessageId()) || msg.getCommand() != Command.RouteRequest) {
+    if (
+      !this.knownIds.containsKey(msg.getMessageId()) ||
+      msg.getCommand() != Command.RouteRequest
+    ) {
       this.logger.info(msg.toBeautyString());
     }
     try {
@@ -206,7 +210,7 @@ public class Router extends Device {
           break;
         case AckNeeded:
           toSend = new DatagramPacket[1];
-          if(msg.getSourcePort() == this.myDevicePort) {
+          if (msg.getSourcePort() == this.myDevicePort) {
             Message retryMessage = new Message(
               getUUID(),
               Command.Retry,
@@ -229,7 +233,10 @@ public class Router extends Device {
     }
 
     // verhindert logging von RReqs, die vom Router ignoriert werden
-    if(!this.knownIds.containsKey(msg.getMessageId()) || msg.getCommand() != Command.RouteRequest) {
+    if (
+      !this.knownIds.containsKey(msg.getMessageId()) ||
+      msg.getCommand() != Command.RouteRequest
+    ) {
       this.logStatus();
     }
     return toSend;
@@ -279,7 +286,9 @@ public class Router extends Device {
     throws UnknownHostException {
     LinkedList<Integer> list = new LinkedList<Integer>();
     list.add(this.port);
-    String id = msg.getCommand() == Command.RouteRequest ? msg.getMessageId() : getUUID();
+    String id = msg.getCommand() == Command.RouteRequest
+      ? msg.getMessageId()
+      : getUUID();
     Message newMessage = new Message(
       id,
       Command.RouteRequest,
@@ -387,20 +396,18 @@ public class Router extends Device {
     throws UnknownHostException {
     DatagramPacket[] packet = new DatagramPacket[0];
     try {
-      sem.acquire(); 
+      sem.acquire();
       LinkedList<Router> reachable =
         this.field.getReachableRouter(this.port, this.xCoord, this.yCoord);
       sem.release();
-        Iterator<Router> it = reachable.iterator();
+      Iterator<Router> it = reachable.iterator();
       packet = new DatagramPacket[reachable.size()];
       int i = 0;
       while (it.hasNext()) {
         packet[i] = createDatagramPacket(msg, it.next().getPort());
         i++;
       }
-    } catch (InterruptedException e) {
-
-    }
+    } catch (InterruptedException e) {}
     return packet;
   }
 
@@ -424,8 +431,13 @@ public class Router extends Device {
       if (field.isRouterInRange(getNextPort(msg), this.xCoord, this.yCoord)) {
         sem.release();
         //source port + 1 to get port of the receiver enddevice
-        this.paths.put(msg.getSourcePort() + 1, new RoutingEntry(msg.getPath()));
-        System.out.println(this.port + ": the routing path is " + msg.getPath());
+        this.paths.put(
+            msg.getSourcePort() + 1,
+            new RoutingEntry(msg.getPath())
+          );
+        System.out.println(
+          this.port + ": the routing path is " + msg.getPath()
+        );
         Message oldMessage = waiting.get(msg.getMessageId());
         waiting.remove(msg.getMessageId());
         ackTimer myAckTimer = new ackTimer(oldMessage, this.port);
@@ -438,7 +450,7 @@ public class Router extends Device {
         Message oldMessage = waiting.get(msg.getMessageId());
         toSend = createRouteRequest(oldMessage);
       }
-    } catch ( InterruptedException e ) {
+    } catch (InterruptedException e) {
       e.printStackTrace();
       System.out.println(e.getMessage());
     }
@@ -490,7 +502,7 @@ public class Router extends Device {
         sem.release();
         toSend[0] = createRouteError(msg);
       }
-    } catch ( InterruptedException e ) {
+    } catch (InterruptedException e) {
       e.printStackTrace();
       System.out.println(e.getMessage());
     }
@@ -615,7 +627,15 @@ public class Router extends Device {
       SimpleFormatter formatter = new SimpleFormatter();
       this.logger.addHandler(handler);
       handler.setFormatter(formatter);
-      this.logger.info("Router startet logging\n Position: ( x: " + this.xCoord + "; y: " + this.yCoord + " )\nPort: " + this.port + "\n");
+      this.logger.info(
+          "Router startet logging\n Position: ( x: " +
+          this.xCoord +
+          "; y: " +
+          this.yCoord +
+          " )\nPort: " +
+          this.port +
+          "\n"
+        );
     } catch (IOException e) {
       e.printStackTrace();
       System.out.println(e.getMessage());
@@ -623,22 +643,37 @@ public class Router extends Device {
   }
 
   public void logNewPosition() {
-    this.logger.info("\nNew Position: ( x: " + this.xCoord + "; y: " + this.yCoord + " )\n");
+    this.logger.info(
+        "\nNew Position: ( x: " + this.xCoord + "; y: " + this.yCoord + " )\n"
+      );
   }
 
   public void logStatus() {
-    String toLog = "\n" + this.pathLogging() + "\n" + this.timerLogging() + "\n" + this.knownIdLogging() + "\n";
+    String toLog =
+      "\n" +
+      this.pathLogging() +
+      "\n" +
+      this.timerLogging() +
+      "\n" +
+      this.knownIdLogging() +
+      "\n";
     this.logger.info(toLog);
   }
 
   public String pathLogging() {
     String res = "Path Cache:";
     SimpleDateFormat format = new SimpleDateFormat("H:mm:ss", Locale.GERMANY);
-    for( Entry<Integer, RoutingEntry> e : this.paths.entrySet()) {
+    for (Entry<Integer, RoutingEntry> e : this.paths.entrySet()) {
       Long timestamp = e.getValue().getLastUsed();
       // *1000, da time von 1970 in Millisekunden angegeben sein muss (timestamp ist in Sek)
-      Date time = new java.sql.Date(timestamp*1000);
-      String line = "\n" + Integer.toString(e.getKey())+ "( " + format.format(time) + " ): " + e.getValue().getPath().toString();
+      Date time = new java.sql.Date(timestamp * 1000);
+      String line =
+        "\n" +
+        Integer.toString(e.getKey()) +
+        "( " +
+        format.format(time) +
+        " ): " +
+        e.getValue().getPath().toString();
       res += line;
     }
     return res;
@@ -646,7 +681,7 @@ public class Router extends Device {
 
   public String timerLogging() {
     String res = "Running Timer (Id - Sekunden):";
-    for(Entry<String, ackTimer> e: this.timer.entrySet()) {
+    for (Entry<String, ackTimer> e : this.timer.entrySet()) {
       res += "\n" + e.getKey() + " - " + e.getValue().getCount();
     }
     return res;
@@ -655,8 +690,8 @@ public class Router extends Device {
   public String knownIdLogging() {
     int count = 0;
     String res = "Known Ids:";
-    for(Entry<String, Long> e : this.knownIds.entrySet()) {
-      if(count % 3 == 0) {
+    for (Entry<String, Long> e : this.knownIds.entrySet()) {
+      if (count % 3 == 0) {
         res += "\n\t" + e.getKey();
       } else {
         res += "\t" + e.getKey();

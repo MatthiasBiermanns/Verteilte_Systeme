@@ -1,3 +1,4 @@
+import Exceptions.DeviceNotFound;
 import Exceptions.InvalidInputException;
 import java.awt.*;
 import java.awt.event.*;
@@ -106,7 +107,7 @@ public class Gui extends JFrame implements ActionListener {
 
           if (m != null) {
             feld[m.getXCord()][m.getYCord()].setBackground(
-                getColorToCommand(m.getCommand())
+                getColorToCommand(m.getCommand(), m.getPort())
               );
             revalidate();
 
@@ -131,7 +132,7 @@ public class Gui extends JFrame implements ActionListener {
    * @param command Command router received.
    * @return Color for respective command.
    */
-  private Color getColorToCommand(Command command) {
+  private Color getColorToCommand(Command command, int port) {
     Color color;
 
     switch (command) {
@@ -149,6 +150,16 @@ public class Gui extends JFrame implements ActionListener {
         break;
       case Retry:
         color = Color.WHITE;
+        break;
+      case Unknown:
+        System.out.println("<<<<<<<<<MOVE>>>>>>>>>");
+        try {
+          Device dev = myField.getDevice(port);
+          feld[dev.xCoord][dev.yCoord].setBackground(Color.BLACK);
+        } catch (DeviceNotFound e) {
+          e.printStackTrace();
+        }
+        color = UIManager.getColor("Panel.background");
         break;
       default:
         color = Color.BLACK;

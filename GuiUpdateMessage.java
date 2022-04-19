@@ -6,13 +6,16 @@ public class GuiUpdateMessage {
   private int yCord;
   private Command command;
   private LinkedList<Integer> path;
+  private int port;
 
   GuiUpdateMessage(
+    int port,
     int xCord,
     int yCord,
     Command command,
     LinkedList<Integer> path
   ) {
+    this.port = port;
     this.xCord = xCord;
     this.yCord = yCord;
     this.command = command;
@@ -24,11 +27,13 @@ public class GuiUpdateMessage {
    * @param message in Format: "(xCord) (yCord) (command) (path)"
    */
   GuiUpdateMessage(String message) {
-    String[] parts = message.split(" ", 4);
-    xCord = Integer.parseInt(parts[0]);
-    yCord = Integer.parseInt(parts[1]);
-    command = evaluateCommand(parts[2]);
-    path = parseList(parts[3]);
+    String[] parts = message.split(" ", 5);
+
+    port = Integer.parseInt(parts[0]);
+    xCord = Integer.parseInt(parts[1]);
+    yCord = Integer.parseInt(parts[2]);
+    command = evaluateCommand(parts[3]);
+    path = parseList(parts[4]);
   }
 
   /**
@@ -107,6 +112,8 @@ public class GuiUpdateMessage {
   public String toString() {
     return (
       "" +
+      port +
+      " " +
       xCord +
       " " +
       yCord +
@@ -115,5 +122,40 @@ public class GuiUpdateMessage {
       " " +
       path.toString()
     );
+  }
+
+  /**
+   * @param xCord the xCord to set
+   */
+  public void setXCord(int xCord) {
+    this.xCord = xCord;
+  }
+
+  /**
+   * @param yCord the yCord to set
+   */
+  public void setYCord(int yCord) {
+    this.yCord = yCord;
+  }
+
+  /**
+   * @param command the command to set
+   */
+  public void setCommand(Command command) {
+    this.command = command;
+  }
+
+  /**
+   * @param path the path to set
+   */
+  public void setPath(LinkedList<Integer> path) {
+    this.path = path;
+  }
+
+  /**
+   * @return int return the port
+   */
+  public int getPort() {
+    return port;
   }
 }

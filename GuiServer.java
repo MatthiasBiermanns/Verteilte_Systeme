@@ -21,8 +21,8 @@ public class GuiServer implements Runnable {
         socket.receive(packet);
 
         String received = new String(packet.getData(), 0, packet.getLength());
-        x = new GuiUpdateMessage(received);
         System.out.println(packet.getPort() + ": " + received);
+        x = new GuiUpdateMessage(received);
       }
     } catch (SocketException e1) {
       e1.printStackTrace();
@@ -41,7 +41,9 @@ public class GuiServer implements Runnable {
    * @return GuiUpdateMessage x
    */
   public GuiUpdateMessage getX() {
-    return x;
+    GuiUpdateMessage m = x;
+    x = null;
+    return m;
   }
 
   @Override

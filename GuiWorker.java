@@ -11,6 +11,6 @@ public class GuiWorker extends test implements Runnable {
 
   @Override
   public void run() {
-    testRouteRequest(this.myField);
+    sendMessageWhileMovingRouter(this.myField);
   }
 }

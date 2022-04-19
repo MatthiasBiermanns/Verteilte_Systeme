@@ -46,6 +46,24 @@
 - Lass GuiWorker.java in der run()-Methode diese Simulation aufrufen
 - Zur Visualisierung starte Gui.java
 
+### Farblegende im GUI
+<style>
+  c { color : Cyan }
+  g { color : Green }
+  m { color : Magenta }
+  r { color : Red }
+  w { color : White }
+  b { color : Black}
+</style>
+
+Router hat erhalten:  
+<c>O</c> Send  
+<g>O</g> Forward  
+<m>O</m> RouteRequest  
+<r>O</r> RouteError  
+<w>O</w> Retry  
+<b>O</b> Idle  
+
 ## Eigene Simulationen erstellen
 
 ---
