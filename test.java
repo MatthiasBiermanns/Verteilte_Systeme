@@ -10,7 +10,15 @@ public class test {
   private final static String STANDARD_PATH = System.getProperty("user.home") + "/Desktop/DSR_Logs/";
 
   public static void main(String[] args) {
-    sendMessageParallel();
+    //sendMessageParallel();
+    
+    try {
+      Field myField = new Field(250, 100, 100);
+      sendMessageWhileMovingRouter(myField);
+    } catch (InvalidInputException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }   
   }
 
   public static void testLogging() {
@@ -222,18 +230,19 @@ public class test {
     Random r = new Random();
     try {
       myField.startRouter();
+      HashMap<Integer, Device> myDevices = myField.getMap();
+      int devicesOnField = myDevices.size() / 2;
 
       while (true) {
         int randomTime = r.nextInt(5) * 1000;
 
-        int randomDevice = r.nextInt(25) * 2;
+        int randomDevice = r.nextInt(devicesOnField) * 2;
         randomDevice = 3000 + randomDevice +1;
 
         try {
           Thread.sleep(randomTime);
 
-          HashMap<Integer, Device> myDevices = myField.getMap();
-          EndDevice deviceToMove = (EndDevice) myDevices.get(randomDevice);
+          EndDevice deviceToMove = (EndDevice) myField.getDevice(randomDevice);
           myField.moveDevice(deviceToMove.getXCoord(), deviceToMove.getYCoord());
 
         } catch (Exception e) {
@@ -245,37 +254,40 @@ public class test {
     }
 
   }
-
+  
   public static void sendMessageWhileMovingRouter(Field myField) {
     Random r = new Random();
     try {
       myField.startRouter();
+      HashMap<Integer, Device> myDevices = myField.getMap();
+      int devicesOnField = myDevices.size() / 2;
 
       while (true) {
-        int randomStartDevice = r.nextInt(25) * 2;
+        Thread.sleep(2000);
+
+        int randomStartDevice = r.nextInt(devicesOnField) * 2;
         randomStartDevice = 3000 + randomStartDevice + 1;
 
-        int randomDestDevice = r.nextInt(25) * 2;
+        int randomDestDevice = r.nextInt(devicesOnField) * 2;
         randomDestDevice = 3000 + randomDestDevice + 1;
 
-        int randomDevice = r.nextInt(25) * 2;
+        int randomDevice = r.nextInt(devicesOnField) * 2;
         randomDevice = 3000 + randomDevice + 1;
 
-        try {
-          Thread.sleep(2000);
-
-          HashMap<Integer, Device> myDevices = myField.getMap();
-          EndDevice deviceToMove = (EndDevice) myDevices.get(randomDevice);
+        try {   
+          EndDevice deviceToMove = (EndDevice) myField.getDevice(randomDevice);
           myField.moveDevice(deviceToMove.getXCoord(), deviceToMove.getYCoord());
-
-          EndDevice sendDevice = (EndDevice) myDevices.get(randomStartDevice);
-          sendDevice.sendMessage(randomDestDevice, "Hallo");
+          
+          EndDevice sendDevice = (EndDevice) myField.getDevice(randomStartDevice);
+          sendDevice.sendMessage(randomDestDevice, "Hallo from " + randomStartDevice + " to " + randomDestDevice);
+  
         } catch (Exception e) {
           e.printStackTrace();
         }
       }
     } catch (Exception e) {
-      // TODO: handle exception
+      e.printStackTrace();
     }
   }
+
 }
