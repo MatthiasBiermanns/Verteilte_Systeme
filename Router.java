@@ -118,7 +118,9 @@ public class Router extends Device {
    */
   public DatagramPacket[] evaluateMessage(Message msg) {
     DatagramPacket[] toSend = new DatagramPacket[0];
-    
+    if(!this.knownIds.containsKey(msg.getMessageId()) || msg.getCommand() != Command.RouteRequest) {
+      this.logger.info(msg.toBeautyString());
+    }
     try {
       switch (msg.getCommand()) {
         case Send:
@@ -228,7 +230,6 @@ public class Router extends Device {
 
     // verhindert logging von RReqs, die vom Router ignoriert werden
     if(!this.knownIds.containsKey(msg.getMessageId()) || msg.getCommand() != Command.RouteRequest) {
-      this.logger.info(msg.toBeautyString());
       this.logStatus();
     }
     return toSend;

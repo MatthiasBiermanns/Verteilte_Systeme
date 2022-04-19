@@ -17,14 +17,7 @@ public class EndDevice extends Device {
   }
 
   public void run() {
-    // while (true) {
-    //   try {
-    //     sleep(5000);
-    //     this.sendMessage(this.port + 5, "Hallo");
-    //   } catch (InterruptedException e) {
-    //     e.printStackTrace();
-    //   }
-    // }
+    this.receiveMessage();
   }
 
   public void readAndSend(int dest) {
@@ -58,7 +51,11 @@ public class EndDevice extends Device {
       DatagramPacket packet = new DatagramPacket(bytes, bytes.length, serverAddress, myRouterPort);
       socket.send(packet);
       socket.close();
-      this.receiveMessage();
+      if(Thread.currentThread().getName().equals("main")) {
+        this.start();
+      } else {
+        this.receiveMessage();
+      }
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -68,7 +65,7 @@ public class EndDevice extends Device {
     try (DatagramSocket socket = new DatagramSocket(this.port)) {
       DatagramPacket dp = new DatagramPacket(new byte[65507], 65507);
       try {
-        //socket.setSoTimeout(10000);
+        socket.setSoTimeout(10000);
         socket.receive(dp);
         System.out.println("Message Received");
         Message msg = new Message(new String(dp.getData(), 0, dp.getLength()));
@@ -80,7 +77,8 @@ public class EndDevice extends Device {
           // wenn eine nachricht als Antwort erwartet wird
         }
       } catch (SocketTimeoutException e) {
-        System.out.println(this.port + ": ran in timeout");
+        System.out.println(this.port + ": No retry needed");
+        this.stop();
       }
     } catch ( Exception e) {
       e.printStackTrace();

@@ -10,13 +10,7 @@ public class test {
   private final static String STANDARD_PATH = System.getProperty("user.home") + "/Desktop/DSR_Logs/";
 
   public static void main(String[] args) {
-    // testFieldCreaetion();
-    // try {
-    // Field myField = new Field(30, 25, 25);
-    // testRouteRequest(myField);
-    // } catch ( Exception e) {
-    // e.printStackTrace();
-    // }
+    sendMessageParallel();
   }
 
   public static void testLogging() {
@@ -47,7 +41,7 @@ public class test {
       myField.createNewDevice(15, 15);
       myField.createNewDevice(20, 20);
       myField.createNewDevice(24, 24);
-      myField.startDevices();
+      myField.startRouter();
       myField.printField();
       HashMap<Integer, Device> fieldMap = myField.getMap();
       EndDevice handy = (EndDevice) fieldMap.get(3001);
@@ -62,7 +56,7 @@ public class test {
   public static void testRouteRequest(Field myField) {
     try {
       // Field myField = new Field(25, 25, 25);
-      myField.startDevices();
+      myField.startRouter();
       try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
         while (true) {
           Thread.sleep(1000);
@@ -132,7 +126,7 @@ public class test {
     Field myField;
     try {
       myField = new Field(500, 100, 100);
-      myField.startDevices();
+      myField.startRouter();
     } catch (InvalidInputException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -149,7 +143,7 @@ public class test {
       myField.createNewDevice(15, 15);
       myField.createNewDevice(20, 20);
       myField.createNewDevice(24, 24);
-      myField.startDevices();
+      myField.startRouter();
       HashMap<Integer, Device> fieldMap = myField.getMap();
       EndDevice handy = (EndDevice) fieldMap.get(3001);
       handy.sendMessage(3010, "Hallöchen");
@@ -168,7 +162,7 @@ public class test {
       myField.createNewDevice(0, 0);
       myField.createNewDevice(5, 5);
       myField.createNewDevice(10, 10);
-      myField.startDevices();
+      myField.startRouter();
       new Gui(myField, "Mein Fenster");
     } catch (Exception e) {
       e.printStackTrace();
@@ -178,7 +172,7 @@ public class test {
   public static void sendMessage() {
     try {
       Field myField = new Field(5, 10, 10);
-      myField.startDevices();
+      myField.startRouter();
       myField.printField();
       EndDevice handy = (EndDevice) myField.getDevice(3001);
       handy.sendMessage(3005, "Hallo");
@@ -190,7 +184,7 @@ public class test {
   public static void sendMessageBack() {
     try {
       Field myField = new Field(10, 10, 10);
-      myField.startDevices();
+      myField.startRouter();
       myField.printField();
       EndDevice handy = (EndDevice) myField.getDevice(3001);
       handy.sendMessage(3003, "Hallo");
@@ -204,7 +198,7 @@ public class test {
   public static void sendMessageParallel() {
     try {
       Field myField = new Field(5, 10, 10);
-      myField.startDevices();
+      myField.startRouter();
       myField.printField();
 
       EndDevice handy1 = (EndDevice) myField.getDevice(3001);
@@ -226,7 +220,7 @@ public class test {
   public static void sendMessageWhileMovingRouter(Field myField) {
     Random r = new Random();
     try {
-      myField.startDevices();
+      myField.startRouter();
 
       while (true) {
         int randomStartDevice = r.nextInt(25) * 2;

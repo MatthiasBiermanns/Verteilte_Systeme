@@ -8,7 +8,7 @@ public class ackTimer extends Thread {
     private int routerPort;
 
     public ackTimer(Message msg, int routerPort) {
-        this.count = 300;
+        this.count = 10;
         this.msg = msg;
         this.routerPort = routerPort;
         this.start();
@@ -18,7 +18,7 @@ public class ackTimer extends Thread {
         try {
             while(count >= 0) {
                 count++;
-                Thread.sleep(500);
+                Thread.sleep(1000);
             }
             this.sendAckMissing();
         } catch (Exception e) {

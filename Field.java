@@ -70,11 +70,13 @@ class Field {
   }
 
   /**
-     * Startet alle Router- und EndDevice-Threads innerhalb des Feldes
+     * Startet alle Router-Threads innerhalb des Feldes
      */
-  public void startDevices() {
+  public void startRouter() {
     for (Entry<Integer, Device> e : this.map.entrySet()) {
-      e.getValue().start();
+      if( e.getValue() instanceof Router) {
+        e.getValue().start();
+      }
     }
     logger.info("Devices startet successfully");
   }
