@@ -223,6 +223,35 @@ public class test {
   // ----------------Test B---------------------
   // -------------------------------------------
 
+
+  public static void moveRandomRandomRouter(Field myField){
+    Random r = new Random();
+    try {
+      myField.startDevices();
+
+      while (true) {
+        int randomTime = r.nextInt(5) * 1000;
+
+        int randomDevice = r.nextInt(25) * 2;
+        randomDevice = 3000 + randomDevice +1;
+
+        try {
+          Thread.sleep(randomTime);
+
+          HashMap<Integer, Device> myDevices = myField.getMap();
+          EndDevice deviceToMove = (EndDevice) myDevices.get(randomDevice);
+          myField.moveDevice(deviceToMove.getXCoord(), deviceToMove.getYCoord());
+
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+  }
+
   public static void sendMessageWhileMovingRouter(Field myField) {
     Random r = new Random();
     try {
@@ -230,30 +259,22 @@ public class test {
 
       while (true) {
         int randomStartDevice = r.nextInt(25) * 2;
-        randomStartDevice = 3000 + randomStartDevice - 1;
+        randomStartDevice = 3000 + randomStartDevice + 1;
 
         int randomDestDevice = r.nextInt(25) * 2;
-        randomDestDevice = 3000 + randomDestDevice - 1;
+        randomDestDevice = 3000 + randomDestDevice + 1;
 
         int randomDevice = r.nextInt(25) * 2;
-        randomDevice = 3000 + randomDevice;
-
-        int randomXCoord = r.nextInt(100);
-        int randomYCoord = r.nextInt(100);
+        randomDevice = 3000 + randomDevice + 1;
 
         try {
           Thread.sleep(2000);
 
           HashMap<Integer, Device> myDevices = myField.getMap();
-          int port = randomDevice;
-          if (port % 2 == 0) {
-            port++;
-          }
+          EndDevice deviceToMove = (EndDevice) myDevices.get(randomDevice);
+          myField.moveDevice(deviceToMove.getXCoord(), deviceToMove.getYCoord());
 
-          EndDevice deviceToMove = (EndDevice) myDevices.get(port);
-          myField.moveDevice(deviceToMove.getXCoord(), deviceToMove.getYCoord(), randomXCoord, randomYCoord);
-
-          EndDevice sendDevice = (EndDevice) myField.getDevice(randomStartDevice);
+          EndDevice sendDevice = (EndDevice) myDevices.get(randomStartDevice);
           sendDevice.sendMessage(randomDestDevice, "Hallo");
         } catch (Exception e) {
           e.printStackTrace();
