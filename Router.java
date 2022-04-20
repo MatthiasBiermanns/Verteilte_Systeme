@@ -21,28 +21,30 @@ public class Router extends Device {
   private HashMap<String, Message> waiting;
   private HashMap<String, ackTimer> timer;
   private Logger logger;
+  private FileHandler handler;
   private HashMap<String, Long> knownIds;
 
   /**
    * Erzeugt einen neuen komplett unbelasteten Router
    *
-   * @param xCoord x-Koordinate in field
-   * @param yCoord y-Koordinate in field
-   * @param port UDP-Port über den der Router zu erreichen ist
-   * @param field das feld in dem der Router sich befindet
-   * @param myDevicePort Port des zugewiesenen Devices (Typischerweise: eigener Port + 1)
-   * @param sem Semaphore für Interaktionen mit dem Field (muss gleiche wie bei Field-Objekt sein)
+   * @param xCoord       x-Koordinate in field
+   * @param yCoord       y-Koordinate in field
+   * @param port         UDP-Port über den der Router zu erreichen ist
+   * @param field        das feld in dem der Router sich befindet
+   * @param myDevicePort Port des zugewiesenen Devices (Typischerweise: eigener
+   *                     Port + 1)
+   * @param sem          Semaphore für Interaktionen mit dem Field (muss gleiche
+   *                     wie bei Field-Objekt sein)
    *
    * @return ein neues Router-Objekt
    */
   public Router(
-    int xCoord,
-    int yCoord,
-    int port,
-    Field field,
-    int myDevicePort,
-    Semaphore sem
-  ) {
+      int xCoord,
+      int yCoord,
+      int port,
+      Field field,
+      int myDevicePort,
+      Semaphore sem) {
     super(xCoord, yCoord, field, port);
     this.myDevicePort = myDevicePort;
     this.sem = sem;
@@ -52,13 +54,30 @@ public class Router extends Device {
     this.timer = new HashMap<>();
     this.buffer = new byte[65507];
     this.logger = Logger.getLogger("Logger_" + this.port);
+    try {
+      this.handler = new FileHandler(
+          Field.STANDARD_PATH + "log_" + this.port + ".txt");
+    } catch (IOException e) {
+      e.printStackTrace();
+      System.out.println(e.getMessage());
+    }
     this.setUpLogger();
   }
 
+  @Override
+  public void finalize() {
+    this.handler.flush();
+    this.logger.removeHandler(this.handler);
+    this.handler.close();
+  }
+
   /**
-   * Diese Methode wird bei start des Router-Threads ausgeführt und wartet bis zur terminierung
-   * dessen auf ankommende Packete des UDP-Protokolls for den this.port. Anschließend werden abhängig
-   * von der einkommenden Nachricht weitere UDP-Packete versendet und es wird auf weitere einkommende Packete gewartet
+   * Diese Methode wird bei start des Router-Threads ausgeführt und wartet bis zur
+   * terminierung
+   * dessen auf ankommende Packete des UDP-Protokolls for den this.port.
+   * Anschließend werden abhängig
+   * von der einkommenden Nachricht weitere UDP-Packete versendet und es wird auf
+   * weitere einkommende Packete gewartet
    */
   public void run() {
     try (DatagramSocket socket = new DatagramSocket(this.port)) {
@@ -73,24 +92,21 @@ public class Router extends Device {
 
             // Builds necessary data for Guiserver.
             byte[] data = new GuiUpdateMessage(
-              this.port,
-              message.getDestPort(),
-              this.xCoord,
-              this.yCoord,
-              message.getCommand(),
-              message.getPath()
-            )
-              .toString()
-              .getBytes();
+                this.port,
+                message.getDestPort(),
+                this.xCoord,
+                this.yCoord,
+                message.getCommand(),
+                message.getPath())
+                .toString()
+                .getBytes();
             // sends data to Gui Server for visual updates
             socket.send(
-              new DatagramPacket(
-                data,
-                data.length,
-                InetAddress.getByName("localhost"),
-                4998
-              )
-            );
+                new DatagramPacket(
+                    data,
+                    data.length,
+                    InetAddress.getByName("localhost"),
+                    4998));
 
             for (int i = 0; i < toSend.length; i++) {
               socket.send(toSend[i]);
@@ -111,19 +127,20 @@ public class Router extends Device {
   /**
    * Wird von Router-Thread automatisch durch die run() Methode aufgerufen
    *
-   * Interpretiert den Inhalt einer Message anhand des Commands und dem Ziel- bzw. Ausgangsrouter
-   * (Port). In Abhängigkeit des inhaltes wird die Nachrict verarbeitet oder weitere Methoden
-   * aufgerufen. Die eingehende Nachricht und der Status des Routers nach Verarbeitung wird geloggt.
+   * Interpretiert den Inhalt einer Message anhand des Commands und dem Ziel- bzw.
+   * Ausgangsrouter
+   * (Port). In Abhängigkeit des inhaltes wird die Nachrict verarbeitet oder
+   * weitere Methoden
+   * aufgerufen. Die eingehende Nachricht und der Status des Routers nach
+   * Verarbeitung wird geloggt.
    *
-   * @param      msg   Die Nachricht, die zu interpretieren ist
-   * @return     Ein Array der zu versendenden DatagramPackets
+   * @param msg Die Nachricht, die zu interpretieren ist
+   * @return Ein Array der zu versendenden DatagramPackets
    */
   public DatagramPacket[] evaluateMessage(Message msg) {
     DatagramPacket[] toSend = new DatagramPacket[0];
-    if (
-      !this.knownIds.containsKey(msg.getMessageId()) ||
-      msg.getCommand() != Command.RouteRequest
-    ) {
+    if (!this.knownIds.containsKey(msg.getMessageId()) ||
+        msg.getCommand() != Command.RouteRequest) {
       this.logger.info(msg.toBeautyString());
     }
     try {
@@ -132,18 +149,15 @@ public class Router extends Device {
           toSend = this.processSend(msg);
           break;
         case RouteRequest:
-          if (
-            msg.getDestPort() == this.myDevicePort &&
-            !knownIds.containsKey(msg.getMessageId())
-          ) {
+          if (msg.getDestPort() == this.myDevicePort &&
+              !knownIds.containsKey(msg.getMessageId())) {
             knownIds.put(msg.getMessageId(), Instant.now().getEpochSecond());
             msg.setCommand(Command.RouteReply);
             msg.addToPath(this.port);
             msg.setDestPort(msg.getSourcePort());
             msg.setSourcePort(this.port);
             toSend = new DatagramPacket[1];
-            toSend[0] =
-              this.createDatagramPacket(msg, this.getPreviousPort(msg));
+            toSend[0] = this.createDatagramPacket(msg, this.getPreviousPort(msg));
           } else {
             toSend = this.processRouteRequest(msg);
           }
@@ -153,16 +167,12 @@ public class Router extends Device {
             toSend = this.processRouteReply(msg);
           } else {
             sem.acquire();
-            if (
-              field.isRouterInRange(
+            if (field.isRouterInRange(
                 this.getPreviousPort(msg),
                 this.xCoord,
-                this.yCoord
-              )
-            ) {
+                this.yCoord)) {
               toSend = new DatagramPacket[1];
-              toSend[0] =
-                this.createDatagramPacket(msg, this.getPreviousPort(msg));
+              toSend[0] = this.createDatagramPacket(msg, this.getPreviousPort(msg));
             }
             sem.release();
           }
@@ -172,13 +182,12 @@ public class Router extends Device {
             // weitere Code, falls Enddevice die Nachricht erreichen soll
             toSend = new DatagramPacket[1];
             Message ack = new Message(
-              msg.getMessageId(),
-              Command.Ack,
-              this.port,
-              this.getPreviousPort(msg),
-              msg.getPath(),
-              ""
-            );
+                msg.getMessageId(),
+                Command.Ack,
+                this.port,
+                this.getPreviousPort(msg),
+                msg.getPath(),
+                "");
             toSend[0] = this.createDatagramPacket(ack, ack.getDestPort());
             System.out.println("Router " + this.port + ": " + msg.getContent());
           } else {
@@ -213,13 +222,12 @@ public class Router extends Device {
           toSend = new DatagramPacket[1];
           if (msg.getSourcePort() == this.myDevicePort) {
             Message retryMessage = new Message(
-              getUUID(),
-              Command.Retry,
-              this.port,
-              this.myDevicePort,
-              new LinkedList<>(),
-              msg.getMessageId()
-            );
+                getUUID(),
+                Command.Retry,
+                this.port,
+                this.myDevicePort,
+                new LinkedList<>(),
+                msg.getMessageId());
             toSend[0] = createDatagramPacket(retryMessage, myDevicePort);
           } else {
             toSend[0] = createRouteError(msg);
@@ -234,24 +242,27 @@ public class Router extends Device {
     }
 
     // verhindert logging von RReqs, die vom Router ignoriert werden
-    if (
-      !this.knownIds.containsKey(msg.getMessageId()) ||
-      msg.getCommand() != Command.RouteRequest
-    ) {
+    if (!this.knownIds.containsKey(msg.getMessageId()) ||
+        msg.getCommand() != Command.RouteRequest) {
       this.logStatus();
     }
     return toSend;
   }
 
   /**
-   * Startet eine Routine (groomPaths) zum aufräumen aktuell gecacheter Routingpfade und
-   * überprüft ob für die zu versendende Message bereits ein Routingpfad zur Verfügung steht.
-   * --> Falls Ja: Rückgabe eines DatagramPackets entsprechend der zu versendenden Message
-   * --> Falls Nein: Zurückstellen der Message in this.waiting und einleiten der Route-Discovery Routine
+   * Startet eine Routine (groomPaths) zum aufräumen aktuell gecacheter
+   * Routingpfade und
+   * überprüft ob für die zu versendende Message bereits ein Routingpfad zur
+   * Verfügung steht.
+   * --> Falls Ja: Rückgabe eines DatagramPackets entsprechend der zu versendenden
+   * Message
+   * --> Falls Nein: Zurückstellen der Message in this.waiting und einleiten der
+   * Route-Discovery Routine
    *
-   * @param      msg   Die Nachricht, die versendet werden soll
-   * @throws     UnknownHostException - Ausnahmefall: Nur falls localhost nicht bekannt sein sollte
-   * @return     Ein Array der zu versendenden DatagramPackets
+   * @param msg Die Nachricht, die versendet werden soll
+   * @throws UnknownHostException - Ausnahmefall: Nur falls localhost nicht
+   *                              bekannt sein sollte
+   * @return Ein Array der zu versendenden DatagramPackets
    */
   public DatagramPacket[] processSend(Message msg) throws UnknownHostException {
     DatagramPacket[] packet;
@@ -275,29 +286,32 @@ public class Router extends Device {
   }
 
   /**
-   * Erzeugt ein Array an UDP-Packeten, die einem Multicast einer Route-Request entsprechen.
-   * Es wird ein DatagramPacket für jeden Router im Umkreis von 10m (1 Arrayslot = 1m)
-   * erstellt. Die eigentlich zu versendende Message wird in this.waiting gespeichert.
+   * Erzeugt ein Array an UDP-Packeten, die einem Multicast einer Route-Request
+   * entsprechen.
+   * Es wird ein DatagramPacket für jeden Router im Umkreis von 10m (1 Arrayslot =
+   * 1m)
+   * erstellt. Die eigentlich zu versendende Message wird in this.waiting
+   * gespeichert.
    *
-   * @param      msg   Die Nachricht, die zu versenden ist
-   * @throws     UnknownHostException - Ausnahmefall: Nur falls localhost nicht bekannt sein sollte
-   * @return     Ein Array der zu versendenden Route-Request DatagramPackets
+   * @param msg Die Nachricht, die zu versenden ist
+   * @throws UnknownHostException - Ausnahmefall: Nur falls localhost nicht
+   *                              bekannt sein sollte
+   * @return Ein Array der zu versendenden Route-Request DatagramPackets
    */
   public DatagramPacket[] createRouteRequest(Message msg)
-    throws UnknownHostException {
+      throws UnknownHostException {
     LinkedList<Integer> list = new LinkedList<Integer>();
     list.add(this.port);
     String id = msg.getCommand() == Command.RouteRequest
-      ? msg.getMessageId()
-      : getUUID();
+        ? msg.getMessageId()
+        : getUUID();
     Message newMessage = new Message(
-      id,
-      Command.RouteRequest,
-      this.port,
-      msg.getDestPort(),
-      list,
-      ""
-    );
+        id,
+        Command.RouteRequest,
+        this.port,
+        msg.getDestPort(),
+        list,
+        "");
 
     msg.setCommand(Command.Forward);
     waiting.put(newMessage.getMessageId(), msg);
@@ -308,12 +322,13 @@ public class Router extends Device {
   /**
    * Erzeugt ein DatagramPacket für eine zu versendende Message
    *
-   * @param      msg   Die Nachricht, die zu versenden ist
-   * @throws     UnknownHostException - Ausnahmefall: Nur falls localhost nicht bekannt sein sollte
-   * @return     Ein der Message entsprechendes DatagramPacket
+   * @param msg Die Nachricht, die zu versenden ist
+   * @throws UnknownHostException - Ausnahmefall: Nur falls localhost nicht
+   *                              bekannt sein sollte
+   * @return Ein der Message entsprechendes DatagramPacket
    */
   public DatagramPacket createDatagramPacket(Message msg, int port)
-    throws UnknownHostException {
+      throws UnknownHostException {
     InetAddress destAddress = InetAddress.getByName("localhost");
     byte[] message = msg.toString().getBytes();
     return new DatagramPacket(message, message.length, destAddress, port);
@@ -325,9 +340,10 @@ public class Router extends Device {
    * wird Port -1 zurückgegeben (Sollte nie eintreten, da Nachricht dann
    * gar nicht an diesem Router ankommen kann)
    *
-   * @param      msg   Die Nachricht, die weitergeleitet werden soll
-   * @throws     UnknownHostException - Ausnahmefall: Nur falls localhost nicht bekannt sein sollte
-   * @return     Port des nächsten Routers
+   * @param msg Die Nachricht, die weitergeleitet werden soll
+   * @throws UnknownHostException - Ausnahmefall: Nur falls localhost nicht
+   *                              bekannt sein sollte
+   * @return Port des nächsten Routers
    */
   public int getNextPort(Message msg) {
     Iterator<Integer> it = msg.getPath().iterator();
@@ -348,9 +364,10 @@ public class Router extends Device {
    * wird Port -1 zurückgegeben (Sollte nie eintreten, da Nachricht dann
    * gar nicht an diesem Router ankommen kann)
    *
-   * @param      msg   Die Nachricht, deren Pfad betrachtet wird
-   * @throws     UnknownHostException - Ausnahmefall: Nur falls localhost nicht bekannt sein sollte
-   * @return     Port des vorherigen Routers
+   * @param msg Die Nachricht, deren Pfad betrachtet wird
+   * @throws UnknownHostException - Ausnahmefall: Nur falls localhost nicht
+   *                              bekannt sein sollte
+   * @return Port des vorherigen Routers
    */
   public int getPreviousPort(Message msg) {
     Iterator<Integer> it = msg.getPath().descendingIterator();
@@ -369,12 +386,13 @@ public class Router extends Device {
    * Verarbeitet eine einkommende Nachricht mit dem Command RouteRequest,
    * welche diesen Router nicht als Ziel hat.
    *
-   * @param      msg Ankommende Route-Request
-   * @throws     UnknownHostException - Ausnahmefall: Nur falls localhost nicht bekannt sein sollte
-   * @return     Array Aus DatagramPackets die den neuen RouteRequests entsprechen
+   * @param msg Ankommende Route-Request
+   * @throws UnknownHostException - Ausnahmefall: Nur falls localhost nicht
+   *                              bekannt sein sollte
+   * @return Array Aus DatagramPackets die den neuen RouteRequests entsprechen
    */
   public DatagramPacket[] processRouteRequest(Message msg)
-    throws UnknownHostException {
+      throws UnknownHostException {
     DatagramPacket[] packet = new DatagramPacket[0];
     if (!knownIds.containsKey(msg.getMessageId())) {
       knownIds.put(msg.getMessageId(), Instant.now().getEpochSecond());
@@ -385,21 +403,22 @@ public class Router extends Device {
   }
 
   /**
-   * Erzeugt ein Array an DatagramPackets aus der Message msg. Für jeden erreichbaren
+   * Erzeugt ein Array an DatagramPackets aus der Message msg. Für jeden
+   * erreichbaren
    * Router wird ein DatagramPacket mit entsprechendem Zielport erzeugt.
    *
-   * @param      msg   Die Nachricht, die weitergeleitet werden soll
-   * @throws     UnknownHostException - Ausnahmefall: Nur falls localhost nicht bekannt sein sollte
-   * @return     DatagramPackets entsprechend der Message msg mit allen
-   *             erreichbaren Routern
+   * @param msg Die Nachricht, die weitergeleitet werden soll
+   * @throws UnknownHostException - Ausnahmefall: Nur falls localhost nicht
+   *                              bekannt sein sollte
+   * @return DatagramPackets entsprechend der Message msg mit allen
+   *         erreichbaren Routern
    */
   public DatagramPacket[] getMulticastPackets(Message msg)
-    throws UnknownHostException {
+      throws UnknownHostException {
     DatagramPacket[] packet = new DatagramPacket[0];
     try {
       sem.acquire();
-      LinkedList<Router> reachable =
-        this.field.getReachableRouter(this.port, this.xCoord, this.yCoord);
+      LinkedList<Router> reachable = this.field.getReachableRouter(this.port, this.xCoord, this.yCoord);
       sem.release();
       Iterator<Router> it = reachable.iterator();
       packet = new DatagramPacket[reachable.size()];
@@ -408,44 +427,48 @@ public class Router extends Device {
         packet[i] = createDatagramPacket(msg, it.next().getPort());
         i++;
       }
-    } catch (InterruptedException e) {}
+    } catch (InterruptedException e) {
+    }
     return packet;
   }
 
   /**
-   * Verarbeitet eine eingehende RouteReply mit dem ausführenden Objekt als Zielrouter der RouteReply
-   * bzw. dem Router von dem die RouteRequest ausging. Sollte der nächste Router laut dem entdeckten
-   * Pfad noch immer erreichbar sein, so wird der entdeckte Pfad in den Cache aufgenommen und die
-   * Ursprungsnachricht wird vorbereitet und versendet. Andernfalls wird für den Zielrouter des ermittelten
+   * Verarbeitet eine eingehende RouteReply mit dem ausführenden Objekt als
+   * Zielrouter der RouteReply
+   * bzw. dem Router von dem die RouteRequest ausging. Sollte der nächste Router
+   * laut dem entdeckten
+   * Pfad noch immer erreichbar sein, so wird der entdeckte Pfad in den Cache
+   * aufgenommen und die
+   * Ursprungsnachricht wird vorbereitet und versendet. Andernfalls wird für den
+   * Zielrouter des ermittelten
    * Pfades eine neue RouteRequest erstellt.
    *
-   * @param      msg   Angekommene RouteReply, deren Ergebnis eingepflegt werden soll
-   * @throws     UnknownHostException - Ausnahmefall: Nur falls localhost nicht bekannt sein sollte
-   * @return     DatagramPackets entsprechend der alten Message, für die der Pfad entdeckt wurde
+   * @param msg Angekommene RouteReply, deren Ergebnis eingepflegt werden soll
+   * @throws UnknownHostException - Ausnahmefall: Nur falls localhost nicht
+   *                              bekannt sein sollte
+   * @return DatagramPackets entsprechend der alten Message, für die der Pfad
+   *         entdeckt wurde
    */
   public DatagramPacket[] processRouteReply(Message msg)
-    throws UnknownHostException {
+      throws UnknownHostException {
     DatagramPacket[] toSend = new DatagramPacket[1];
 
     try {
       sem.acquire();
       if (field.isRouterInRange(getNextPort(msg), this.xCoord, this.yCoord)) {
         sem.release();
-        //source port + 1 to get port of the receiver enddevice
+        // source port + 1 to get port of the receiver enddevice
         this.paths.put(
             msg.getSourcePort() + 1,
-            new RoutingEntry(msg.getPath())
-          );
+            new RoutingEntry(msg.getPath()));
         System.out.println(
-          this.port + ": the routing path is " + msg.getPath()
-        );
+            this.port + ": the routing path is " + msg.getPath());
         Message oldMessage = waiting.get(msg.getMessageId());
         waiting.remove(msg.getMessageId());
         ackTimer myAckTimer = new ackTimer(oldMessage, this.port);
         timer.put(oldMessage.getMessageId(), myAckTimer);
         oldMessage.setPath(msg.getPath());
-        toSend[0] =
-          this.createDatagramPacket(oldMessage, getNextPort(oldMessage));
+        toSend[0] = this.createDatagramPacket(oldMessage, getNextPort(oldMessage));
       } else {
         sem.release();
         Message oldMessage = waiting.get(msg.getMessageId());
@@ -459,40 +482,41 @@ public class Router extends Device {
   }
 
   /**
-   * Ermittelt, ob eine eingegangene Message entlang des Pfades weitergeleitet werden kann.
-   * Sollte der nächste Router im Pfad erreichbar sein, so werden DatagramPackets für die weiterzuleitende
-   * Message, sowie das zum Vorgänger zu schickende Acknowledgement erstellt. Andernfalls wird eine
-   * RouteError Message erzeugt und zu einem DatagramPacket umgewandelt, welches dann zum SourceRouter
+   * Ermittelt, ob eine eingegangene Message entlang des Pfades weitergeleitet
+   * werden kann.
+   * Sollte der nächste Router im Pfad erreichbar sein, so werden DatagramPackets
+   * für die weiterzuleitende
+   * Message, sowie das zum Vorgänger zu schickende Acknowledgement erstellt.
+   * Andernfalls wird eine
+   * RouteError Message erzeugt und zu einem DatagramPacket umgewandelt, welches
+   * dann zum SourceRouter
    * der eingegangenen Nachricht gesendet wird.
    *
-   * @param      msg   Die Nachricht, die weitergeleitet werden soll
-   * @throws     UnknownHostException - Ausnahmefall: Nur falls localhost nicht bekannt sein sollte
-   * @return     DatagramPackets entsprechend der Message msg mit allen
-   *             erreichbaren Routern
+   * @param msg Die Nachricht, die weitergeleitet werden soll
+   * @throws UnknownHostException - Ausnahmefall: Nur falls localhost nicht
+   *                              bekannt sein sollte
+   * @return DatagramPackets entsprechend der Message msg mit allen
+   *         erreichbaren Routern
    */
   public DatagramPacket[] processForward(Message msg)
-    throws UnknownHostException {
+      throws UnknownHostException {
     DatagramPacket[] toSend = new DatagramPacket[1];
     int nextRouter = this.getNextPort(msg);
     try {
       sem.acquire();
       if (field.isRouterInRange(nextRouter, this.xCoord, this.yCoord)) {
-        if (
-          field.isRouterInRange(
+        if (field.isRouterInRange(
             this.getPreviousPort(msg),
             this.xCoord,
-            this.yCoord
-          )
-        ) {
+            this.yCoord)) {
           toSend = new DatagramPacket[2];
           Message ack = new Message(
-            msg.getMessageId(),
-            Command.Ack,
-            this.port,
-            this.getPreviousPort(msg),
-            msg.getPath(),
-            ""
-          );
+              msg.getMessageId(),
+              Command.Ack,
+              this.port,
+              this.getPreviousPort(msg),
+              msg.getPath(),
+              "");
           toSend[1] = this.createDatagramPacket(ack, ack.getDestPort());
         }
         sem.release();
@@ -511,44 +535,46 @@ public class Router extends Device {
   }
 
   public DatagramPacket createRouteError(Message msg)
-    throws UnknownHostException {
+      throws UnknownHostException {
     String content = msg.getDestPort() + " " + msg.getMessageId();
     Message errMessage = new Message(
-      getUUID(),
-      Command.RouteError,
-      this.port,
-      msg.getSourcePort(),
-      msg.getPath(),
-      content
-    );
+        getUUID(),
+        Command.RouteError,
+        this.port,
+        msg.getSourcePort(),
+        msg.getPath(),
+        content);
     return createDatagramPacket(errMessage, this.getPreviousPort(errMessage));
   }
 
   /**
-   * Verarbeitet einen eingegangenen RouteError. Der alte Pfad, über den die Message, die den
-   * RouteError ausgelöst hatte, versendet wurde, wird aus dem Cache gelöscht. Anschließend wird
+   * Verarbeitet einen eingegangenen RouteError. Der alte Pfad, über den die
+   * Message, die den
+   * RouteError ausgelöst hatte, versendet wurde, wird aus dem Cache gelöscht.
+   * Anschließend wird
    * in dem Cache nach einem Pfad gesucht, der den Zielrouter enthält.
-   * Existiert dieser, wird dieser Pfad in den Cache übernommen. In jedem Fall wird die Ursprungsnachricht
+   * Existiert dieser, wird dieser Pfad in den Cache übernommen. In jedem Fall
+   * wird die Ursprungsnachricht
    * beim EndDevice über eine RetryMessage erneut angefragt.
    *
-   * @param      msg   Eingegangener RouteError
-   * @throws     UnknownHostException - Ausnahmefall: Nur falls localhost nicht bekannt sein sollte
-   * @return     DatagramPacket entsprechend der RetryMessage
+   * @param msg Eingegangener RouteError
+   * @throws UnknownHostException - Ausnahmefall: Nur falls localhost nicht
+   *                              bekannt sein sollte
+   * @return DatagramPacket entsprechend der RetryMessage
    */
   public DatagramPacket[] processRouteError(Message msg)
-    throws UnknownHostException {
+      throws UnknownHostException {
     DatagramPacket[] toSend = new DatagramPacket[1];
 
     String[] contentParts = msg.getContent().split(" ", 2);
     this.paths.remove(Integer.parseInt(contentParts[0]));
     Message retryMessage = new Message(
-      getUUID(),
-      Command.Retry,
-      this.port,
-      this.myDevicePort,
-      new LinkedList<>(),
-      contentParts[1]
-    );
+        getUUID(),
+        Command.Retry,
+        this.port,
+        this.myDevicePort,
+        new LinkedList<>(),
+        contentParts[1]);
 
     LinkedList<Integer> newPath = new LinkedList<>();
     // destPort -1 to get the routerPort (routerPort ist in dem path gespeichert)
@@ -558,7 +584,7 @@ public class Router extends Device {
       if (isInPath(re.getPath(), destPort)) {
         newPath = getSubPath(re.getPath(), destPort);
 
-        //destPort + 1 to get the EnddevicePort
+        // destPort + 1 to get the EnddevicePort
         this.paths.put(destPort + 1, new RoutingEntry(newPath));
         break;
       }
@@ -571,9 +597,10 @@ public class Router extends Device {
   /**
    * Ermittelt, ob ein bestimmter Port in einem Pfad enthalten ist.
    *
-   * @param      path LinkedList aus den Ports (Anfang: Ausgangsrouter; Ende: Zielrouter)
-   * @param      port Port, nach dem in Pfad gesucht wird
-   * @return     Wahrheitswert, ob Port enthalten ist
+   * @param path LinkedList aus den Ports (Anfang: Ausgangsrouter; Ende:
+   *             Zielrouter)
+   * @param port Port, nach dem in Pfad gesucht wird
+   * @return Wahrheitswert, ob Port enthalten ist
    */
   public boolean isInPath(LinkedList<Integer> path, int port) {
     Iterator<Integer> it = path.iterator();
@@ -586,17 +613,18 @@ public class Router extends Device {
   }
 
   /**
-   * Gibt aus einer LinkedList von Integern (Pfad) eine LinkedList der Knoten bis zum
+   * Gibt aus einer LinkedList von Integern (Pfad) eine LinkedList der Knoten bis
+   * zum
    * gewünschten port destPort wieder.
    *
-   * @param      longPath   Pfad, aus dem der Pfad zum Port destPort ausgeschnitten werden soll
-   * @param      destPort   Port, der als Ziel des neuen Pfades fungieren soll
-   * @return     kürzerer Pfad mit destPort als letzten Knoten der Liste
+   * @param longPath Pfad, aus dem der Pfad zum Port destPort ausgeschnitten
+   *                 werden soll
+   * @param destPort Port, der als Ziel des neuen Pfades fungieren soll
+   * @return kürzerer Pfad mit destPort als letzten Knoten der Liste
    */
   public LinkedList<Integer> getSubPath(
-    LinkedList<Integer> longPath,
-    int destPort
-  ) {
+      LinkedList<Integer> longPath,
+      int destPort) {
     LinkedList<Integer> newPath = new LinkedList<>();
     Iterator<Integer> it = longPath.iterator();
     while (it.hasNext()) {
@@ -616,48 +644,38 @@ public class Router extends Device {
   public void groomPaths() {
     long currTime = Instant.now().getEpochSecond();
     this.paths.entrySet()
-      .removeIf(e -> (currTime - e.getValue().getLastUsed() >= 300));
+        .removeIf(e -> (currTime - e.getValue().getLastUsed() >= 300));
   }
 
   public void setUpLogger() {
-    try {
-      this.logger.setLevel(Level.ALL);
-      FileHandler handler = new FileHandler(
-        Field.STANDARD_PATH + "log_" + this.port + ".txt"
-      );
-      SimpleFormatter formatter = new SimpleFormatter();
-      this.logger.addHandler(handler);
-      handler.setFormatter(formatter);
-      this.logger.info(
-          "Router startet logging\n Position: ( x: " +
-          this.xCoord +
-          "; y: " +
-          this.yCoord +
-          " )\nPort: " +
-          this.port +
-          "\n"
-        );
-    } catch (IOException e) {
-      e.printStackTrace();
-      System.out.println(e.getMessage());
-    }
+    this.logger.setLevel(Level.ALL);
+    SimpleFormatter formatter = new SimpleFormatter();
+    this.logger.addHandler(handler);
+    handler.setFormatter(formatter);
+    this.logger.info(
+        "Router startet logging\n Position: ( x: " +
+            this.xCoord +
+            "; y: " +
+            this.yCoord +
+            " )\nPort: " +
+            this.port +
+            "\n");
+
   }
 
   public void logNewPosition() {
     this.logger.info(
-        "\nNew Position: ( x: " + this.xCoord + "; y: " + this.yCoord + " )\n"
-      );
+        "\nNew Position: ( x: " + this.xCoord + "; y: " + this.yCoord + " )\n");
   }
 
   public void logStatus() {
-    String toLog =
-      "\n" +
-      this.pathLogging() +
-      "\n" +
-      this.timerLogging() +
-      "\n" +
-      this.knownIdLogging() +
-      "\n";
+    String toLog = "\n" +
+        this.pathLogging() +
+        "\n" +
+        this.timerLogging() +
+        "\n" +
+        this.knownIdLogging() +
+        "\n";
     this.logger.info(toLog);
   }
 
@@ -666,15 +684,15 @@ public class Router extends Device {
     SimpleDateFormat format = new SimpleDateFormat("H:mm:ss", Locale.GERMANY);
     for (Entry<Integer, RoutingEntry> e : this.paths.entrySet()) {
       Long timestamp = e.getValue().getLastUsed();
-      // *1000, da time von 1970 in Millisekunden angegeben sein muss (timestamp ist in Sek)
+      // *1000, da time von 1970 in Millisekunden angegeben sein muss (timestamp ist
+      // in Sek)
       Date time = new java.sql.Date(timestamp * 1000);
-      String line =
-        "\n" +
-        Integer.toString(e.getKey()) +
-        "( " +
-        format.format(time) +
-        " ): " +
-        e.getValue().getPath().toString();
+      String line = "\n" +
+          Integer.toString(e.getKey()) +
+          "( " +
+          format.format(time) +
+          " ): " +
+          e.getValue().getPath().toString();
       res += line;
     }
     return res;

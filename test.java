@@ -17,7 +17,7 @@ public class test {
     }catch(Exception e){
       e.printStackTrace();
     }
-    System.out.println(count);
+    System.out.println("Router für vollvermaschung: " + count);
     
 
     /*
@@ -198,21 +198,24 @@ public class test {
 
   public static int testNinty() {
     int counter;
-    int routerCnt = 1;
+    int routerCnt = 500;
     do{
       counter = 0;
-      for(int i = 0; i < 100; i++){
+      for(int i = 0; i < 10; i++){
         try{
-          Field myField = new Field(routerCnt, 10, 10);
+          Field myField = new Field(routerCnt, 100, 100);
           if(myField.isNetzVermascht()){
-            counter++;
+            //Für grobe Abschätzung erstmal größere Schritte
+            counter+= 10;
           }
+          System.gc();
+          //Thread.sleep(1000);
         }catch(Exception e){
           e.printStackTrace();
         }
       }
       routerCnt++;
-    }while(counter < 90);
+    }while(counter < 9);
     return routerCnt-1;
   }
 
