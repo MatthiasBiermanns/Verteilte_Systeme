@@ -91,6 +91,8 @@ public class Gui extends JFrame implements ActionListener {
     }
   }
 
+  private List<GuiUpdateMessage> messages;
+
   /**
    * Starts simulation and Updates Grid with Server-Input.
    */
@@ -126,21 +128,28 @@ public class Gui extends JFrame implements ActionListener {
       @Override
       protected void process(List<GuiUpdateMessage> chunks) {
         repaintGrid();
-        System.out.println(">>>>>>>>>Chunk size = " + chunks.size());
-        for (int i = 0; i < chunks.size(); i++) {
-          GuiUpdateMessage m = chunks.remove(i);
-          feld[m.getXCord()][m.getYCord()].setBackground(
-              getColorToCommand(m.getCommand(), m.getPort())
-            );
-          revalidate();
-
-          repaint();
-        }
-        System.out.println("<<<<<<<<<Chunk size = " + chunks.size());
+        if (messages == null) messages = chunks;
+        messages.addAll(chunks);
+        visualize();
       }
     };
 
     guiServer.execute();
+  }
+
+  private synchronized void visualize() {
+    // System.out.println(">>>>>>>>>Chunk size = " + messages.size());
+    for (int i = 0; i < messages.size(); i++) {
+      GuiUpdateMessage m = messages.remove(i);
+      feld[m.getXCord()][m.getYCord()].setBackground(
+          getColorToCommand(m.getCommand(), m.getPort(), m.getDestPort())
+        );
+      revalidate();
+
+      repaint();
+    }
+    // System.out.println("<<<<<<<<<Chunk size = " + messages.size());
+    if (messages.size() > 0) visualize();
   }
 
   private void repaintGrid() {
@@ -168,7 +177,7 @@ public class Gui extends JFrame implements ActionListener {
    * @param command Command router received.
    * @return Color for respective command.
    */
-  private Color getColorToCommand(Command command, int port) {
+  private Color getColorToCommand(Command command, int port, int destPort) {
     Color color;
 
     switch (command) {
@@ -179,7 +188,7 @@ public class Gui extends JFrame implements ActionListener {
         color = Color.GREEN;
         break;
       case RouteRequest:
-        color = Color.MAGENTA;
+        color = (destPort != port) ? Color.MAGENTA : Color.BLUE;
         break;
       case RouteError:
         color = Color.RED;

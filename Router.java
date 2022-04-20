@@ -74,6 +74,7 @@ public class Router extends Device {
             // Builds necessary data for Guiserver.
             byte[] data = new GuiUpdateMessage(
               this.port,
+              message.getDestPort(),
               this.xCoord,
               this.yCoord,
               message.getCommand(),
