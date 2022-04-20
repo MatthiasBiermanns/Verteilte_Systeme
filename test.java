@@ -13,7 +13,7 @@ public class test {
     //sendMessageParallel();
     
     try {
-      Field myField = new Field(250, 100, 100);
+      Field myField = new Field(175, 100, 100);
       sendMessageWhileMovingRouter(myField);
     } catch (InvalidInputException e) {
       // TODO Auto-generated catch block
@@ -262,7 +262,8 @@ public class test {
       HashMap<Integer, Device> myDevices = myField.getMap();
       int devicesOnField = myDevices.size() / 2;
 
-      while (true) {
+      int count = 0;
+      while (count < 20) {
         Thread.sleep(2000);
 
         int randomStartDevice = r.nextInt(devicesOnField) * 2;
@@ -284,6 +285,7 @@ public class test {
         } catch (Exception e) {
           e.printStackTrace();
         }
+        count++;
       }
     } catch (Exception e) {
       e.printStackTrace();
