@@ -7,15 +7,18 @@ public class GuiUpdateMessage {
   private Command command;
   private LinkedList<Integer> path;
   private int port;
+  private int destPort;
 
   GuiUpdateMessage(
     int port,
+    int destPort,
     int xCord,
     int yCord,
     Command command,
     LinkedList<Integer> path
   ) {
     this.port = port;
+    this.destPort = destPort;
     this.xCord = xCord;
     this.yCord = yCord;
     this.command = command;
@@ -27,13 +30,14 @@ public class GuiUpdateMessage {
    * @param message in Format: "(xCord) (yCord) (command) (path)"
    */
   GuiUpdateMessage(String message) {
-    String[] parts = message.split(" ", 5);
+    String[] parts = message.split(" ", 6);
 
     port = Integer.parseInt(parts[0]);
-    xCord = Integer.parseInt(parts[1]);
-    yCord = Integer.parseInt(parts[2]);
-    command = evaluateCommand(parts[3]);
-    path = parseList(parts[4]);
+    destPort = Integer.parseInt(parts[1]);
+    xCord = Integer.parseInt(parts[2]);
+    yCord = Integer.parseInt(parts[3]);
+    command = evaluateCommand(parts[4]);
+    path = parseList(parts[5]);
   }
 
   /**
@@ -114,6 +118,8 @@ public class GuiUpdateMessage {
       "" +
       port +
       " " +
+      destPort +
+      " " +
       xCord +
       " " +
       yCord +
@@ -157,5 +163,19 @@ public class GuiUpdateMessage {
    */
   public int getPort() {
     return port;
+  }
+
+  /**
+   * @return int return the destPort
+   */
+  public int getDestPort() {
+    return destPort;
+  }
+
+  /**
+   * @param destPort the destPort to set
+   */
+  public void setDestPort(int destPort) {
+    this.destPort = destPort;
   }
 }

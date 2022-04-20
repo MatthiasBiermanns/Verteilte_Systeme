@@ -478,6 +478,7 @@ class Field {
     try (DatagramSocket socket = new DatagramSocket()) {
       byte[] data = new GuiUpdateMessage(
         port,
+        0,
         oldX,
         oldY,
         Command.Unknown,
