@@ -25,6 +25,7 @@ class Field {
   private HashMap<Integer, Device> map = new HashMap<Integer, Device>();
   private Logger logger;
 
+
   /**
    * Erzeugt ein neues Feld zum Testen des implementierten Routing-Verfahrens. Die
    * automatisch erzeugten Router auf dem Feld, werden zufällig platziert.
@@ -356,6 +357,24 @@ class Field {
     }
     return reachableRouter;
   }
+
+
+  public boolean isNetzVermascht(){
+   
+    for (Entry<Integer, Device> entry : this.map.entrySet()) {
+      
+      if(entry.getValue() instanceof Router){
+        Router r = (Router)entry.getValue();
+        LinkedList<Router> router = getReachableRouter(r.getPort(), r.getXCoord(), r.getYCoord());
+        if(router.size() == 0){
+          return false;
+        }
+      }
+    }
+    return true;
+    
+  }
+
 
   /**
    * Gibt zurück, ob ein bestimmter Router direkt von einer Position aus zu erreichen ist.

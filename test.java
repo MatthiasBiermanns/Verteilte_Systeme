@@ -10,16 +10,48 @@ public class test {
   private final static String STANDARD_PATH = System.getProperty("user.home") + "/Desktop/DSR_Logs/";
 
   public static void main(String[] args) {
+
+    int count = testNinty();
+    try{
+      Thread.sleep(1000);
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+    System.out.println(count);
+    
+
+    /*
+    try{
+      Field myField = new Field(0,25,25);
+      sendMessage(myField);
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+    */
+
+
+    /*
+    try{
+      Field myField = new Field(5, 10, 10);
+      sendMessageParallel(myField);
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+    */
+
+    
     //sendMessageParallel();
     
-    try {
+    /*try {
       Field myField = new Field(250, 100, 100);
       sendMessageWhileMovingRouter(myField);
     } catch (InvalidInputException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
-    }   
+    }  
+     */ 
   }
+ 
 
   public static void testLogging() {
     Logger logger = Logger.getLogger("log_" + 100);
@@ -125,6 +157,66 @@ public class test {
   // ----------------Test A---------------------
   // -------------------------------------------
 
+
+
+  // Eine Hallo Nachricht versenden von 3001 zu 3011
+
+  public static void sendMessage(Field myField) {
+    try{
+    myField.createNewDevice(0,0);
+    myField.createNewDevice(5,5);
+    myField.createNewDevice(10, 10);
+    myField.createNewDevice(15, 15);
+    myField.createNewDevice(20, 20);
+    myField.createNewDevice(24, 24);
+    myField.startRouter(); 
+    myField.printField();
+    HashMap<Integer, Device> fieldMap = myField.getMap();
+    EndDevice handy = (EndDevice) fieldMap.get(3001);
+    handy.sendMessage(3011, "Hallo");
+    }catch (Exception e){
+      e.printStackTrace();
+    }
+  }
+
+  // Zwei Hallo Nachrichten versenden von zwei verschiedenen Geräten an das selbe Gerät
+
+  public static void sendMessageParallel(Field myField) {
+    try {
+      HashMap<Integer, Device> fieldMap = myField.getMap();
+      myField.startRouter();
+      myField.printField();
+      EndDevice handy1 = (EndDevice) fieldMap.get(3001);
+      handy1.sendMessage(3005, "Hallo1");
+      EndDevice handy2 = (EndDevice) fieldMap.get(3003);
+      handy2.sendMessage(3005, "Hallo2");
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static int testNinty() {
+    int counter;
+    int routerCnt = 1;
+    do{
+      counter = 0;
+      for(int i = 0; i < 100; i++){
+        try{
+          Field myField = new Field(routerCnt, 10, 10);
+          if(myField.isNetzVermascht()){
+            counter++;
+          }
+        }catch(Exception e){
+          e.printStackTrace();
+        }
+      }
+      routerCnt++;
+    }while(counter < 90);
+    return routerCnt-1;
+  }
+
+
   public static void diffrentNumberOfRouters() {
     /*
      * Random r = new Random();
@@ -142,25 +234,7 @@ public class test {
 
   }
 
-  public static void sendRandomMessage() {
-    try {
-      Field myField = new Field(0, 25, 25);
-      myField.createNewDevice(0, 0);
-      myField.createNewDevice(5, 5);
-      myField.createNewDevice(10, 10);
-      myField.createNewDevice(15, 15);
-      myField.createNewDevice(20, 20);
-      myField.createNewDevice(24, 24);
-      myField.startRouter();
-      HashMap<Integer, Device> fieldMap = myField.getMap();
-      EndDevice handy = (EndDevice) fieldMap.get(3001);
-      handy.sendMessage(3010, "Hallöchen");
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-  }
+ 
 
   public static void zweiRouterAufEinemFeld() {
 
@@ -172,18 +246,6 @@ public class test {
       myField.createNewDevice(10, 10);
       myField.startRouter();
       new Gui(myField, "Mein Fenster");
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  public static void sendMessage() {
-    try {
-      Field myField = new Field(5, 10, 10);
-      myField.startRouter();
-      myField.printField();
-      EndDevice handy = (EndDevice) myField.getDevice(3001);
-      handy.sendMessage(3005, "Hallo");
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -203,23 +265,7 @@ public class test {
     }
   }
 
-  public static void sendMessageParallel() {
-    try {
-      Field myField = new Field(5, 10, 10);
-      myField.startRouter();
-      myField.printField();
-
-      EndDevice handy1 = (EndDevice) myField.getDevice(3001);
-      handy1.sendMessage(3005, "Hallo1");
-      // handy.sendMessage(3003, "Hi");
-
-      EndDevice handy2 = (EndDevice) myField.getDevice(3003);
-      handy2.sendMessage(3005, "Hallo2");
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
+  
 
   // -------------------------------------------
   // ----------------Test B---------------------
