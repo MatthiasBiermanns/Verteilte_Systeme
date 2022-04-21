@@ -11,6 +11,7 @@ public class test {
 
   public static void main(String[] args) {
 
+    /*
     int count = testNinty();
     try{
       Thread.sleep(1000);
@@ -18,7 +19,7 @@ public class test {
       e.printStackTrace();
     }
     System.out.println("Router für vollvermaschung: " + count);
-    
+    */
 
     /*
     try{
@@ -42,14 +43,13 @@ public class test {
     
     //sendMessageParallel();
     
-    /*try {
+    try {
       Field myField = new Field(250, 100, 100);
       sendMessageWhileMovingRouter(myField);
     } catch (InvalidInputException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }  
-     */ 
+      
   }
  
 
@@ -275,22 +275,28 @@ public class test {
   // -------------------------------------------
 
 
+  //Bewegt alle 1-5 Sekunden einen zufällig gewählten Router an eine andere Stelle
   public static void moveRandomRandomRouter(Field myField){
     Random r = new Random();
     try {
       myField.startRouter();
+
+      //Anzahl an Routern auf aktuellem Feld holen um zu wissen welche Router bewegt werden können
       HashMap<Integer, Device> myDevices = myField.getMap();
       int devicesOnField = myDevices.size() / 2;
 
       while (true) {
+        //Zeit zwischen 1 und 5 Sekunden wählen
         int randomTime = r.nextInt(5) * 1000;
 
+        //Zufällige Enddevice ports ermitteln
         int randomDevice = r.nextInt(devicesOnField) * 2;
         randomDevice = 3000 + randomDevice +1;
 
         try {
           Thread.sleep(randomTime);
 
+          //Enddevice holen und verschieben
           EndDevice deviceToMove = (EndDevice) myField.getDevice(randomDevice);
           myField.moveDevice(deviceToMove.getXCoord(), deviceToMove.getYCoord());
 
@@ -304,6 +310,9 @@ public class test {
 
   }
   
+
+  // Beweget alle 2 Sekunden zufääligen Router und sendet von einem zufälligen Router eine 
+  //Nachricht an einen anderen zufällig gewählten Router. Wird 20x wiederholt
   public static void sendMessageWhileMovingRouter(Field myField) {
     Random r = new Random();
     try {
@@ -315,6 +324,7 @@ public class test {
       while (count < 20) {
         Thread.sleep(2000);
 
+        //Alle zufääligen Enddevice ports bestimmen
         int randomStartDevice = r.nextInt(devicesOnField) * 2;
         randomStartDevice = 3000 + randomStartDevice + 1;
 
@@ -325,9 +335,11 @@ public class test {
         randomDevice = 3000 + randomDevice + 1;
 
         try {   
+          // Enddevice holen und bewegen
           EndDevice deviceToMove = (EndDevice) myField.getDevice(randomDevice);
           myField.moveDevice(deviceToMove.getXCoord(), deviceToMove.getYCoord());
           
+          // Sender holen und Nachricht "Hallo" mit Sender und Empfänger Port an Empfänger senden
           EndDevice sendDevice = (EndDevice) myField.getDevice(randomStartDevice);
           sendDevice.sendMessage(randomDestDevice, "Hallo from " + randomStartDevice + " to " + randomDestDevice);
   
