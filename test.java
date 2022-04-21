@@ -1,7 +1,4 @@
 import java.util.logging.*;
-
-import Exceptions.InvalidInputException;
-
 import java.io.*;
 import java.util.HashMap;
 import java.util.Random;
@@ -10,15 +7,6 @@ public class test {
   private final static String STANDARD_PATH = System.getProperty("user.home") + "/Desktop/DSR_Logs/";
 
   public static void main(String[] args) {
-
-    int count = testNinty();
-    try{
-      Thread.sleep(1000);
-    }catch(Exception e){
-      e.printStackTrace();
-    }
-    System.out.println("Router für vollvermaschung: " + count);
-    
 
     /*
     try{
@@ -29,7 +17,6 @@ public class test {
     }
     */
 
-
     /*
     try{
       Field myField = new Field(5, 10, 10);
@@ -39,8 +26,25 @@ public class test {
     }
     */
 
+    try{
+      Field myField = new Field(100,100,100);
+      diffrentNumberOfRouters(myField);
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+
     
-    //sendMessageParallel();
+    
+
+    /*int count = testNintyPercentVermascht();
+    try{
+      Thread.sleep(1000);
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+    System.out.println("Anzahl Router für 90% vollvermaschtes Netz: " + count);
+    */
+
     
     /*try {
       Field myField = new Field(250, 100, 100);
@@ -196,9 +200,49 @@ public class test {
     }
   }
 
-  public static int testNinty() {
+  // Es wird eine Nachricht gesendet und eine Antwort 
+
+  /*public static void changePath(Field myField){
+    try{
+      myField.createNewDevice(0,0);
+      myField.createNewDevice(2,2);
+      myField.createNewDevice(5,5);
+      myField.createNewDevice(8,8);
+      myField.createNewDevice(9,9);
+      HashMap<Integer, Device> fieldMap = myField.getMap();
+      myField.startRouter();
+      myField.printField();
+      EndDevice handy1 = (EndDevice) fieldMap.get(3001);
+      handy1.sendMessage(3011, "Message");
+      // Station an dieser Stelle gelöscht, muss einen neuen Pfad nehmen
+      myField.deleteDevice(2,2);
+      myField.printField();
+      EndDevice handy2 = (EndDevice) fieldMap.get(3011);
+      handy2.sendMessage(3001, "Answer");
+    }catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+  */
+
+  // Testen von unterschiedliche räumliche Verteilungen und verschiedene Anzahl der Router 
+
+  public static void diffrentNumberOfRouters(Field myField) {
+    try {
+      HashMap<Integer, Device> fieldMap = myField.getMap();
+      myField.startRouter();
+      EndDevice handy = (EndDevice) fieldMap.get(3001);
+      handy.sendMessage(3003, "Hallo");
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  // Testen ab welcher Knotenzahl das Netz vermascht ist
+
+  public static int testNintyPercentVermascht() {
     int counter;
-    int routerCnt = 500;
+    int routerCnt = 148;
     do{
       counter = 0;
       for(int i = 0; i < 10; i++){
@@ -220,22 +264,7 @@ public class test {
   }
 
 
-  public static void diffrentNumberOfRouters() {
-    /*
-     * Random r = new Random();
-     * int randomNumber = r.nextInt(50);
-     * System.out.println(randomNumber);
-     */
-    Field myField;
-    try {
-      myField = new Field(500, 100, 100);
-      myField.startRouter();
-    } catch (InvalidInputException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-
-  }
+ 
 
  
 
@@ -249,20 +278,6 @@ public class test {
       myField.createNewDevice(10, 10);
       myField.startRouter();
       new Gui(myField, "Mein Fenster");
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  public static void sendMessageBack() {
-    try {
-      Field myField = new Field(10, 10, 10);
-      myField.startRouter();
-      myField.printField();
-      EndDevice handy = (EndDevice) myField.getDevice(3001);
-      handy.sendMessage(3003, "Hallo");
-      EndDevice handy2 = (EndDevice) myField.getDevice(3003);
-      handy2.sendMessage(3001, "Hallo zurück");
     } catch (Exception e) {
       e.printStackTrace();
     }

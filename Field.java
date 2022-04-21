@@ -371,6 +371,12 @@ class Field {
     return reachableRouter;
   }
 
+  /**
+   * Gibt zurück, ob alle Router auf dem Feld miteinander vollständig
+   * verbunden sind.
+   * 
+   */
+
   public boolean isNetzVermascht() {
 
     for (Entry<Integer, Device> entry : this.map.entrySet()) {
