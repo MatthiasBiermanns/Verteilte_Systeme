@@ -43,7 +43,7 @@ public class ackTimer extends Thread {
      * Die AckNeeddedMessage enthält die MessageId, den SourcePort, DestPort und den Pfad der 
      * Nachricht, für die der Timer erstellt wurde, selbst als diese.
      */
-    public void sendAckMissing() {
+    private void sendAckMissing() {
         try (DatagramSocket socket = new DatagramSocket()){
             InetAddress destAddress = InetAddress.getByName("localhost");
             Message ackMissMessage = new Message(msg.getMessageId(), Command.AckNeeded, msg.getSourcePort(), msg.getDestPort(), msg.getPath(), "");

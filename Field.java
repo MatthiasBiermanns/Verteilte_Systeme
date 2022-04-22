@@ -26,8 +26,12 @@ class Field {
   private FileHandler handler;
 
   /**
-   * Erzeugt ein neues Feld zum Testen des implementierten Routing-Verfahrens. Die
-   * automatisch erzeugten Router auf dem Feld, werden zufällig platziert.
+   * Erzeugt ein neues Feld zum Testen des implementierten Routing-Verfahrens.
+   * Des Weiteren wird der Log-Folder geleert, eine Log-File erstellt und der
+   * Logger
+   * configuriert.
+   * 
+   * Die automatisch erzeugten Router auf dem Feld, werden zufällig platziert.
    *
    * @param routerCnt Anzahl der Router auf dem Feld
    * @param xLenth    Breite des Feldes
@@ -65,6 +69,12 @@ class Field {
     }
   }
 
+  /**
+   * Wird bei Löschung des Objektes aufgerufen. Schließt hier ordentlich den
+   * Output-Stream in die Log-Datei und schreibt davor noch alle
+   * nichtgeschriebenen
+   * Logs.
+   */
   @Override
   public void finalize() {
     this.handler.flush();
@@ -72,7 +82,13 @@ class Field {
     this.handler.close();
   }
 
-  public void setUpLogger() {
+  /**
+   * Konfiguriert den Logger. Setzt hier die Log-Möglichkeiten auf ALL (erlaubt
+   * verschiedene
+   * Log-Einträge; nicht weiter relevant) und ordnet dem Logger die in Konstruktor
+   * erstellt Log-Datei bzw. den FileHandler zu.
+   */
+  private void setUpLogger() {
     this.logger.setLevel(Level.ALL);
     SimpleFormatter formatter = new SimpleFormatter();
     this.logger.addHandler(handler);
@@ -81,7 +97,7 @@ class Field {
   }
 
   /**
-   * Startet alle Router-Threads innerhalb des Feldes
+   * Startet alle Router-Threads innerhalb des Feldes.
    */
   public void startRouter() {
     for (Entry<Integer, Device> e : this.map.entrySet()) {
@@ -92,7 +108,10 @@ class Field {
     logger.info("Router startet successfully");
   }
 
-  public void cleanDir() {
+  /**
+   * Löscht alle Log-Files im Log-Folder.
+   */
+  private void cleanDir() {
     File dir = new File(Field.STANDARD_PATH);
     for (File file : dir.listFiles()) {
       file.delete();
@@ -101,10 +120,11 @@ class Field {
 
   /**
    * Erzeugt einen neuen Router und zugehöriges EndDevice an einer zufälligen
-   * Stelle im Feld.
-   * Sollte an 500 zufälligen Stellen kein Router platziert werden könne, so wird
-   * eine Exception
-   * geworfen. Der Router und das EndDevice bekommen die 2 nächsten freien Ports.
+   * Stelle im Feld. Sollte an 500 zufälligen Stellen kein Router platziert
+   * werden könne, so wird eine Exception geworfen. Der Router und das EndDevice
+   * bekommen die 2 nächsten freien Ports. Operation wird unter gegenseitigem
+   * Ausschluss ausgeführt, damit keine Abfragen über den Feldstatus vom Router
+   * (Aus eigenem Thread) auf das Feld gemacht werden.
    *
    * @throws PlacementException - Wird geworfen, wenn nach 500 zufällig
    *                            ausgewählten Stellen
@@ -159,10 +179,11 @@ class Field {
 
   /**
    * Erzeugt einen neuen Router und zugehöriges EndDevice an der angegebenen
-   * Stelle im Feld.
-   * Ist die Stelle bereits belegt, so wird eine Exception geworfen. Der Router
-   * und das
-   * EndDevice bekommen die 2 nächsten freien Ports.
+   * Stelle im Feld. Ist die Stelle bereits belegt oder außerhalb des Feldes,
+   * so wird eine Exception geworfen. Der Router und das EndDevice bekommen
+   * die 2 nächsten freien Ports. Operation wird unter gegenseitigem Ausschluss
+   * ausgeführt, damit keine Abfragen über den Feldstatus vom Router (Aus
+   * eigenem Thread) auf das Feld gemacht werden.
    *
    * @param xCoord x-Koordinate des neuen Routers/EndDevice
    * @param yCoord y-Koordinate des neuen Routers/EndDevice
@@ -217,8 +238,12 @@ class Field {
 
   /**
    * Bewegt den Router und das EndDevice, welches an der gegebenen Stelle ist, an
-   * eine zufällige
-   * neue Position im Feld.
+   * eine zufällige neue Position im Feld. Sollte nach 500 Versuchen keine freie
+   * Stelle für den Router und das EndDevice gefunden werden, wird eine Exception
+   * geworfen. Operation wird unter gegenseitigem Ausschluss ausgeführt, damit
+   * keine
+   * Abfragen über den Feldstatus vom Router (Aus eigenem Thread) auf das Feld
+   * gemacht werden.
    *
    * @param oldX Alte x-Koordinate, des zu bewegenden Routers/EndDevices
    * @param oldY Alte x-Koordinate, des zu bewegenden Routers/EndDevices
@@ -284,8 +309,10 @@ class Field {
 
   /**
    * Bewegt den Router und das EndDevice, welches an der gegebenen Stelle ist, an
-   * die angegebene Stelle im Feld,
-   * falls möglich.
+   * die angegebene Stelle im Feld, falls möglich. Operation wird unter
+   * gegenseitigem
+   * Ausschluss ausgeführt, damit keine Abfragen über den Feldstatus vom Router
+   * (Aus eigenem Thread) auf das Feld gemacht werden.
    *
    * @param oldX Alte x-Koordinate, des zu bewegenden Routers/EndDevices
    * @param oldY Alte x-Koordinate, des zu bewegenden Routers/EndDevices
@@ -347,8 +374,10 @@ class Field {
 
   /**
    * Gibt eine Liste der Router in einem 10m (1 Array-Feld = 1m) Umkreis an, die
-   * mit einer Nachricht
-   * direkt erreicht werden könnten.
+   * mit einer Nachricht direkt erreicht werden könnten. Aufruf dieser Methode
+   * sollte unter gegenseitigem Ausschluss über fieldSem ausgeführt werden
+   * (Im Router), um keine ungültigen Abfragen zu machen, während sich das Feld
+   * verändert.
    *
    * @param port Port des aufrufenden Routers, damit dieser in der Rückgabeliste
    *             nicht enthalten ist
@@ -373,29 +402,130 @@ class Field {
 
   /**
    * Gibt zurück, ob alle Router auf dem Feld miteinander vollständig
-   * verbunden sind.
-   * 
+   * verbunden sind, also von jedem Router, jeder Router erreicht
+   * werden kann. Operation wird unter gegenseitigem Ausschluss
+   * ausgeführt, für den Fall, dass die Methode während einer laufenden
+   * Simulation aufgerufen wird. Ist eigentlich aber nicht für laufende
+   * Simulationen geeignet/gedacht.
    */
-
   public boolean isNetzVermascht() {
+    try {
+      fieldSem.acquire();
+      // Ein Router, der im Netz enthalten ist --> Startrouter für Breitensuche
+      Router r1 = this.getFirstRouter();
+      if (r1 != null) {
+        // Ausgangslage: Alle möglichen Router sind enthalten
+        LinkedList<Integer> allRouterPorts = getAllPorts();
+        LinkedList<Router> queue = new LinkedList<>();
+        queue.add(r1);
 
-    for (Entry<Integer, Device> entry : this.map.entrySet()) {
+        // Entfernen, da startrouter sonst 2x berücksichtigt werden würde
+        allRouterPorts.remove((Integer) r1.getPort());
 
-      if (entry.getValue() instanceof Router) {
-        Router r = (Router) entry.getValue();
-        LinkedList<Router> router = getReachableRouter(r.getPort(), r.getXCoord(), r.getYCoord());
-        if (router.size() == 0) {
-          return false;
+        // Netzgröße des Netzes in dem sich der Startrouter befindet
+        // zwischengespeichert, damit diese im Ausschluss ausgeführt werden
+        int netSize = getPartNetSize(allRouterPorts, queue);
+        int mapSize = this.map.size();
+        fieldSem.release();
+
+        // mapSize / 2, da für jeden Router auch EndDevices in der map enthalten sind
+        return netSize == mapSize/2;
+      }
+      fieldSem.release();
+
+      // Netz ist leer, demnach ist es auch nicht voll verbunden
+      return false;
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    // Return falls Exception auftritt
+    // --> eigentliches Ergebnis konnte nicht ermittelt werden
+    // --> Annahme: Netz ist nicht verbunden
+    return false;
+  }
+
+  /**
+   * Gibt den Router mit dem niedrigsten Port wieder, der sich aktuell im 
+   * Feld befindet. Meistens Router 3000, sofern dieser nicht gelöscht wurde.
+   * Gibt null zurück, falls sich kein Router im Feld befindet. Kein 
+   * gegenseitiger Ausschluss, da die methode nur durch isNetzVermascht 
+   * ausgeführt wird, und dies bereits unter Ausschluss passiert. Folglich 
+   * gibt es so keinen Deadlock.
+   * 
+   * @return Router den Router mit dem niedrigsten Port im Feld
+   */
+  private Router getFirstRouter() {
+    if (this.map.size() > 0) {
+      // 3000, da dies der niedrigste mögliche Port ist
+      int cnt = 3000;
+      while (true) {
+        if (this.map.containsKey(cnt)) {
+          fieldSem.release();
+
+          // ist sicher ein Router, da immer um 2 hochgezählt wird
+          return (Router) this.map.get(cnt);
         }
+        // +2, damit die EndDevices übersprungen werden
+        cnt = cnt + 2;
       }
     }
-    return true;
+    return null;
+  }
 
+  /**
+   * Gibt eine LinkedList aller Ports wieder, die sich im Feld befinden.
+   * Kein gegenseitiger Ausschluss, da die methode nur durch isNetzVermascht 
+   * ausgeführt wird, und dies bereits unter Ausschluss passiert. Folglich 
+   * gibt es so keinen Deadlock.
+   * 
+   * @return LinkedList<Integer> eine Liste der Ports aller Router, die sich im Feld befinden
+   */
+  private LinkedList<Integer> getAllPorts() {
+    LinkedList<Integer> allRouterPorts = new LinkedList<>();
+    for (Entry<Integer, Device> e : this.map.entrySet()) {
+      if (e.getValue() instanceof Router) {
+        allRouterPorts.add(e.getKey());
+      }
+    }
+    return allRouterPorts;
+  }
+
+  /**
+   * Rekursive Methode, die eine Breitensuche auf dem Netz simuliert. 
+   * Gibt die Größe des Netzes zurück, welches durch die Router in queue
+   * erreicht werden kann. Kein gegenseitiger Ausschluss, da die methode
+   * nur durch isNetzVermascht ausgeführt wird, und dies bereits unter 
+   * Ausschluss passiert. Folglich gibt es so keinen Deadlock.
+   * 
+   * @param ports liste der Ports, welche sich im Teilnetz befinden und 
+   *              noch nicht durch die Suche berücksichtigt wurden
+   * @param queue Liste der Router, die noch von der Suche durchlaufen
+   *              werden müssen
+   * @return größe des Netzes, welches über den anfangs gegebenen Router 
+   *         erreicht werden kann
+   */
+  private int getPartNetSize(LinkedList<Integer> ports, LinkedList<Router> queue) {
+    if (!queue.isEmpty()) {
+      int netCnt = 1;
+      Router currRouter = queue.remove();
+      LinkedList<Router> reachable = this.getReachableRouter(currRouter.getPort(), currRouter.getXCoord(),
+          currRouter.getYCoord());
+      for (Router router : reachable) {
+        if (ports.contains(router.getPort())) {
+          ports.remove((Integer) router.getPort());
+          queue.add(router);
+        }
+      }
+      return netCnt + this.getPartNetSize(ports, queue);
+    }
+    return 0;
   }
 
   /**
    * Gibt zurück, ob ein bestimmter Router direkt von einer Position aus zu
-   * erreichen ist.
+   * erreichen ist. Aufruf der Methode sollte unter gegenseitigem Ausschluss
+   * über fieldSem stattfinden, damit keine Veränderungen währenddessen 
+   * durchgeführt werden können.
    *
    * @param routerPort Port des zu erreichenden Routers
    * @param oldX       Alte x-Koordinate, des zu bewegenden Routers/EndDevices
@@ -436,7 +566,9 @@ class Field {
 
   /**
    * Löscht den Router und das EndDevice, welches an der gegebenen Stelle zu
-   * finden ist.
+   * finden ist. Operation wird unter gegenseitigem Ausschluss ausgeführt,
+   * damit keine Abfragen über den Feldstatus vom Router (Aus eigenem Thread)
+   * auf das Feld gemacht werden.
    *
    * @param x X-Koordinate des zu löschenden Routers/EndDevices
    * @param y y-Koordinate des zu löschenden Routers/EndDevices
@@ -465,21 +597,36 @@ class Field {
 
   /**
    * Gibt eine 2-Dimensionale Darstellung samt allen Routern (in Form von deren
-   * Ports) auf der Konsole aus
+   * Ports) auf der Konsole aus. Erfolgt under gegenseitigem Ausschluss, damit 
+   * das Bild einem bestimmten Zustand entspricht.
    */
   public void printField() {
-    for (int i = 0; i < field.length; i++) {
-      for (int j = 0; j < field[i].length; j++) {
-        if (field[i][j][0] != null) {
-          System.out.print(field[i][j][0].getPort() + " - ");
-        } else {
-          System.out.print("___ - ");
+    try {
+      fieldSem.acquire();
+      for (int i = 0; i < field.length; i++) {
+        for (int j = 0; j < field[i].length; j++) {
+          if (field[i][j][0] != null) {
+            System.out.print(field[i][j][0].getPort() + " - ");
+          } else {
+            System.out.print("___ - ");
+          }
         }
+        System.out.println("\n");
       }
-      System.out.println("\n");
+      fieldSem.release();
+    } catch( InterruptedException e) {
+      e.printStackTrace();
     }
   }
 
+  /**
+   * Gibt das Device-Objekt (Router oder EndDevice) mit dem gegebenen Port wieder.
+   * 
+   * @param port Port des Device
+   * @return Device Router oder EndDevice mit gem gegebenen Port
+   * @throws DeviceNotFound Wenn kein Device mit dem gegebenen Port auf dem Feld
+   *                        existiert
+   */
   public Device getDevice(int port) throws DeviceNotFound {
     if (this.map.containsKey(port)) {
       return this.map.get(port);
@@ -495,6 +642,7 @@ class Field {
     return this.field;
   }
 
+  // TODO: Flo kommentieren
   private void sendUpdateToGui(int port, int oldX, int oldY) {
     try (DatagramSocket socket = new DatagramSocket()) {
       byte[] data = new GuiUpdateMessage(

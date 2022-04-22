@@ -137,7 +137,7 @@ public class Router extends Device {
    * @param msg Die Nachricht, die zu interpretieren ist
    * @return Ein Array der zu versendenden DatagramPackets
    */
-  public DatagramPacket[] evaluateMessage(Message msg) {
+  private DatagramPacket[] evaluateMessage(Message msg) {
     DatagramPacket[] toSend = new DatagramPacket[0];
     if (!this.knownIds.containsKey(msg.getMessageId()) ||
         msg.getCommand() != Command.RouteRequest) {
@@ -264,7 +264,7 @@ public class Router extends Device {
    *                              bekannt sein sollte
    * @return Ein Array der zu versendenden DatagramPackets
    */
-  public DatagramPacket[] processSend(Message msg) throws UnknownHostException {
+  private DatagramPacket[] processSend(Message msg) throws UnknownHostException {
     DatagramPacket[] packet;
     this.groomPaths();
     if (paths.containsKey(msg.getDestPort())) {
@@ -298,7 +298,7 @@ public class Router extends Device {
    *                              bekannt sein sollte
    * @return Ein Array der zu versendenden Route-Request DatagramPackets
    */
-  public DatagramPacket[] createRouteRequest(Message msg)
+  private DatagramPacket[] createRouteRequest(Message msg)
       throws UnknownHostException {
     LinkedList<Integer> list = new LinkedList<Integer>();
     list.add(this.port);
@@ -327,7 +327,7 @@ public class Router extends Device {
    *                              bekannt sein sollte
    * @return Ein der Message entsprechendes DatagramPacket
    */
-  public DatagramPacket createDatagramPacket(Message msg, int port)
+  private DatagramPacket createDatagramPacket(Message msg, int port)
       throws UnknownHostException {
     InetAddress destAddress = InetAddress.getByName("localhost");
     byte[] message = msg.toString().getBytes();
@@ -345,7 +345,7 @@ public class Router extends Device {
    *                              bekannt sein sollte
    * @return Port des nächsten Routers
    */
-  public int getNextPort(Message msg) {
+  private int getNextPort(Message msg) {
     Iterator<Integer> it = msg.getPath().iterator();
     int nextPort = -1;
     while (it.hasNext()) {
@@ -369,7 +369,7 @@ public class Router extends Device {
    *                              bekannt sein sollte
    * @return Port des vorherigen Routers
    */
-  public int getPreviousPort(Message msg) {
+  private int getPreviousPort(Message msg) {
     Iterator<Integer> it = msg.getPath().descendingIterator();
     int nextPort = -1;
     while (it.hasNext()) {
@@ -391,7 +391,7 @@ public class Router extends Device {
    *                              bekannt sein sollte
    * @return Array Aus DatagramPackets die den neuen RouteRequests entsprechen
    */
-  public DatagramPacket[] processRouteRequest(Message msg)
+  private DatagramPacket[] processRouteRequest(Message msg)
       throws UnknownHostException {
     DatagramPacket[] packet = new DatagramPacket[0];
     if (!knownIds.containsKey(msg.getMessageId())) {
@@ -413,7 +413,7 @@ public class Router extends Device {
    * @return DatagramPackets entsprechend der Message msg mit allen
    *         erreichbaren Routern
    */
-  public DatagramPacket[] getMulticastPackets(Message msg)
+  private DatagramPacket[] getMulticastPackets(Message msg)
       throws UnknownHostException {
     DatagramPacket[] packet = new DatagramPacket[0];
     try {
@@ -449,7 +449,7 @@ public class Router extends Device {
    * @return DatagramPackets entsprechend der alten Message, für die der Pfad
    *         entdeckt wurde
    */
-  public DatagramPacket[] processRouteReply(Message msg)
+  private DatagramPacket[] processRouteReply(Message msg)
       throws UnknownHostException {
     DatagramPacket[] toSend = new DatagramPacket[1];
 
@@ -498,7 +498,7 @@ public class Router extends Device {
    * @return DatagramPackets entsprechend der Message msg mit allen
    *         erreichbaren Routern
    */
-  public DatagramPacket[] processForward(Message msg)
+  private DatagramPacket[] processForward(Message msg)
       throws UnknownHostException {
     DatagramPacket[] toSend = new DatagramPacket[1];
     int nextRouter = this.getNextPort(msg);
@@ -534,7 +534,7 @@ public class Router extends Device {
     return toSend;
   }
 
-  public DatagramPacket createRouteError(Message msg)
+  private DatagramPacket createRouteError(Message msg)
       throws UnknownHostException {
     String content = msg.getDestPort() + " " + msg.getMessageId();
     Message errMessage = new Message(
@@ -562,7 +562,7 @@ public class Router extends Device {
    *                              bekannt sein sollte
    * @return DatagramPacket entsprechend der RetryMessage
    */
-  public DatagramPacket[] processRouteError(Message msg)
+  private DatagramPacket[] processRouteError(Message msg)
       throws UnknownHostException {
     DatagramPacket[] toSend = new DatagramPacket[1];
 
@@ -602,7 +602,7 @@ public class Router extends Device {
    * @param port Port, nach dem in Pfad gesucht wird
    * @return Wahrheitswert, ob Port enthalten ist
    */
-  public boolean isInPath(LinkedList<Integer> path, int port) {
+  private boolean isInPath(LinkedList<Integer> path, int port) {
     Iterator<Integer> it = path.iterator();
     while (it.hasNext()) {
       if (it.next() == port) {
@@ -622,7 +622,7 @@ public class Router extends Device {
    * @param destPort Port, der als Ziel des neuen Pfades fungieren soll
    * @return kürzerer Pfad mit destPort als letzten Knoten der Liste
    */
-  public LinkedList<Integer> getSubPath(
+  private LinkedList<Integer> getSubPath(
       LinkedList<Integer> longPath,
       int destPort) {
     LinkedList<Integer> newPath = new LinkedList<>();
@@ -641,13 +641,13 @@ public class Router extends Device {
    * Räumt den Pfad-Cache des Routers auf. Sortiert alle Pfade aus,
    * die 5 Minuten oder länge nicht genutzt wurden.
    */
-  public void groomPaths() {
+  private void groomPaths() {
     long currTime = Instant.now().getEpochSecond();
     this.paths.entrySet()
         .removeIf(e -> (currTime - e.getValue().getLastUsed() >= 300));
   }
 
-  public void setUpLogger() {
+  private void setUpLogger() {
     this.logger.setLevel(Level.ALL);
     SimpleFormatter formatter = new SimpleFormatter();
     this.logger.addHandler(handler);
@@ -668,7 +668,7 @@ public class Router extends Device {
         "\nNew Position: ( x: " + this.xCoord + "; y: " + this.yCoord + " )\n");
   }
 
-  public void logStatus() {
+  private void logStatus() {
     String toLog = "\n" +
         this.pathLogging() +
         "\n" +
@@ -679,7 +679,7 @@ public class Router extends Device {
     this.logger.info(toLog);
   }
 
-  public String pathLogging() {
+  private String pathLogging() {
     String res = "Path Cache:";
     SimpleDateFormat format = new SimpleDateFormat("H:mm:ss", Locale.GERMANY);
     for (Entry<Integer, RoutingEntry> e : this.paths.entrySet()) {
@@ -698,7 +698,7 @@ public class Router extends Device {
     return res;
   }
 
-  public String timerLogging() {
+  private String timerLogging() {
     String res = "Running Timer (Id - Sekunden):";
     for (Entry<String, ackTimer> e : this.timer.entrySet()) {
       res += "\n" + e.getKey() + " - " + e.getValue().getCount();
@@ -706,7 +706,7 @@ public class Router extends Device {
     return res;
   }
 
-  public String knownIdLogging() {
+  private String knownIdLogging() {
     int count = 0;
     String res = "Known Ids:";
     for (Entry<String, Long> e : this.knownIds.entrySet()) {

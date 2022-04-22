@@ -48,7 +48,7 @@ public class EndDevice extends Device {
       DatagramPacket packet = new DatagramPacket(bytes, bytes.length, serverAddress, myRouterPort);
       socket.send(packet);
 
-      // Damit das Socket bei erneutem Aufruf wieder verwendet werden kann
+      // Schließen des Sockets, damit in receiveMessager() ein neues geöffnet werden kann
       socket.close();
 
       // Unterscheidet, ob das EndDevice bereits in einem eigenen Thread läuft, oder noch den Main-Thread belegt
@@ -77,7 +77,7 @@ public class EndDevice extends Device {
    * Kommt keien Message in den 10 Sekunden herein, ist davon auszugehen, dass die Nachricht
    * erfolgreich beim Zieldevice angekommen ist und der Thread wird terminiert.
    */
-  public void receiveMessage() {
+  private void receiveMessage() {
     try (DatagramSocket socket = new DatagramSocket(this.port)) {
       DatagramPacket dp = new DatagramPacket(new byte[65507], 65507);
       try {
@@ -87,6 +87,8 @@ public class EndDevice extends Device {
         Message msg = new Message(new String(dp.getData(), 0, dp.getLength()));
         if(msg.getCommand() == Command.Retry) {
           Message oldMsg = sendMessages.get(msg.getContent());
+
+          // Schließen des Sockets, damit ein neues in sendMessage erzeugt werden kann
           socket.close();
           sendMessage(oldMsg.getDestPort(), oldMsg.getContent());
         } else {
