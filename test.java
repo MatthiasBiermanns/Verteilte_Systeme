@@ -265,6 +265,26 @@ public class test {
     return routerCnt-1;
   }
 
+  public static void testNetzVermaschung() {
+    try {
+      Field myField = new Field(0, 20, 20);
+      myField.createNewDevice(1, 1);
+      myField.createNewDevice(4, 4);
+      myField.createNewDevice(5, 5);
+      myField.createNewDevice(12, 19);
+      // myField.createNewDevice(19, 0);
+      myField.createNewDevice(17, 13);
+      myField.createNewDevice(7, 0);
+      myField.createNewDevice(19, 11);
+      myField.createNewDevice(19, 13);
+      myField.createNewDevice(11, 14);
+      myField.printField();
+      System.out.println(myField.isNetzVermascht());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
 
  
 
