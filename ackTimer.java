@@ -7,6 +7,14 @@ public class ackTimer extends Thread {
     private Message msg;
     private int routerPort;
 
+    /**
+     * Erstellt einen eigenen Timer-Thread und startet diesen. Thread sendet eine 
+     * AckNeeded-Nachricht an den Router, von dem er erstellt wurde.
+     * 
+     * @param msg Message, für die der Timer erstellt wurde
+     * @param routerPort Port des Routers, an den die AckNeeded Nachricht gehen soll 
+     *                   (Sollte der Router sein, der auch diesen Timer erstellt)
+     */
     public ackTimer(Message msg, int routerPort) {
         this.count = 10;
         this.msg = msg;
@@ -14,9 +22,13 @@ public class ackTimer extends Thread {
         this.start();
     }
 
+    /**
+     * Zählt einen counter (Wert 10) sekündlich herunter und sendet nach ablauf des
+     * Counters eine AckNeeded Message.
+     */
     public void run() {
         try {
-            while(count >= 0) {
+            while(count > 0) {
                 count++;
                 Thread.sleep(1000);
             }
@@ -26,6 +38,11 @@ public class ackTimer extends Thread {
         }
     }
 
+    /**
+     * Sendet eine AckNeeded Message an den bei der erstellung des Timers mitgegebenen Port.
+     * Die AckNeeddedMessage enthält die MessageId, den SourcePort, DestPort und den Pfad der 
+     * Nachricht, für die der Timer erstellt wurde, selbst als diese.
+     */
     public void sendAckMissing() {
         try (DatagramSocket socket = new DatagramSocket()){
             InetAddress destAddress = InetAddress.getByName("localhost");

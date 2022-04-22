@@ -2,20 +2,27 @@
 
 ## Interne Strukturen
 
---
+---
 
+- Im Sinne des MANets stellen normale Endgeräte wir u. a. Tablets und Handys die Router dar
+- In unserer Umsetzung wird jedes Endgerät durch zwei Objekte simuliert, dem Router und dem EndDevice
+  - Der Router übernimmt die Routing-Aufgaben
+  - Das EndDevice simuliert die eigentliche Funktion eines Endgerätes (Bei uns nur das verschicken von Nachrichten)
 - Router und entsprechendes EndDevice haben immer aufeinanderfolgende Ports <br> --> Router gerade; EndDevice ungerade
+- Es wird nur eine Kommunikation zwischen EndDevices beachtet 
+  - Router filtern nach Nachrichten, die zu ihrem EndDevice gesendet werden sollen
+  - Zu versendende Nachrichten, die keinen EndDevice-Port als Destination Port haben können nicht ankommen
 - Eine Retry Message enthält im Content die ID der vorlorenen Message
 
 ### RouteError
 
 - Im Content eines routeErrors sind die MessageId der verlorenen Message und der Zielport dieser enthalten
-- Die Trennung erfolgt durch 
-- Aufbau "<destPort> <Message Id>"
+- Die Trennung erfolgt durch ein Blanc
+- Aufbau "{destPort} {Message Id}"
 
 ### RouteReply Message
 
-- Bei der RouteReply ist der Path in umgekehrter Reihenfolge <br> --> er entspricht dem Pfad der von der RouteRequest zusammengebaut wurde
+- Bei der RouteReply ist der Path nicht in der Reihenfolge in der Nachricht enthalten, in der der Pfad durchlaufen wird <br> --> er entspricht dem Pfad der von der RouteRequest zusammengebaut wurde
 - Im Vergleich zur RouteRequest wurden lediglich source- und destination-Router gewechselt
 
 ## Setup
