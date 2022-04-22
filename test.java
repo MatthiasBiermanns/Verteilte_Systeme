@@ -29,32 +29,36 @@ public class test {
     }
     */
 
-    try{
+    /*try{
       Field myField = new Field(100,100,100);
       diffrentNumberOfRouters(myField);
     }catch(Exception e){
       e.printStackTrace();
     }
-
+    */
     
-    
 
-    /*int count = testNintyPercentVermascht();
+    int count = testNintyPercentVermascht();
     try{
       Thread.sleep(1000);
     }catch(Exception e){
       e.printStackTrace();
     }
     System.out.println("Anzahl Router für 90% vollvermaschtes Netz: " + count);
-    */
+    
 
     
-    try {
+   /* try {
       Field myField = new Field(250, 100, 100);
       sendMessageWhileMovingRouter(myField);
     } catch (InvalidInputException e) {
       e.printStackTrace();
-    }  
+    } 
+    */
+
+    //testNetzVermaschung();
+    
+    
       
   }
  
@@ -244,7 +248,7 @@ public class test {
 
   public static int testNintyPercentVermascht() {
     int counter;
-    int routerCnt = 148;
+    int routerCnt = 195;
     do{
       counter = 0;
       for(int i = 0; i < 10; i++){
