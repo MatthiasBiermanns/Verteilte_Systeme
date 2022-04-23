@@ -19,10 +19,7 @@ public class test {
   // ----------------Test A---------------------
   // -------------------------------------------
 
-
-
   // Eine Hallo Nachricht versenden von 3001 zu 3011
-
   public static void sendMessage(Field myField) {
     try{
     myField.createNewDevice(0,0);
@@ -42,7 +39,6 @@ public class test {
   }
 
   // Zwei Hallo Nachrichten versenden von zwei verschiedenen Geräten an das selbe Gerät
-
   public static void sendMessageParallel(Field myField) {
     try {
       HashMap<Integer, Device> fieldMap = myField.getMap();
@@ -60,7 +56,6 @@ public class test {
 
 
   // Testen von unterschiedliche räumliche Verteilungen und verschiedene Anzahl der Router 
-
   public static void diffrentNumberOfRouters(Field myField) {
     try {
       HashMap<Integer, Device> fieldMap = myField.getMap();
@@ -73,7 +68,6 @@ public class test {
   }
 
   // Testen ab welcher Knotenzahl das Netz vermascht ist
-
   public static int testNintyPercentVermascht() {
     int counter;
     int routerCnt = 216;
@@ -101,7 +95,6 @@ public class test {
   // -------------------------------------------
   // ----------------Test B---------------------
   // -------------------------------------------
-
 
   //Bewegt alle 1-5 Sekunden einen zufällig gewählten Router an eine andere Stelle
   public static void moveRandomRandomRouter(Field myField){
