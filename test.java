@@ -4,51 +4,13 @@ import java.util.Random;
 public class test {
   public static void main(String[] args) {
 
-    /*
-    try{
-      Field myField = new Field(0,25,25);
-      sendMessage(myField);
-    }catch(Exception e){
-      e.printStackTrace();
-    }
-    */
-
-    /*
-    try{
-      Field myField = new Field(5, 10, 10);
-      sendMessageParallel(myField);
-    }catch(Exception e){
-      e.printStackTrace();
-    }
-    */
-
-
-    /*try{
-      Field myField = new Field(100,100,100);
-      diffrentNumberOfRouters(myField);
-    }catch(Exception e){
-      e.printStackTrace();
-    }
-    */
-    
-
     int count = testNintyPercentVermascht();
     try{
       Thread.sleep(1000);
     }catch(Exception e){
       e.printStackTrace();
     }
-    System.out.println("Anzahl Router für 90% vollvermaschtes Netz: " + count);
-    
-    
-    
-   /* try {
-      Field myField = new Field(250, 100, 100);
-      sendMessageWhileMovingRouter(myField);
-    } catch (InvalidInputException e) {
-      e.printStackTrace();
-    } 
-    */      
+    System.out.println("Anzahl Router für 90% vollvermaschtes Netz: " + count);    
       
   }
 
