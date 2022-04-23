@@ -27,6 +27,7 @@ public class test {
     }
     */
 
+
     /*try{
       Field myField = new Field(100,100,100);
       diffrentNumberOfRouters(myField);
@@ -44,7 +45,7 @@ public class test {
     }
     System.out.println("Anzahl Router für 90% vollvermaschtes Netz: " + count);
     
-
+    
     
    /* try {
       Field myField = new Field(250, 100, 100);
@@ -206,7 +207,7 @@ public class test {
 
   // Es wird eine Nachricht gesendet und eine Antwort 
 
-  /*public static void changePath(Field myField){
+  public static void changePath(Field myField){
     try{
       myField.createNewDevice(0,0);
       myField.createNewDevice(2,2);
@@ -215,19 +216,17 @@ public class test {
       myField.createNewDevice(9,9);
       HashMap<Integer, Device> fieldMap = myField.getMap();
       myField.startRouter();
-      myField.printField();
       EndDevice handy1 = (EndDevice) fieldMap.get(3001);
       handy1.sendMessage(3011, "Message");
       // Station an dieser Stelle gelöscht, muss einen neuen Pfad nehmen
-      myField.deleteDevice(2,2);
-      myField.printField();
+      myField.deleteDevice(8,8);
       EndDevice handy2 = (EndDevice) fieldMap.get(3011);
       handy2.sendMessage(3001, "Answer");
     }catch (Exception e) {
       e.printStackTrace();
     }
   }
-  */
+  
 
   // Testen von unterschiedliche räumliche Verteilungen und verschiedene Anzahl der Router 
 
@@ -246,7 +245,7 @@ public class test {
 
   public static int testNintyPercentVermascht() {
     int counter;
-    int routerCnt = 195;
+    int routerCnt = 216;
     do{
       counter = 0;
       for(int i = 0; i < 10; i++){
