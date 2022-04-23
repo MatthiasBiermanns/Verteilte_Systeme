@@ -1,3 +1,7 @@
+import Exceptions.InvalidInputException;
+
+/**Klasse zur Visualisierung eines Routerfelds.
+ */
 public class Visualisierung {
 
   public static void main(String[] args) throws Exception {
@@ -5,8 +9,13 @@ public class Visualisierung {
     new Gui(myField, "TestX");
   }
 
-  private static Field sampleMethod() throws Exception {
-    Field myField = new Field(100, 100, 100);
+  /**
+   * Erstellt ein Feld mit den spezifizierten Merkmalen routerCnt: 200, xLength=yLength: 100.
+   * @return Field
+   * @throws InvalidInputException
+   */
+  private static Field sampleMethod() throws InvalidInputException {
+    Field myField = new Field(200, 100, 100);
     // myField.createNewDevice();
     return myField;
   }

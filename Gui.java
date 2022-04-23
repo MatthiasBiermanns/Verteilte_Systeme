@@ -7,8 +7,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.List;
-// import java.util.HashMap; // only for moveDeviceInGui()
-// import java.util.Iterator; // only for moveDeviceInGui()
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
@@ -28,12 +26,20 @@ public class Gui extends JFrame implements ActionListener {
   private Field myField;
   private JLabel[][] feld;
 
+  /**
+   * @param myField Field
+   * @param title String
+   */
   public Gui(Field myField, String title) {
     this.field = myField.getField();
     this.myField = myField;
     createAndShowApp(title);
   }
 
+  /**
+   * Creates Field and displays it on Gui.
+   * @param title String
+   */
   private void createAndShowApp(String title) {
     this.setTitle(title);
     this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -65,11 +71,14 @@ public class Gui extends JFrame implements ActionListener {
     this.setVisible(true);
   }
 
+  /**
+   * @return Jpanel containing a Grid with constrains fieldX.length x fieldY.length filled with JLabels.
+   */
   private JPanel setUpGrid() {
     JPanel gridPanel = new JPanel();
     gridPanel.setBounds(100, 100, 500, 500);
-    gridPanel.setLayout(new GridLayout(field.length, field.length));
-    this.feld = new JLabel[field.length][field.length];
+    gridPanel.setLayout(new GridLayout(field.length, field[0].length));
+    this.feld = new JLabel[field.length][field[0].length];
 
     for (int i = 0; i < field.length; i++) {
       for (int j = 0; j < field[i].length; j++) {
@@ -98,6 +107,8 @@ public class Gui extends JFrame implements ActionListener {
    */
   private void startSimulation() {
     toSimulate();
+
+    // Starts background-Task with a Server which gets Updates from Simulation.
     SwingWorker<Void, GuiUpdateMessage> guiServer = new SwingWorker<>() {
       @Override
       protected Void doInBackground() throws Exception {
@@ -114,7 +125,7 @@ public class Gui extends JFrame implements ActionListener {
               0,
               packet.getLength()
             );
-            System.out.println(packet.getPort() + ": " + received);
+            // Adds Message to process-Methods input list.
             publish(new GuiUpdateMessage(received));
           }
         } catch (SocketException e1) {
@@ -127,7 +138,7 @@ public class Gui extends JFrame implements ActionListener {
 
       @Override
       protected void process(List<GuiUpdateMessage> chunks) {
-        repaintGrid();
+        // repaintGrid();
         if (messages == null) messages = chunks;
         messages.addAll(chunks);
         visualize();
@@ -137,8 +148,10 @@ public class Gui extends JFrame implements ActionListener {
     guiServer.execute();
   }
 
+  /**
+   * Processes all GuiUpdateMessages in messages.
+   */
   private synchronized void visualize() {
-    // System.out.println(">>>>>>>>>Chunk size = " + messages.size());
     for (int i = 0; i < messages.size(); i++) {
       GuiUpdateMessage m = messages.remove(i);
       feld[m.getXCord()][m.getYCord()].setBackground(
@@ -148,10 +161,13 @@ public class Gui extends JFrame implements ActionListener {
 
       repaint();
     }
-    // System.out.println("<<<<<<<<<Chunk size = " + messages.size());
+
     if (messages.size() > 0) visualize();
   }
 
+  /**
+   * Repaints GUI-Grid with all routers black at where they are now. 
+   */
   private void repaintGrid() {
     for (int i = 0; i < field.length; i++) {
       for (int j = 0; j < field[i].length; j++) {
@@ -185,10 +201,16 @@ public class Gui extends JFrame implements ActionListener {
         color = Color.CYAN;
         break;
       case Forward:
+        repaintGrid();
         color = Color.GREEN;
         break;
       case RouteRequest:
-        color = (destPort != port) ? Color.MAGENTA : Color.BLUE;
+        if (destPort != port) {
+          color = Color.MAGENTA;
+        } else {
+          color = Color.BLUE;
+          repaintGrid();
+        }
         break;
       case RouteError:
         color = Color.RED;
