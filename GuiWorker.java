@@ -11,6 +11,7 @@ public class GuiWorker extends test implements Runnable {
 
   @Override
   public void run() {
+    // Setze hier die zu simuliernede Methode der Superklasse test ein.
     sendMessageWhileMovingRouter(this.myField);
   }
 }

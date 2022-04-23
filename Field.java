@@ -16,7 +16,8 @@ import java.util.logging.*;
 class Field {
 
   static final int ID_LENGTH = 32;
-  static final String STANDARD_PATH = System.getProperty("user.home") + "/Desktop/DSR_Logs/";
+  static final String STANDARD_PATH =
+    System.getProperty("user.home") + "/Desktop/DSR_Logs/";
   private int nextPort = 3000;
   private int xLength, yLength;
   private Semaphore fieldSem = new Semaphore(1, true);
@@ -30,7 +31,7 @@ class Field {
    * Des Weiteren wird der Log-Folder geleert, eine Log-File erstellt und der
    * Logger
    * configuriert.
-   * 
+   *
    * Die automatisch erzeugten Router auf dem Feld, werden zufällig platziert.
    *
    * @param routerCnt Anzahl der Router auf dem Feld
@@ -41,7 +42,7 @@ class Field {
    * @return Ein der Message entsprechendes DatagramPacket
    */
   public Field(int routerCnt, int xLength, int yLength)
-      throws InvalidInputException {
+    throws InvalidInputException {
     if (xLength <= 0 || yLength <= 0 || xLength * yLength < routerCnt) {
       throw new InvalidInputException();
     }
@@ -51,8 +52,7 @@ class Field {
     field = new Device[xLength][yLength][2];
     this.logger = Logger.getLogger("Logger_field");
     try {
-      this.handler = new FileHandler(
-          Field.STANDARD_PATH + "log_field.txt");
+      this.handler = new FileHandler(Field.STANDARD_PATH + "log_field.txt");
     } catch (IOException e) {
       e.printStackTrace();
       System.out.println(e.getMessage());
@@ -147,12 +147,13 @@ class Field {
       }
 
       Router r = new Router(
-          xCoord,
-          yCoord,
-          nextPort,
-          this,
-          nextPort + 1,
-          this.fieldSem);
+        xCoord,
+        yCoord,
+        nextPort,
+        this,
+        nextPort + 1,
+        this.fieldSem
+      );
       EndDevice d = new EndDevice(xCoord, yCoord, this, nextPort + 1, nextPort);
       nextPort++;
       nextPort++;
@@ -163,18 +164,18 @@ class Field {
       map.put(d.getPort(), d);
 
       logger.info(
-          "Device created at x: " +
-              xCoord +
-              ", y: " +
-              yCoord +
-              " with Ports: " +
-              r.getPort() +
-              ", " +
-              d.getPort() +
-              "\n");
+        "Device created at x: " +
+        xCoord +
+        ", y: " +
+        yCoord +
+        " with Ports: " +
+        r.getPort() +
+        ", " +
+        d.getPort() +
+        "\n"
+      );
       fieldSem.release();
-    } catch (InterruptedException e) {
-    }
+    } catch (InterruptedException e) {}
   }
 
   /**
@@ -193,23 +194,26 @@ class Field {
    *                            befindet.
    */
   public void createNewDevice(int xCoord, int yCoord)
-      throws PlacementException {
+    throws PlacementException {
     try {
       fieldSem.acquire();
 
-      if (xCoord > this.xLength ||
-          yCoord > this.yLength ||
-          field[xCoord][yCoord][0] != null) {
+      if (
+        xCoord > this.xLength ||
+        yCoord > this.yLength ||
+        field[xCoord][yCoord][0] != null
+      ) {
         throw new PlacementException();
       }
 
       Router r = new Router(
-          xCoord,
-          yCoord,
-          nextPort,
-          this,
-          nextPort + 1,
-          this.fieldSem);
+        xCoord,
+        yCoord,
+        nextPort,
+        this,
+        nextPort + 1,
+        this.fieldSem
+      );
       EndDevice d = new EndDevice(xCoord, yCoord, this, nextPort + 1, nextPort);
       nextPort++;
       nextPort++;
@@ -220,15 +224,16 @@ class Field {
       map.put(d.getPort(), d);
 
       logger.info(
-          "Device created at x: " +
-              xCoord +
-              ", y: " +
-              yCoord +
-              " with Ports: " +
-              r.getPort() +
-              ", " +
-              d.getPort() +
-              "\n");
+        "Device created at x: " +
+        xCoord +
+        ", y: " +
+        yCoord +
+        " with Ports: " +
+        r.getPort() +
+        ", " +
+        d.getPort() +
+        "\n"
+      );
       fieldSem.release();
     } catch (InterruptedException e) {
       System.out.println(e.getMessage());
@@ -255,7 +260,7 @@ class Field {
    *                            gefunden wurde.
    */
   public void moveDevice(int oldX, int oldY)
-      throws DeviceNotFound, PlacementException {
+    throws DeviceNotFound, PlacementException {
     try {
       fieldSem.acquire();
 
@@ -287,24 +292,24 @@ class Field {
       field[oldX][oldY][1] = null;
 
       logger.info(
-          "Devices " +
-              r.getPort() +
-              ", " +
-              d.getPort() +
-              " moved from x: " +
-              oldX +
-              ", y: " +
-              oldY +
-              " to x: " +
-              newX +
-              ", y: " +
-              newY +
-              "\n");
+        "Devices " +
+        r.getPort() +
+        ", " +
+        d.getPort() +
+        " moved from x: " +
+        oldX +
+        ", y: " +
+        oldY +
+        " to x: " +
+        newX +
+        ", y: " +
+        newY +
+        "\n"
+      );
       sendUpdateToGui(r.getPort(), oldX, oldY);
       r.logNewPosition();
       fieldSem.release();
-    } catch (InterruptedException e) {
-    }
+    } catch (InterruptedException e) {}
   }
 
   /**
@@ -326,7 +331,7 @@ class Field {
    *                            liegt
    */
   public void moveDevice(int oldX, int oldY, int newX, int newY)
-      throws DeviceNotFound, PlacementException {
+    throws DeviceNotFound, PlacementException {
     try {
       fieldSem.acquire();
 
@@ -334,9 +339,11 @@ class Field {
         throw new DeviceNotFound();
       }
 
-      if (newX > this.xLength ||
-          newY > this.yLength ||
-          field[newX][newY][0] != null) {
+      if (
+        newX > this.xLength ||
+        newY > this.yLength ||
+        field[newX][newY][0] != null
+      ) {
         throw new PlacementException();
       }
 
@@ -352,24 +359,24 @@ class Field {
       field[oldX][oldY][1] = null;
 
       logger.info(
-          "Devices " +
-              r.getPort() +
-              ", " +
-              d.getPort() +
-              " moved from x: " +
-              oldX +
-              ", y: " +
-              oldY +
-              " to x: " +
-              newX +
-              ", y: " +
-              newY +
-              "\n");
+        "Devices " +
+        r.getPort() +
+        ", " +
+        d.getPort() +
+        " moved from x: " +
+        oldX +
+        ", y: " +
+        oldY +
+        " to x: " +
+        newX +
+        ", y: " +
+        newY +
+        "\n"
+      );
       sendUpdateToGui(r.getPort(), oldX, oldY);
       r.logNewPosition();
       fieldSem.release();
-    } catch (InterruptedException e) {
-    }
+    } catch (InterruptedException e) {}
   }
 
   /**
@@ -391,8 +398,10 @@ class Field {
       Device d = entry.getValue();
       if (d instanceof Router) {
         Router r = (Router) d;
-        if (getDistance(x, y, r.getXCoord(), r.getYCoord()) <= 10 &&
-            r.getPort() != port) {
+        if (
+          getDistance(x, y, r.getXCoord(), r.getYCoord()) <= 10 &&
+          r.getPort() != port
+        ) {
           reachableRouter.add(r);
         }
       }
@@ -429,7 +438,7 @@ class Field {
         fieldSem.release();
 
         // mapSize / 2, da für jeden Router auch EndDevices in der map enthalten sind
-        return netSize == mapSize/2;
+        return netSize == mapSize / 2;
       }
       fieldSem.release();
 
@@ -445,13 +454,13 @@ class Field {
   }
 
   /**
-   * Gibt den Router mit dem niedrigsten Port wieder, der sich aktuell im 
+   * Gibt den Router mit dem niedrigsten Port wieder, der sich aktuell im
    * Feld befindet. Meistens Router 3000, sofern dieser nicht gelöscht wurde.
-   * Gibt null zurück, falls sich kein Router im Feld befindet. Kein 
-   * gegenseitiger Ausschluss, da die methode nur durch isNetzVermascht 
-   * ausgeführt wird, und dies bereits unter Ausschluss passiert. Folglich 
+   * Gibt null zurück, falls sich kein Router im Feld befindet. Kein
+   * gegenseitiger Ausschluss, da die methode nur durch isNetzVermascht
+   * ausgeführt wird, und dies bereits unter Ausschluss passiert. Folglich
    * gibt es so keinen Deadlock.
-   * 
+   *
    * @return Router den Router mit dem niedrigsten Port im Feld
    */
   private Router getFirstRouter() {
@@ -474,10 +483,10 @@ class Field {
 
   /**
    * Gibt eine LinkedList aller Ports wieder, die sich im Feld befinden.
-   * Kein gegenseitiger Ausschluss, da die methode nur durch isNetzVermascht 
-   * ausgeführt wird, und dies bereits unter Ausschluss passiert. Folglich 
+   * Kein gegenseitiger Ausschluss, da die methode nur durch isNetzVermascht
+   * ausgeführt wird, und dies bereits unter Ausschluss passiert. Folglich
    * gibt es so keinen Deadlock.
-   * 
+   *
    * @return LinkedList<Integer> eine Liste der Ports aller Router, die sich im Feld befinden
    */
   private LinkedList<Integer> getAllPorts() {
@@ -491,25 +500,32 @@ class Field {
   }
 
   /**
-   * Rekursive Methode, die eine Breitensuche auf dem Netz simuliert. 
+   * Rekursive Methode, die eine Breitensuche auf dem Netz simuliert.
    * Gibt die Größe des Netzes zurück, welches durch die Router in queue
    * erreicht werden kann. Kein gegenseitiger Ausschluss, da die methode
-   * nur durch isNetzVermascht ausgeführt wird, und dies bereits unter 
+   * nur durch isNetzVermascht ausgeführt wird, und dies bereits unter
    * Ausschluss passiert. Folglich gibt es so keinen Deadlock.
-   * 
-   * @param ports liste der Ports, welche sich im Teilnetz befinden und 
+   *
+   * @param ports liste der Ports, welche sich im Teilnetz befinden und
    *              noch nicht durch die Suche berücksichtigt wurden
    * @param queue Liste der Router, die noch von der Suche durchlaufen
    *              werden müssen
-   * @return größe des Netzes, welches über den anfangs gegebenen Router 
+   * @return größe des Netzes, welches über den anfangs gegebenen Router
    *         erreicht werden kann
    */
-  private int getPartNetSize(LinkedList<Integer> ports, LinkedList<Router> queue) {
+  private int getPartNetSize(
+    LinkedList<Integer> ports,
+    LinkedList<Router> queue
+  ) {
     if (!queue.isEmpty()) {
       int netCnt = 1;
       Router currRouter = queue.remove();
-      LinkedList<Router> reachable = this.getReachableRouter(currRouter.getPort(), currRouter.getXCoord(),
-          currRouter.getYCoord());
+      LinkedList<Router> reachable =
+        this.getReachableRouter(
+            currRouter.getPort(),
+            currRouter.getXCoord(),
+            currRouter.getYCoord()
+          );
       for (Router router : reachable) {
         if (ports.contains(router.getPort())) {
           ports.remove((Integer) router.getPort());
@@ -524,7 +540,7 @@ class Field {
   /**
    * Gibt zurück, ob ein bestimmter Router direkt von einer Position aus zu
    * erreichen ist. Aufruf der Methode sollte unter gegenseitigem Ausschluss
-   * über fieldSem stattfinden, damit keine Veränderungen währenddessen 
+   * über fieldSem stattfinden, damit keine Veränderungen währenddessen
    * durchgeführt werden können.
    *
    * @param routerPort Port des zu erreichenden Routers
@@ -597,7 +613,7 @@ class Field {
 
   /**
    * Gibt eine 2-Dimensionale Darstellung samt allen Routern (in Form von deren
-   * Ports) auf der Konsole aus. Erfolgt under gegenseitigem Ausschluss, damit 
+   * Ports) auf der Konsole aus. Erfolgt under gegenseitigem Ausschluss, damit
    * das Bild einem bestimmten Zustand entspricht.
    */
   public void printField() {
@@ -614,14 +630,14 @@ class Field {
         System.out.println("\n");
       }
       fieldSem.release();
-    } catch( InterruptedException e) {
+    } catch (InterruptedException e) {
       e.printStackTrace();
     }
   }
 
   /**
    * Gibt das Device-Objekt (Router oder EndDevice) mit dem gegebenen Port wieder.
-   * 
+   *
    * @param port Port des Device
    * @return Device Router oder EndDevice mit gem gegebenen Port
    * @throws DeviceNotFound Wenn kein Device mit dem gegebenen Port auf dem Feld
@@ -642,25 +658,33 @@ class Field {
     return this.field;
   }
 
-  // TODO: Flo kommentieren
+  /**
+   * Sends GuiUpdateMessage to GuiServer to update Router-Position.
+   * @param port int Port of Router
+   * @param oldX int xCoord before moving
+   * @param oldY int yCoord before moving
+   */
   private void sendUpdateToGui(int port, int oldX, int oldY) {
     try (DatagramSocket socket = new DatagramSocket()) {
       byte[] data = new GuiUpdateMessage(
-          port,
-          0,
-          oldX,
-          oldY,
-          Command.Unknown,
-          new LinkedList<>())
-          .toString()
-          .getBytes();
+        port,
+        0, // destPort default, cause not needed
+        oldX,
+        oldY,
+        Command.Unknown,
+        new LinkedList<>()
+      )
+        .toString()
+        .getBytes();
 
       socket.send(
-          new DatagramPacket(
-              data,
-              data.length,
-              InetAddress.getByName("localhost"),
-              4998));
+        new DatagramPacket(
+          data,
+          data.length,
+          InetAddress.getByName("localhost"),
+          4998 // Port of Gui-Server
+        )
+      );
     } catch (Exception e) {
       e.printStackTrace();
     }

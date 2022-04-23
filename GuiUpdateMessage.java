@@ -1,5 +1,8 @@
 import java.util.LinkedList;
 
+/**
+ * Object to generate a standard type UpdateMessage for Gui.
+ */
 public class GuiUpdateMessage {
 
   private int xCord;
@@ -9,6 +12,14 @@ public class GuiUpdateMessage {
   private int port;
   private int destPort;
 
+  /**
+   * @param port int
+   * @param destPort int
+   * @param xCord int
+   * @param yCord int
+   * @param command Command
+   * @param path LinkedList<Integer>
+   */
   GuiUpdateMessage(
     int port,
     int destPort,
@@ -41,7 +52,7 @@ public class GuiUpdateMessage {
   }
 
   /**
-   * @param str
+   * @param str String of a LinkedList<Integer>
    * @return String converted to LinkedList<Integer>
    */
   public LinkedList<Integer> parseList(String str) {
@@ -59,9 +70,8 @@ public class GuiUpdateMessage {
   }
 
   /**
-   *
-   * @param str
-   * @return str converted to Command
+   * @param str String of a Command
+   * @return Command from String
    */
   private Command evaluateCommand(String str) {
     str = str.toUpperCase();
@@ -85,28 +95,28 @@ public class GuiUpdateMessage {
   }
 
   /**
-   * @return int return the xCord
+   * @return int xCord
    */
   public int getXCord() {
     return xCord;
   }
 
   /**
-   * @return int return the yCord
+   * @return int yCord
    */
   public int getYCord() {
     return yCord;
   }
 
   /**
-   * @return Command return the command
+   * @return Command command
    */
   public Command getCommand() {
     return command;
   }
 
   /**
-   * @return LinkedList<Integer> return the path
+   * @return LinkedList<Integer> path
    */
   public LinkedList<Integer> getPath() {
     return path;
@@ -131,7 +141,7 @@ public class GuiUpdateMessage {
   }
 
   /**
-   * @param xCord the xCord to set
+   * @param xCord xCord to set
    */
   public void setXCord(int xCord) {
     this.xCord = xCord;
@@ -159,14 +169,14 @@ public class GuiUpdateMessage {
   }
 
   /**
-   * @return int return the port
+   * @return int port
    */
   public int getPort() {
     return port;
   }
 
   /**
-   * @return int return the destPort
+   * @return int destPort
    */
   public int getDestPort() {
     return destPort;
