@@ -1,40 +1,8 @@
-import java.util.logging.*;
-
-import java.io.*;
 import java.util.HashMap;
 import java.util.Random;
 
 public class test {
-  private final static String STANDARD_PATH = System.getProperty("user.home") + "/Desktop/DSR_Logs/";
-
   public static void main(String[] args) {
-
-    /*
-    try{
-      Field myField = new Field(0,25,25);
-      sendMessage(myField);
-    }catch(Exception e){
-      e.printStackTrace();
-    }
-    */
-
-    /*
-    try{
-      Field myField = new Field(5, 10, 10);
-      sendMessageParallel(myField);
-    }catch(Exception e){
-      e.printStackTrace();
-    }
-    */
-
-    /*try{
-      Field myField = new Field(100,100,100);
-      diffrentNumberOfRouters(myField);
-    }catch(Exception e){
-      e.printStackTrace();
-    }
-    */
-    
 
     int count = testNintyPercentVermascht();
     try{
@@ -42,124 +10,10 @@ public class test {
     }catch(Exception e){
       e.printStackTrace();
     }
-    System.out.println("Anzahl Router für 90% vollvermaschtes Netz: " + count);
-    
-
-    
-   /* try {
-      Field myField = new Field(250, 100, 100);
-      sendMessageWhileMovingRouter(myField);
-    } catch (InvalidInputException e) {
-      e.printStackTrace();
-    } 
-    */
-
-    //testNetzVermaschung();
-    
-    
+    System.out.println("Anzahl Router für 90% vollvermaschtes Netz: " + count);    
       
   }
- 
 
-  public static void testLogging() {
-    Logger logger = Logger.getLogger("log_" + 100);
-    logger.setLevel(Level.ALL);
-    try {
-      FileHandler handler = new FileHandler(STANDARD_PATH + "testlogging.txt");
-      logger.addHandler(handler);
-      SimpleFormatter sf = new SimpleFormatter();
-      handler.setFormatter(sf);
-
-      logger.warning("Warning");
-      logger.info("Info");
-      logger.severe("Severe");
-      logger.fine("fine");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-  }
-
-  public static void testAcks() {
-    try {
-      Field myField = new Field(0, 25, 25);
-      myField.createNewDevice(0, 0);
-      myField.createNewDevice(5, 5);
-      myField.createNewDevice(10, 10);
-      myField.createNewDevice(15, 15);
-      myField.createNewDevice(20, 20);
-      myField.createNewDevice(24, 24);
-      myField.startRouter();
-      myField.printField();
-      HashMap<Integer, Device> fieldMap = myField.getMap();
-      EndDevice handy = (EndDevice) fieldMap.get(3001);
-      handy.sendMessage(3010, "Hi");
-    } catch (Exception e) {
-      e.printStackTrace();
-      System.out.println(e.getMessage());
-    }
-  }
-
-  // Needs to get field form outside, so Gui works on the same Field.
-  public static void testRouteRequest(Field myField) {
-    try {
-      // Field myField = new Field(25, 25, 25);
-      myField.startRouter();
-      try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-        while (true) {
-          Thread.sleep(1000);
-          myField.printField();
-
-          String line = reader.readLine();
-          String[] parts = line.split(" ");
-          HashMap<Integer, Device> myDevices = myField.getMap();
-          int port = Integer.parseInt(parts[1]);
-          if (port % 2 == 0) {
-            port++;
-          }
-          EndDevice handy = (EndDevice) myDevices.get(port);
-          switch (parts[0].toUpperCase()) {
-            case "MOVE":
-              myField.moveDevice(handy.getXCoord(), handy.getYCoord(), Integer.parseInt(parts[2]),
-                  Integer.parseInt(parts[3]));
-              break;
-            case "SEND":
-              handy.sendMessage(Integer.parseInt(parts[2]), parts[3]);
-              System.out.println("geschafft!");
-              break;
-            default:
-              break;
-          }
-        }
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  public static void testFieldCreaetion() {
-    try {
-      Field myField = new Field(20, 10, 10);
-      try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-        while (true) {
-          myField.printField();
-
-          String line = reader.readLine();
-          String[] parts = line.split(" ");
-
-          myField.moveDevice(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2]),
-              Integer.parseInt(parts[3]));
-        }
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
 
   // -------------------------------------------
   // ----------------Test A---------------------
@@ -204,30 +58,6 @@ public class test {
     }
   }
 
-  // Es wird eine Nachricht gesendet und eine Antwort 
-
-  /*public static void changePath(Field myField){
-    try{
-      myField.createNewDevice(0,0);
-      myField.createNewDevice(2,2);
-      myField.createNewDevice(5,5);
-      myField.createNewDevice(8,8);
-      myField.createNewDevice(9,9);
-      HashMap<Integer, Device> fieldMap = myField.getMap();
-      myField.startRouter();
-      myField.printField();
-      EndDevice handy1 = (EndDevice) fieldMap.get(3001);
-      handy1.sendMessage(3011, "Message");
-      // Station an dieser Stelle gelöscht, muss einen neuen Pfad nehmen
-      myField.deleteDevice(2,2);
-      myField.printField();
-      EndDevice handy2 = (EndDevice) fieldMap.get(3011);
-      handy2.sendMessage(3001, "Answer");
-    }catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-  */
 
   // Testen von unterschiedliche räumliche Verteilungen und verschiedene Anzahl der Router 
 
@@ -246,7 +76,7 @@ public class test {
 
   public static int testNintyPercentVermascht() {
     int counter;
-    int routerCnt = 195;
+    int routerCnt = 216;
     do{
       counter = 0;
       for(int i = 0; i < 10; i++){
@@ -266,47 +96,6 @@ public class test {
     }while(counter < 9);
     return routerCnt-1;
   }
-
-  public static void testNetzVermaschung() {
-    try {
-      Field myField = new Field(0, 20, 20);
-      myField.createNewDevice(1, 1);
-      myField.createNewDevice(4, 4);
-      myField.createNewDevice(5, 5);
-      myField.createNewDevice(12, 19);
-      // myField.createNewDevice(19, 0);
-      myField.createNewDevice(17, 13);
-      myField.createNewDevice(7, 0);
-      myField.createNewDevice(19, 11);
-      myField.createNewDevice(19, 13);
-      myField.createNewDevice(11, 14);
-      myField.printField();
-      System.out.println(myField.isNetzVermascht());
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-
- 
-
- 
-
-  public static void zweiRouterAufEinemFeld() {
-
-    try {
-      Field myField = new Field(0, 100, 100);
-      myField.createNewDevice(0, 0);
-      myField.createNewDevice(0, 0);
-      myField.createNewDevice(5, 5);
-      myField.createNewDevice(10, 10);
-      myField.startRouter();
-      new Gui(myField, "Mein Fenster");
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
   
 
   // -------------------------------------------
