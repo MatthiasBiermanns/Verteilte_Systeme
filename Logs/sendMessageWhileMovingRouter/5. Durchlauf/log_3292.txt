@@ -1,0 +1,14 @@
+Apr. 20, 2022 6:54:44 PM Router setUpLogger
+INFO: Router startet logging
+ Position: ( x: 98; y: 70 )
+Port: 3292
+
+Apr. 20, 2022 6:54:48 PM Router evaluateMessage
+INFO: 
+ID: 				db524914-c945-4992-82a5-6cc75849112c
+Command:			RouteRequest
+Source Port:			3306
+Destination Port: 		3331
+Path:				[3306, 3274]
+Content:			
+

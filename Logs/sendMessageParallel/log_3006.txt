@@ -1,0 +1,23 @@
+Apr. 20, 2022 7:08:10 NACHM. Router setUpLogger
+INFO: Router startet logging
+ Position: ( x: 8; y: 0 )
+Port: 3006
+
+Apr. 20, 2022 7:08:10 NACHM. Router evaluateMessage
+INFO: 
+ID: 				182c0f35-c426-4693-83cb-810552f73782
+Command:			RouteRequest
+Source Port:			3000
+Destination Port: 		3005
+Path:				[3000]
+Content:			
+
+Apr. 20, 2022 7:08:10 NACHM. Router evaluateMessage
+INFO: 
+ID: 				8c093178-07b2-4cde-9807-850816db21e2
+Command:			RouteRequest
+Source Port:			3002
+Destination Port: 		3005
+Path:				[3002]
+Content:			
+

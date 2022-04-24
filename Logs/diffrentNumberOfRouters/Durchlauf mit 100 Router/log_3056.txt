@@ -1,0 +1,5 @@
+Apr. 21, 2022 11:42:10 VORM. Router setUpLogger
+INFO: Router startet logging
+ Position: ( x: 43; y: 21 )
+Port: 3056
+

@@ -1,0 +1,19 @@
+Apr. 20, 2022 7:08:10 NACHM. Field setUpLogger
+INFO: Startet Logging
+Apr. 20, 2022 7:08:10 NACHM. Field createNewDevice
+INFO: Device created at x: 6, y: 5 with Ports: 3000, 3001
+
+Apr. 20, 2022 7:08:10 NACHM. Field createNewDevice
+INFO: Device created at x: 6, y: 3 with Ports: 3002, 3003
+
+Apr. 20, 2022 7:08:10 NACHM. Field createNewDevice
+INFO: Device created at x: 7, y: 5 with Ports: 3004, 3005
+
+Apr. 20, 2022 7:08:10 NACHM. Field createNewDevice
+INFO: Device created at x: 8, y: 0 with Ports: 3006, 3007
+
+Apr. 20, 2022 7:08:10 NACHM. Field createNewDevice
+INFO: Device created at x: 3, y: 0 with Ports: 3008, 3009
+
+Apr. 20, 2022 7:08:10 NACHM. Field startRouter
+INFO: Devices startet successfully

@@ -1,0 +1,14 @@
+Apr. 21, 2022 11:43:57 VORM. Router setUpLogger
+INFO: Router startet logging
+ Position: ( x: 7; y: 65 )
+Port: 3404
+
+Apr. 21, 2022 11:44:03 VORM. Router evaluateMessage
+INFO: 
+ID: 				bcbb9a9d-1f87-4d75-b881-29f36f19821a
+Command:			RouteRequest
+Source Port:			3000
+Destination Port: 		3003
+Path:				[3000]
+Content:			
+

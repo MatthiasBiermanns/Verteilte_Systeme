@@ -1,0 +1,50 @@
+Apr. 20, 2022 6:59:50 PM Router setUpLogger
+INFO: Router startet logging
+ Position: ( x: 0; y: 29 )
+Port: 3042
+
+Apr. 20, 2022 6:59:54 PM Router evaluateMessage
+INFO: 
+ID: 				12c5331b-6084-48d3-aeaa-1a32cc5ff027
+Command:			RouteRequest
+Source Port:			3060
+Destination Port: 		3157
+Path:				[3060, 3232, 3326, 3256, 3002, 3174, 3192]
+Content:			
+
+Apr. 20, 2022 6:59:55 PM Router evaluateMessage
+INFO: 
+ID: 				69ba0be4-cb38-47f0-8e49-55904708591b
+Command:			RouteRequest
+Source Port:			3312
+Destination Port: 		3043
+Path:				[3312, 3104, 3292, 3008, 3174, 3192]
+Content:			
+
+Apr. 20, 2022 6:59:56 PM Router logStatus
+INFO: 
+Path Cache:
+Running Timer (Id - Sekunden):
+Known Ids:
+	12c5331b-6084-48d3-aeaa-1a32cc5ff027	69ba0be4-cb38-47f0-8e49-55904708591b
+
+Apr. 20, 2022 6:59:56 PM Router evaluateMessage
+INFO: 
+ID: 				898f3e58-0f0e-46bd-839d-7cbe5c5a1ede
+Command:			Forward
+Source Port:			3313
+Destination Port: 		3043
+Path:				[3312, 3104, 3292, 3008, 3174, 3192, 3042]
+Content:			Hallo from 3313 to 3043
+
+Apr. 20, 2022 6:59:56 PM Router logStatus
+INFO: 
+Path Cache:
+Running Timer (Id - Sekunden):
+Known Ids:
+	12c5331b-6084-48d3-aeaa-1a32cc5ff027	69ba0be4-cb38-47f0-8e49-55904708591b
+
+Apr. 20, 2022 6:59:57 PM Router logNewPosition
+INFO: 
+New Position: ( x: 47; y: 98 )
+

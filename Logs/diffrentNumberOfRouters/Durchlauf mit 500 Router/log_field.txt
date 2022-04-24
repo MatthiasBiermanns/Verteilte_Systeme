@@ -1,0 +1,1505 @@
+Apr. 21, 2022 12:43:10 NACHM. Field setUpLogger
+INFO: Startet Logging
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 5, y: 30 with Ports: 3000, 3001
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 18, y: 42 with Ports: 3002, 3003
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 74, y: 32 with Ports: 3004, 3005
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 24, y: 93 with Ports: 3006, 3007
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 75, y: 38 with Ports: 3008, 3009
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 34, y: 52 with Ports: 3010, 3011
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 77, y: 58 with Ports: 3012, 3013
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 91, y: 90 with Ports: 3014, 3015
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 38, y: 52 with Ports: 3016, 3017
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 0, y: 61 with Ports: 3018, 3019
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 93, y: 9 with Ports: 3020, 3021
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 49, y: 22 with Ports: 3022, 3023
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 95, y: 90 with Ports: 3024, 3025
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 91, y: 59 with Ports: 3026, 3027
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 55, y: 94 with Ports: 3028, 3029
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 58, y: 17 with Ports: 3030, 3031
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 11, y: 42 with Ports: 3032, 3033
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 79, y: 71 with Ports: 3034, 3035
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 55, y: 12 with Ports: 3036, 3037
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 53, y: 2 with Ports: 3038, 3039
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 8, y: 71 with Ports: 3040, 3041
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 55, y: 48 with Ports: 3042, 3043
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 34, y: 58 with Ports: 3044, 3045
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 61, y: 18 with Ports: 3046, 3047
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 18, y: 69 with Ports: 3048, 3049
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 62, y: 18 with Ports: 3050, 3051
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 2, y: 6 with Ports: 3052, 3053
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 38, y: 92 with Ports: 3054, 3055
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 6, y: 89 with Ports: 3056, 3057
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 11, y: 52 with Ports: 3058, 3059
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 97, y: 67 with Ports: 3060, 3061
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 99, y: 75 with Ports: 3062, 3063
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 0, y: 32 with Ports: 3064, 3065
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 7, y: 39 with Ports: 3066, 3067
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 47, y: 36 with Ports: 3068, 3069
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 92, y: 5 with Ports: 3070, 3071
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 71, y: 49 with Ports: 3072, 3073
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 9, y: 83 with Ports: 3074, 3075
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 62, y: 86 with Ports: 3076, 3077
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 40, y: 74 with Ports: 3078, 3079
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 50, y: 80 with Ports: 3080, 3081
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 90, y: 63 with Ports: 3082, 3083
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 6, y: 65 with Ports: 3084, 3085
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 43, y: 97 with Ports: 3086, 3087
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 84, y: 69 with Ports: 3088, 3089
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 91, y: 19 with Ports: 3090, 3091
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 98, y: 2 with Ports: 3092, 3093
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 26, y: 11 with Ports: 3094, 3095
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 72, y: 91 with Ports: 3096, 3097
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 65, y: 55 with Ports: 3098, 3099
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 57, y: 41 with Ports: 3100, 3101
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 70, y: 62 with Ports: 3102, 3103
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 11, y: 99 with Ports: 3104, 3105
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 54, y: 73 with Ports: 3106, 3107
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 88, y: 46 with Ports: 3108, 3109
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 56, y: 43 with Ports: 3110, 3111
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 65, y: 82 with Ports: 3112, 3113
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 75, y: 71 with Ports: 3114, 3115
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 71, y: 46 with Ports: 3116, 3117
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 25, y: 0 with Ports: 3118, 3119
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 35, y: 74 with Ports: 3120, 3121
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 69, y: 86 with Ports: 3122, 3123
+
+Apr. 21, 2022 12:43:10 NACHM. Field createNewDevice
+INFO: Device created at x: 99, y: 24 with Ports: 3124, 3125
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 11, y: 25 with Ports: 3126, 3127
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 68, y: 74 with Ports: 3128, 3129
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 58, y: 49 with Ports: 3130, 3131
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 78, y: 64 with Ports: 3132, 3133
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 18, y: 88 with Ports: 3134, 3135
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 76, y: 59 with Ports: 3136, 3137
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 27, y: 89 with Ports: 3138, 3139
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 97, y: 2 with Ports: 3140, 3141
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 50, y: 85 with Ports: 3142, 3143
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 15, y: 86 with Ports: 3144, 3145
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 93, y: 7 with Ports: 3146, 3147
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 5, y: 50 with Ports: 3148, 3149
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 97, y: 11 with Ports: 3150, 3151
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 54, y: 44 with Ports: 3152, 3153
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 59, y: 94 with Ports: 3154, 3155
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 74, y: 98 with Ports: 3156, 3157
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 50, y: 75 with Ports: 3158, 3159
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 59, y: 84 with Ports: 3160, 3161
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 48, y: 85 with Ports: 3162, 3163
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 38, y: 6 with Ports: 3164, 3165
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 99, y: 12 with Ports: 3166, 3167
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 33, y: 27 with Ports: 3168, 3169
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 70, y: 53 with Ports: 3170, 3171
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 16, y: 27 with Ports: 3172, 3173
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 25, y: 74 with Ports: 3174, 3175
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 13, y: 60 with Ports: 3176, 3177
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 71, y: 92 with Ports: 3178, 3179
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 71, y: 52 with Ports: 3180, 3181
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 4, y: 96 with Ports: 3182, 3183
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 12, y: 38 with Ports: 3184, 3185
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 51, y: 49 with Ports: 3186, 3187
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 78, y: 48 with Ports: 3188, 3189
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 76, y: 65 with Ports: 3190, 3191
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 48, y: 70 with Ports: 3192, 3193
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 76, y: 96 with Ports: 3194, 3195
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 71, y: 25 with Ports: 3196, 3197
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 46, y: 50 with Ports: 3198, 3199
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 5, y: 57 with Ports: 3200, 3201
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 2, y: 54 with Ports: 3202, 3203
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 15, y: 76 with Ports: 3204, 3205
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 27, y: 55 with Ports: 3206, 3207
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 12, y: 95 with Ports: 3208, 3209
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 79, y: 13 with Ports: 3210, 3211
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 25, y: 54 with Ports: 3212, 3213
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 34, y: 21 with Ports: 3214, 3215
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 53, y: 78 with Ports: 3216, 3217
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 34, y: 9 with Ports: 3218, 3219
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 8, y: 88 with Ports: 3220, 3221
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 95, y: 76 with Ports: 3222, 3223
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 10, y: 62 with Ports: 3224, 3225
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 22, y: 48 with Ports: 3226, 3227
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 18, y: 63 with Ports: 3228, 3229
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 34, y: 8 with Ports: 3230, 3231
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 37, y: 60 with Ports: 3232, 3233
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 93, y: 90 with Ports: 3234, 3235
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 45, y: 91 with Ports: 3236, 3237
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 42, y: 27 with Ports: 3238, 3239
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 99, y: 94 with Ports: 3240, 3241
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 49, y: 36 with Ports: 3242, 3243
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 77, y: 68 with Ports: 3244, 3245
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 51, y: 15 with Ports: 3246, 3247
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 21, y: 24 with Ports: 3248, 3249
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 44, y: 82 with Ports: 3250, 3251
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 4, y: 92 with Ports: 3252, 3253
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 57, y: 2 with Ports: 3254, 3255
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 48, y: 18 with Ports: 3256, 3257
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 77, y: 25 with Ports: 3258, 3259
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 55, y: 82 with Ports: 3260, 3261
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 77, y: 12 with Ports: 3262, 3263
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 89, y: 44 with Ports: 3264, 3265
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 86, y: 39 with Ports: 3266, 3267
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 89, y: 24 with Ports: 3268, 3269
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 26, y: 51 with Ports: 3270, 3271
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 14, y: 93 with Ports: 3272, 3273
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 12, y: 64 with Ports: 3274, 3275
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 79, y: 24 with Ports: 3276, 3277
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 47, y: 60 with Ports: 3278, 3279
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 19, y: 72 with Ports: 3280, 3281
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 34, y: 61 with Ports: 3282, 3283
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 63, y: 76 with Ports: 3284, 3285
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 36, y: 29 with Ports: 3286, 3287
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 78, y: 8 with Ports: 3288, 3289
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 57, y: 39 with Ports: 3290, 3291
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 38, y: 38 with Ports: 3292, 3293
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 46, y: 52 with Ports: 3294, 3295
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 22, y: 49 with Ports: 3296, 3297
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 42, y: 85 with Ports: 3298, 3299
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 54, y: 84 with Ports: 3300, 3301
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 0, y: 96 with Ports: 3302, 3303
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 72, y: 5 with Ports: 3304, 3305
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 36, y: 3 with Ports: 3306, 3307
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 31, y: 5 with Ports: 3308, 3309
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 80, y: 72 with Ports: 3310, 3311
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 77, y: 78 with Ports: 3312, 3313
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 81, y: 16 with Ports: 3314, 3315
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 50, y: 25 with Ports: 3316, 3317
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 37, y: 15 with Ports: 3318, 3319
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 25, y: 69 with Ports: 3320, 3321
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 81, y: 71 with Ports: 3322, 3323
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 12, y: 70 with Ports: 3324, 3325
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 72, y: 43 with Ports: 3326, 3327
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 10, y: 55 with Ports: 3328, 3329
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 21, y: 22 with Ports: 3330, 3331
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 95, y: 35 with Ports: 3332, 3333
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 74, y: 46 with Ports: 3334, 3335
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 90, y: 73 with Ports: 3336, 3337
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 45, y: 87 with Ports: 3338, 3339
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 34, y: 5 with Ports: 3340, 3341
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 74, y: 82 with Ports: 3342, 3343
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 86, y: 84 with Ports: 3344, 3345
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 29, y: 82 with Ports: 3346, 3347
+
+Apr. 21, 2022 12:43:11 NACHM. Field createNewDevice
+INFO: Device created at x: 97, y: 63 with Ports: 3348, 3349
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 20, y: 63 with Ports: 3350, 3351
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 46, y: 21 with Ports: 3352, 3353
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 54, y: 31 with Ports: 3354, 3355
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 23, y: 53 with Ports: 3356, 3357
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 49, y: 15 with Ports: 3358, 3359
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 6, y: 24 with Ports: 3360, 3361
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 95, y: 19 with Ports: 3362, 3363
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 17, y: 54 with Ports: 3364, 3365
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 22, y: 13 with Ports: 3366, 3367
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 8, y: 12 with Ports: 3368, 3369
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 56, y: 50 with Ports: 3370, 3371
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 39, y: 87 with Ports: 3372, 3373
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 35, y: 33 with Ports: 3374, 3375
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 63, y: 53 with Ports: 3376, 3377
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 36, y: 4 with Ports: 3378, 3379
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 20, y: 68 with Ports: 3380, 3381
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 36, y: 72 with Ports: 3382, 3383
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 71, y: 15 with Ports: 3384, 3385
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 9, y: 15 with Ports: 3386, 3387
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 90, y: 64 with Ports: 3388, 3389
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 95, y: 23 with Ports: 3390, 3391
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 25, y: 21 with Ports: 3392, 3393
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 38, y: 24 with Ports: 3394, 3395
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 10, y: 33 with Ports: 3396, 3397
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 21, y: 12 with Ports: 3398, 3399
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 85, y: 46 with Ports: 3400, 3401
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 59, y: 58 with Ports: 3402, 3403
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 44, y: 39 with Ports: 3404, 3405
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 13, y: 34 with Ports: 3406, 3407
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 74, y: 14 with Ports: 3408, 3409
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 16, y: 57 with Ports: 3410, 3411
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 95, y: 85 with Ports: 3412, 3413
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 92, y: 37 with Ports: 3414, 3415
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 37, y: 95 with Ports: 3416, 3417
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 29, y: 41 with Ports: 3418, 3419
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 13, y: 94 with Ports: 3420, 3421
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 65, y: 49 with Ports: 3422, 3423
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 81, y: 3 with Ports: 3424, 3425
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 40, y: 44 with Ports: 3426, 3427
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 88, y: 43 with Ports: 3428, 3429
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 68, y: 50 with Ports: 3430, 3431
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 98, y: 4 with Ports: 3432, 3433
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 38, y: 25 with Ports: 3434, 3435
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 51, y: 87 with Ports: 3436, 3437
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 42, y: 6 with Ports: 3438, 3439
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 9, y: 77 with Ports: 3440, 3441
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 45, y: 77 with Ports: 3442, 3443
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 6, y: 31 with Ports: 3444, 3445
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 98, y: 68 with Ports: 3446, 3447
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 1, y: 41 with Ports: 3448, 3449
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 27, y: 39 with Ports: 3450, 3451
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 94, y: 6 with Ports: 3452, 3453
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 41, y: 35 with Ports: 3454, 3455
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 77, y: 77 with Ports: 3456, 3457
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 21, y: 96 with Ports: 3458, 3459
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 49, y: 58 with Ports: 3460, 3461
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 83, y: 51 with Ports: 3462, 3463
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 6, y: 61 with Ports: 3464, 3465
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 14, y: 21 with Ports: 3466, 3467
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 92, y: 41 with Ports: 3468, 3469
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 76, y: 57 with Ports: 3470, 3471
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 46, y: 97 with Ports: 3472, 3473
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 79, y: 45 with Ports: 3474, 3475
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 36, y: 33 with Ports: 3476, 3477
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 81, y: 63 with Ports: 3478, 3479
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 20, y: 77 with Ports: 3480, 3481
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 65, y: 1 with Ports: 3482, 3483
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 60, y: 45 with Ports: 3484, 3485
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 16, y: 35 with Ports: 3486, 3487
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 10, y: 8 with Ports: 3488, 3489
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 22, y: 20 with Ports: 3490, 3491
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 34, y: 51 with Ports: 3492, 3493
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 51, y: 53 with Ports: 3494, 3495
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 69, y: 70 with Ports: 3496, 3497
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 99, y: 87 with Ports: 3498, 3499
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 2, y: 59 with Ports: 3500, 3501
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 17, y: 90 with Ports: 3502, 3503
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 46, y: 11 with Ports: 3504, 3505
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 56, y: 76 with Ports: 3506, 3507
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 43, y: 81 with Ports: 3508, 3509
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 60, y: 19 with Ports: 3510, 3511
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 9, y: 92 with Ports: 3512, 3513
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 62, y: 15 with Ports: 3514, 3515
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 81, y: 90 with Ports: 3516, 3517
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 68, y: 39 with Ports: 3518, 3519
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 76, y: 36 with Ports: 3520, 3521
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 5, y: 76 with Ports: 3522, 3523
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 28, y: 82 with Ports: 3524, 3525
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 11, y: 41 with Ports: 3526, 3527
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 13, y: 49 with Ports: 3528, 3529
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 25, y: 18 with Ports: 3530, 3531
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 8, y: 53 with Ports: 3532, 3533
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 37, y: 61 with Ports: 3534, 3535
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 71, y: 8 with Ports: 3536, 3537
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 73, y: 53 with Ports: 3538, 3539
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 69, y: 95 with Ports: 3540, 3541
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 72, y: 73 with Ports: 3542, 3543
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 67, y: 3 with Ports: 3544, 3545
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 23, y: 3 with Ports: 3546, 3547
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 50, y: 95 with Ports: 3548, 3549
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 99, y: 76 with Ports: 3550, 3551
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 95, y: 86 with Ports: 3552, 3553
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 78, y: 65 with Ports: 3554, 3555
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 60, y: 32 with Ports: 3556, 3557
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 97, y: 74 with Ports: 3558, 3559
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 91, y: 52 with Ports: 3560, 3561
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 65, y: 69 with Ports: 3562, 3563
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 21, y: 9 with Ports: 3564, 3565
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 67, y: 49 with Ports: 3566, 3567
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 94, y: 50 with Ports: 3568, 3569
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 44, y: 61 with Ports: 3570, 3571
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 60, y: 81 with Ports: 3572, 3573
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 70, y: 79 with Ports: 3574, 3575
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 31, y: 70 with Ports: 3576, 3577
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 84, y: 99 with Ports: 3578, 3579
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 59, y: 24 with Ports: 3580, 3581
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 26, y: 83 with Ports: 3582, 3583
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 79, y: 26 with Ports: 3584, 3585
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 66, y: 96 with Ports: 3586, 3587
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 58, y: 41 with Ports: 3588, 3589
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 1, y: 87 with Ports: 3590, 3591
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 4, y: 9 with Ports: 3592, 3593
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 90, y: 21 with Ports: 3594, 3595
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 73, y: 94 with Ports: 3596, 3597
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 7, y: 7 with Ports: 3598, 3599
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 87, y: 3 with Ports: 3600, 3601
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 59, y: 72 with Ports: 3602, 3603
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 34, y: 47 with Ports: 3604, 3605
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 80, y: 42 with Ports: 3606, 3607
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 76, y: 99 with Ports: 3608, 3609
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 96, y: 93 with Ports: 3610, 3611
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 41, y: 4 with Ports: 3612, 3613
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 80, y: 41 with Ports: 3614, 3615
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 96, y: 95 with Ports: 3616, 3617
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 88, y: 64 with Ports: 3618, 3619
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 40, y: 9 with Ports: 3620, 3621
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 70, y: 33 with Ports: 3622, 3623
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 57, y: 19 with Ports: 3624, 3625
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 3, y: 23 with Ports: 3626, 3627
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 98, y: 93 with Ports: 3628, 3629
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 83, y: 41 with Ports: 3630, 3631
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 21, y: 5 with Ports: 3632, 3633
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 32, y: 7 with Ports: 3634, 3635
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 50, y: 84 with Ports: 3636, 3637
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 75, y: 24 with Ports: 3638, 3639
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 54, y: 18 with Ports: 3640, 3641
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 17, y: 16 with Ports: 3642, 3643
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 51, y: 19 with Ports: 3644, 3645
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 25, y: 24 with Ports: 3646, 3647
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 62, y: 25 with Ports: 3648, 3649
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 8, y: 40 with Ports: 3650, 3651
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 36, y: 26 with Ports: 3652, 3653
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 69, y: 29 with Ports: 3654, 3655
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 35, y: 95 with Ports: 3656, 3657
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 90, y: 61 with Ports: 3658, 3659
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 14, y: 15 with Ports: 3660, 3661
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 16, y: 40 with Ports: 3662, 3663
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 85, y: 61 with Ports: 3664, 3665
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 69, y: 14 with Ports: 3666, 3667
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 35, y: 2 with Ports: 3668, 3669
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 74, y: 31 with Ports: 3670, 3671
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 46, y: 33 with Ports: 3672, 3673
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 37, y: 28 with Ports: 3674, 3675
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 65, y: 75 with Ports: 3676, 3677
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 92, y: 4 with Ports: 3678, 3679
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 29, y: 6 with Ports: 3680, 3681
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 89, y: 95 with Ports: 3682, 3683
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 89, y: 85 with Ports: 3684, 3685
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 35, y: 89 with Ports: 3686, 3687
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 95, y: 61 with Ports: 3688, 3689
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 98, y: 10 with Ports: 3690, 3691
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 26, y: 62 with Ports: 3692, 3693
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 86, y: 14 with Ports: 3694, 3695
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 47, y: 37 with Ports: 3696, 3697
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 94, y: 11 with Ports: 3698, 3699
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 83, y: 44 with Ports: 3700, 3701
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 3, y: 40 with Ports: 3702, 3703
+
+Apr. 21, 2022 12:43:12 NACHM. Field createNewDevice
+INFO: Device created at x: 62, y: 87 with Ports: 3704, 3705
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 59, y: 33 with Ports: 3706, 3707
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 92, y: 72 with Ports: 3708, 3709
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 65, y: 56 with Ports: 3710, 3711
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 69, y: 64 with Ports: 3712, 3713
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 7, y: 45 with Ports: 3714, 3715
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 91, y: 54 with Ports: 3716, 3717
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 47, y: 54 with Ports: 3718, 3719
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 7, y: 84 with Ports: 3720, 3721
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 75, y: 62 with Ports: 3722, 3723
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 43, y: 4 with Ports: 3724, 3725
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 7, y: 56 with Ports: 3726, 3727
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 13, y: 58 with Ports: 3728, 3729
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 53, y: 41 with Ports: 3730, 3731
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 13, y: 11 with Ports: 3732, 3733
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 70, y: 39 with Ports: 3734, 3735
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 24, y: 95 with Ports: 3736, 3737
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 10, y: 2 with Ports: 3738, 3739
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 49, y: 13 with Ports: 3740, 3741
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 52, y: 97 with Ports: 3742, 3743
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 97, y: 13 with Ports: 3744, 3745
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 16, y: 46 with Ports: 3746, 3747
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 20, y: 59 with Ports: 3748, 3749
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 55, y: 30 with Ports: 3750, 3751
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 70, y: 11 with Ports: 3752, 3753
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 63, y: 44 with Ports: 3754, 3755
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 20, y: 90 with Ports: 3756, 3757
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 12, y: 44 with Ports: 3758, 3759
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 36, y: 97 with Ports: 3760, 3761
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 13, y: 31 with Ports: 3762, 3763
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 50, y: 82 with Ports: 3764, 3765
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 94, y: 15 with Ports: 3766, 3767
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 93, y: 60 with Ports: 3768, 3769
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 54, y: 20 with Ports: 3770, 3771
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 15, y: 20 with Ports: 3772, 3773
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 81, y: 31 with Ports: 3774, 3775
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 82, y: 44 with Ports: 3776, 3777
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 34, y: 31 with Ports: 3778, 3779
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 10, y: 98 with Ports: 3780, 3781
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 57, y: 44 with Ports: 3782, 3783
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 42, y: 62 with Ports: 3784, 3785
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 91, y: 93 with Ports: 3786, 3787
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 89, y: 72 with Ports: 3788, 3789
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 14, y: 60 with Ports: 3790, 3791
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 45, y: 43 with Ports: 3792, 3793
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 13, y: 61 with Ports: 3794, 3795
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 26, y: 4 with Ports: 3796, 3797
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 34, y: 81 with Ports: 3798, 3799
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 75, y: 14 with Ports: 3800, 3801
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 94, y: 61 with Ports: 3802, 3803
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 17, y: 71 with Ports: 3804, 3805
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 9, y: 62 with Ports: 3806, 3807
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 69, y: 63 with Ports: 3808, 3809
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 63, y: 56 with Ports: 3810, 3811
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 94, y: 35 with Ports: 3812, 3813
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 17, y: 38 with Ports: 3814, 3815
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 46, y: 25 with Ports: 3816, 3817
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 9, y: 95 with Ports: 3818, 3819
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 35, y: 96 with Ports: 3820, 3821
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 46, y: 65 with Ports: 3822, 3823
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 81, y: 81 with Ports: 3824, 3825
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 89, y: 69 with Ports: 3826, 3827
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 63, y: 42 with Ports: 3828, 3829
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 96, y: 85 with Ports: 3830, 3831
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 66, y: 88 with Ports: 3832, 3833
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 70, y: 60 with Ports: 3834, 3835
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 39, y: 31 with Ports: 3836, 3837
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 88, y: 39 with Ports: 3838, 3839
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 19, y: 78 with Ports: 3840, 3841
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 69, y: 40 with Ports: 3842, 3843
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 95, y: 95 with Ports: 3844, 3845
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 10, y: 88 with Ports: 3846, 3847
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 41, y: 45 with Ports: 3848, 3849
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 92, y: 22 with Ports: 3850, 3851
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 37, y: 99 with Ports: 3852, 3853
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 64, y: 5 with Ports: 3854, 3855
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 53, y: 60 with Ports: 3856, 3857
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 35, y: 11 with Ports: 3858, 3859
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 74, y: 68 with Ports: 3860, 3861
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 53, y: 77 with Ports: 3862, 3863
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 38, y: 75 with Ports: 3864, 3865
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 46, y: 87 with Ports: 3866, 3867
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 74, y: 73 with Ports: 3868, 3869
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 78, y: 63 with Ports: 3870, 3871
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 91, y: 45 with Ports: 3872, 3873
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 19, y: 79 with Ports: 3874, 3875
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 17, y: 93 with Ports: 3876, 3877
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 64, y: 37 with Ports: 3878, 3879
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 73, y: 67 with Ports: 3880, 3881
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 0, y: 12 with Ports: 3882, 3883
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 86, y: 52 with Ports: 3884, 3885
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 10, y: 42 with Ports: 3886, 3887
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 59, y: 36 with Ports: 3888, 3889
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 0, y: 10 with Ports: 3890, 3891
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 52, y: 31 with Ports: 3892, 3893
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 26, y: 65 with Ports: 3894, 3895
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 19, y: 4 with Ports: 3896, 3897
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 40, y: 69 with Ports: 3898, 3899
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 27, y: 1 with Ports: 3900, 3901
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 93, y: 41 with Ports: 3902, 3903
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 69, y: 9 with Ports: 3904, 3905
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 0, y: 15 with Ports: 3906, 3907
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 15, y: 71 with Ports: 3908, 3909
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 17, y: 76 with Ports: 3910, 3911
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 58, y: 15 with Ports: 3912, 3913
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 23, y: 59 with Ports: 3914, 3915
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 91, y: 46 with Ports: 3916, 3917
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 43, y: 70 with Ports: 3918, 3919
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 72, y: 30 with Ports: 3920, 3921
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 26, y: 80 with Ports: 3922, 3923
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 18, y: 26 with Ports: 3924, 3925
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 61, y: 72 with Ports: 3926, 3927
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 43, y: 26 with Ports: 3928, 3929
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 84, y: 11 with Ports: 3930, 3931
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 61, y: 16 with Ports: 3932, 3933
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 94, y: 56 with Ports: 3934, 3935
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 43, y: 62 with Ports: 3936, 3937
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 15, y: 92 with Ports: 3938, 3939
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 64, y: 16 with Ports: 3940, 3941
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 87, y: 55 with Ports: 3942, 3943
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 75, y: 53 with Ports: 3944, 3945
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 10, y: 87 with Ports: 3946, 3947
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 56, y: 33 with Ports: 3948, 3949
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 91, y: 60 with Ports: 3950, 3951
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 33, y: 1 with Ports: 3952, 3953
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 5, y: 65 with Ports: 3954, 3955
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 97, y: 92 with Ports: 3956, 3957
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 1, y: 55 with Ports: 3958, 3959
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 26, y: 94 with Ports: 3960, 3961
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 41, y: 31 with Ports: 3962, 3963
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 17, y: 10 with Ports: 3964, 3965
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 28, y: 51 with Ports: 3966, 3967
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 55, y: 93 with Ports: 3968, 3969
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 85, y: 18 with Ports: 3970, 3971
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 34, y: 57 with Ports: 3972, 3973
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 98, y: 9 with Ports: 3974, 3975
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 87, y: 45 with Ports: 3976, 3977
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 30, y: 86 with Ports: 3978, 3979
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 32, y: 50 with Ports: 3980, 3981
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 5, y: 52 with Ports: 3982, 3983
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 13, y: 66 with Ports: 3984, 3985
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 3, y: 15 with Ports: 3986, 3987
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 3, y: 43 with Ports: 3988, 3989
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 56, y: 18 with Ports: 3990, 3991
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 56, y: 74 with Ports: 3992, 3993
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 41, y: 49 with Ports: 3994, 3995
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 39, y: 90 with Ports: 3996, 3997
+
+Apr. 21, 2022 12:43:13 NACHM. Field createNewDevice
+INFO: Device created at x: 54, y: 0 with Ports: 3998, 3999
+
+Apr. 21, 2022 12:43:18 NACHM. Field startRouter
+INFO: Router startet successfully

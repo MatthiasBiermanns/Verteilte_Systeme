@@ -1,0 +1,185 @@
+Apr. 20, 2022 6:05:19 PM Router setUpLogger
+INFO: Router startet logging
+ Position: ( x: 70; y: 10 )
+Port: 3166
+
+Apr. 20, 2022 6:05:21 PM Router evaluateMessage
+INFO: 
+ID: 				7dcda045-89cc-422f-95bb-dde192a28d73
+Command:			RouteRequest
+Source Port:			3452
+Destination Port: 		3233
+Path:				[3452, 3386, 3258, 3196, 3028, 3006]
+Content:			
+
+Apr. 20, 2022 6:05:21 PM Router evaluateMessage
+INFO: 
+ID: 				07027486-413a-47c5-8ac2-56963d21c5ff
+Command:			RouteRequest
+Source Port:			3230
+Destination Port: 		3141
+Path:				[3230, 3220, 3442, 3164, 3330, 3002, 3014, 3006]
+Content:			
+
+Apr. 20, 2022 6:05:22 PM Router evaluateMessage
+INFO: 
+ID: 				97b4b22b-fe2d-4bca-948e-22dccec0d4e5
+Command:			RouteRequest
+Source Port:			3174
+Destination Port: 		3221
+Path:				[3174, 3060, 3242, 3180, 3196, 3028, 3006]
+Content:			
+
+Apr. 20, 2022 6:05:23 PM Router evaluateMessage
+INFO: 
+ID: 				670a5209-37fb-4ea7-9352-feaf4c133a19
+Command:			RouteRequest
+Source Port:			3030
+Destination Port: 		3471
+Path:				[3030, 3456, 3208, 3324, 3122, 3232, 3234, 3114, 3288, 3394, 3006]
+Content:			
+
+Apr. 20, 2022 6:05:23 PM Router evaluateMessage
+INFO: 
+ID: 				fef081fa-1ed1-4723-ae84-d836bd5cf5a7
+Command:			RouteRequest
+Source Port:			3176
+Destination Port: 		3317
+Path:				[3176, 3284, 3212, 3488, 3336, 3084, 3158, 3394, 3006]
+Content:			
+
+Apr. 20, 2022 6:05:24 PM Router evaluateMessage
+INFO: 
+ID: 				09caf921-52e2-4f81-b504-08cd5bf465b8
+Command:			RouteRequest
+Source Port:			3348
+Destination Port: 		3491
+Path:				[3348, 3484, 3314, 3200, 3492, 3218, 3212, 3488, 3336, 3084, 3158, 3014, 3006]
+Content:			
+
+Apr. 20, 2022 6:05:24 PM Router evaluateMessage
+INFO: 
+ID: 				3be6da94-3b8c-4bdc-ba25-8cc154affe98
+Command:			RouteRequest
+Source Port:			3010
+Destination Port: 		3379
+Path:				[3010, 3430, 3452, 3386, 3258, 3262, 3270]
+Content:			
+
+Apr. 20, 2022 6:05:25 PM Router evaluateMessage
+INFO: 
+ID: 				b1a0b391-ad7e-4e0b-9b2c-664449d5f75d
+Command:			RouteRequest
+Source Port:			3002
+Destination Port: 		3311
+Path:				[3002, 3014, 3006]
+Content:			
+
+Apr. 20, 2022 6:05:25 PM Router evaluateMessage
+INFO: 
+ID: 				219c0f75-5936-4b2e-ac78-8b0b1f4ca9af
+Command:			RouteRequest
+Source Port:			3272
+Destination Port: 		3003
+Path:				[3272, 3420, 3212, 3488, 3336, 3084, 3158, 3274, 3174]
+Content:			
+
+Apr. 20, 2022 6:05:26 PM Router evaluateMessage
+INFO: 
+ID: 				515938f0-ecba-4941-86f2-ec737c7852ba
+Command:			RouteRequest
+Source Port:			3380
+Destination Port: 		3229
+Path:				[3380, 3326, 3174]
+Content:			
+
+Apr. 20, 2022 6:05:26 PM Router evaluateMessage
+INFO: 
+ID: 				445a6671-add7-4a09-987b-8b7e4c37156f
+Command:			RouteRequest
+Source Port:			3248
+Destination Port: 		3459
+Path:				[3248, 3328, 3460, 3350, 3294, 3404, 3242, 3180, 3196, 3004, 3270]
+Content:			
+
+Apr. 20, 2022 6:05:27 PM Router evaluateMessage
+INFO: 
+ID: 				2cf4e445-9451-4e03-aa3c-7ae6aa74d86c
+Command:			RouteRequest
+Source Port:			3442
+Destination Port: 		3057
+Path:				[3442, 3326, 3174]
+Content:			
+
+Apr. 20, 2022 6:05:27 PM Router evaluateMessage
+INFO: 
+ID: 				52071f7f-0387-4e31-a974-eb4caa5abbc8
+Command:			RouteRequest
+Source Port:			3410
+Destination Port: 		3465
+Path:				[3410, 3146, 3026, 3058, 3324, 3092, 3144, 3386, 3258, 3262, 3270]
+Content:			
+
+Apr. 20, 2022 6:05:28 PM Router evaluateMessage
+INFO: 
+ID: 				ef389c09-f688-49f2-b5eb-a9c0c4420662
+Command:			RouteRequest
+Source Port:			3410
+Destination Port: 		3355
+Path:				[3410, 3146, 3026, 3058, 3324, 3092, 3144, 3386, 3258, 3262, 3270]
+Content:			
+
+Apr. 20, 2022 6:05:28 PM Router evaluateMessage
+INFO: 
+ID: 				e65332af-2679-493f-97a8-15dd47aec374
+Command:			RouteRequest
+Source Port:			3114
+Destination Port: 		3409
+Path:				[3114, 3288, 3458, 3174]
+Content:			
+
+Apr. 20, 2022 6:05:29 PM Router evaluateMessage
+INFO: 
+ID: 				d3ad3435-8ea7-482e-a106-4ef5fbfe9951
+Command:			RouteRequest
+Source Port:			3448
+Destination Port: 		3061
+Path:				[3448, 3402, 3134, 3088, 3490, 3488, 3336, 3084, 3158, 3458, 3270]
+Content:			
+
+Apr. 20, 2022 6:05:29 PM Router evaluateMessage
+INFO: 
+ID: 				1c0a4736-6d1e-419b-9511-ab2ce5df6a24
+Command:			RouteRequest
+Source Port:			3318
+Destination Port: 		3315
+Path:				[3318, 3080, 3044, 3364, 3256, 3468, 3102, 3452, 3386, 3258, 3262, 3270]
+Content:			
+
+Apr. 20, 2022 6:05:30 PM Router evaluateMessage
+INFO: 
+ID: 				da305376-7624-490d-ba47-286ec44fecbb
+Command:			RouteRequest
+Source Port:			3092
+Destination Port: 		3025
+Path:				[3092, 3144, 3386, 3258, 3262, 3270]
+Content:			
+
+Apr. 20, 2022 6:05:31 PM Router evaluateMessage
+INFO: 
+ID: 				946d3dac-038f-417f-bfe1-4196a72ce487
+Command:			RouteRequest
+Source Port:			3482
+Destination Port: 		3011
+Path:				[3482, 3268, 3300, 3286, 3036, 3478, 3208, 3092, 3102, 3370, 3386, 3258, 3262, 3270]
+Content:			
+
+Apr. 20, 2022 6:05:31 PM Router evaluateMessage
+INFO: 
+ID: 				0b4602b1-44e8-43c5-aba6-73f8ef764368
+Command:			RouteRequest
+Source Port:			3360
+Destination Port: 		3457
+Path:				[3360, 3066, 3006, 3270]
+Content:			
+

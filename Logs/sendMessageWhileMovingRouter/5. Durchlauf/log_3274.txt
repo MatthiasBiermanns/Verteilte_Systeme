@@ -1,0 +1,76 @@
+Apr. 20, 2022 6:54:44 PM Router setUpLogger
+INFO: Router startet logging
+ Position: ( x: 18; y: 4 )
+Port: 3274
+
+Apr. 20, 2022 6:54:45 PM Router evaluateMessage
+INFO: 
+ID: 				ef64da9c-da58-4d69-80f7-13b328ac463f
+Command:			RouteRequest
+Source Port:			3014
+Destination Port: 		3221
+Path:				[3014, 3156, 3228, 3046, 3332, 3306, 3142, 3098]
+Content:			
+
+Apr. 20, 2022 6:54:45 PM Router evaluateMessage
+INFO: 
+ID: 				63dffcf8-e56a-416d-8ec4-66d77127dfd3
+Command:			RouteRequest
+Source Port:			3050
+Destination Port: 		3281
+Path:				[3050, 3252, 3120, 3168]
+Content:			
+
+Apr. 20, 2022 6:54:46 PM Router logNewPosition
+INFO: 
+New Position: ( x: 31; y: 1 )
+
+Apr. 20, 2022 6:54:46 PM Router evaluateMessage
+INFO: 
+ID: 				d77b2b58-693b-4082-8e17-430ce2f6c2b5
+Command:			RouteRequest
+Source Port:			3242
+Destination Port: 		3257
+Path:				[3242, 3308, 3162, 3316, 3178, 3336, 3280, 3328, 3332, 3306, 3142]
+Content:			
+
+Apr. 20, 2022 6:54:47 PM Router evaluateMessage
+INFO: 
+ID: 				5916732c-abd8-48fa-a592-3b9f327d533d
+Command:			RouteRequest
+Source Port:			3320
+Destination Port: 		3267
+Path:				[3320, 3258, 3264, 3074, 3094, 3216, 3084, 3134, 3130, 3180, 3142]
+Content:			
+
+Apr. 20, 2022 6:54:47 PM Router evaluateMessage
+INFO: 
+ID: 				6827d5ed-2ad1-48b9-b1fe-60b51680ab4b
+Command:			RouteRequest
+Source Port:			3228
+Destination Port: 		3185
+Path:				[3228, 3046, 3332, 3306]
+Content:			
+
+Apr. 20, 2022 6:54:48 PM Router evaluateMessage
+INFO: 
+ID: 				b3402fbb-7b40-4e97-8bf4-4209f9de3abc
+Command:			RouteRequest
+Source Port:			3218
+Destination Port: 		3157
+Path:				[3218, 3314, 3238, 3248, 3310, 3254, 3078, 3206, 3024, 3150, 3090, 3264, 3074, 3094, 3092, 3084, 3134, 3130, 3180, 3142]
+Content:			
+
+Apr. 20, 2022 6:54:48 PM Router logNewPosition
+INFO: 
+New Position: ( x: 99; y: 69 )
+
+Apr. 20, 2022 6:54:48 PM Router evaluateMessage
+INFO: 
+ID: 				db524914-c945-4992-82a5-6cc75849112c
+Command:			RouteRequest
+Source Port:			3306
+Destination Port: 		3331
+Path:				[3306]
+Content:			
+

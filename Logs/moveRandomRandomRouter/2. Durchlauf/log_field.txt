@@ -1,0 +1,130 @@
+Apr. 19, 2022 4:21:49 PM Field setUpLogger
+INFO: Startet Logging
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 86, y: 38 with Ports: 3000, 3001
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 91, y: 95 with Ports: 3002, 3003
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 50, y: 12 with Ports: 3004, 3005
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 13, y: 24 with Ports: 3006, 3007
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 48, y: 62 with Ports: 3008, 3009
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 97, y: 93 with Ports: 3010, 3011
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 21, y: 69 with Ports: 3012, 3013
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 98, y: 62 with Ports: 3014, 3015
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 22, y: 64 with Ports: 3016, 3017
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 14, y: 26 with Ports: 3018, 3019
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 67, y: 99 with Ports: 3020, 3021
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 89, y: 62 with Ports: 3022, 3023
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 10, y: 29 with Ports: 3024, 3025
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 10, y: 96 with Ports: 3026, 3027
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 34, y: 10 with Ports: 3028, 3029
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 97, y: 23 with Ports: 3030, 3031
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 80, y: 43 with Ports: 3032, 3033
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 14, y: 5 with Ports: 3034, 3035
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 62, y: 75 with Ports: 3036, 3037
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 81, y: 16 with Ports: 3038, 3039
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 99, y: 99 with Ports: 3040, 3041
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 31, y: 90 with Ports: 3042, 3043
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 64, y: 58 with Ports: 3044, 3045
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 36, y: 83 with Ports: 3046, 3047
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 27, y: 32 with Ports: 3048, 3049
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 0, y: 51 with Ports: 3050, 3051
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 53, y: 18 with Ports: 3052, 3053
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 8, y: 93 with Ports: 3054, 3055
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 72, y: 26 with Ports: 3056, 3057
+
+Apr. 19, 2022 4:21:49 PM Field createNewDevice
+INFO: Device created at x: 68, y: 39 with Ports: 3058, 3059
+
+Apr. 19, 2022 4:21:56 PM Field startRouter
+INFO: Devices startet successfully
+Apr. 19, 2022 4:21:57 PM Field moveDevice
+INFO: Devices 3016, 3017 moved from x: 22, y: 64 to x: 71, y: 31
+
+Apr. 19, 2022 4:21:59 PM Field moveDevice
+INFO: Devices 3000, 3001 moved from x: 86, y: 38 to x: 32, y: 91
+
+Apr. 19, 2022 4:22:03 PM Field moveDevice
+INFO: Devices 3018, 3019 moved from x: 14, y: 26 to x: 75, y: 45
+
+Apr. 19, 2022 4:22:07 PM Field moveDevice
+INFO: Devices 3000, 3001 moved from x: 32, y: 91 to x: 87, y: 53
+
+Apr. 19, 2022 4:22:10 PM Field moveDevice
+INFO: Devices 3032, 3033 moved from x: 80, y: 43 to x: 70, y: 6
+
+Apr. 19, 2022 4:22:10 PM Field moveDevice
+INFO: Devices 3024, 3025 moved from x: 10, y: 29 to x: 1, y: 52
+
+Apr. 19, 2022 4:22:13 PM Field moveDevice
+INFO: Devices 3004, 3005 moved from x: 50, y: 12 to x: 86, y: 87
+
+Apr. 19, 2022 4:22:16 PM Field moveDevice
+INFO: Devices 3048, 3049 moved from x: 27, y: 32 to x: 73, y: 59
+
+Apr. 19, 2022 4:22:19 PM Field moveDevice
+INFO: Devices 3028, 3029 moved from x: 34, y: 10 to x: 28, y: 0
+
+Apr. 19, 2022 4:22:20 PM Field moveDevice
+INFO: Devices 3048, 3049 moved from x: 73, y: 59 to x: 14, y: 10
+
+Apr. 19, 2022 4:22:24 PM Field moveDevice
+INFO: Devices 3002, 3003 moved from x: 91, y: 95 to x: 25, y: 60
+
+Apr. 19, 2022 4:22:26 PM Field moveDevice
+INFO: Devices 3022, 3023 moved from x: 89, y: 62 to x: 56, y: 27
+

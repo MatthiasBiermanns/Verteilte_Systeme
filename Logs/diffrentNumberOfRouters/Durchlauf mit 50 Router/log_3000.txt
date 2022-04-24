@@ -1,0 +1,21 @@
+Apr. 21, 2022 11:37:23 VORM. Router setUpLogger
+INFO: Router startet logging
+ Position: ( x: 62; y: 26 )
+Port: 3000
+
+Apr. 21, 2022 11:37:29 VORM. Router evaluateMessage
+INFO: 
+ID: 				b4da5a8b-9feb-4a4e-a6be-cb7f72ab980a
+Command:			Send
+Source Port:			3001
+Destination Port: 		3003
+Path:				[]
+Content:			Hallo
+
+Apr. 21, 2022 11:37:29 VORM. Router logStatus
+INFO: 
+Path Cache:
+Running Timer (Id - Sekunden):
+Known Ids:
+	97143aff-705b-44ea-9a65-3fb87748b46d
+

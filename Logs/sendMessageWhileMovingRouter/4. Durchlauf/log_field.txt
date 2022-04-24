@@ -1,0 +1,589 @@
+Apr. 20, 2022 6:59:50 PM Field setUpLogger
+INFO: Startet Logging
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 94, y: 86 with Ports: 3000, 3001
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 8, y: 43 with Ports: 3002, 3003
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 14, y: 9 with Ports: 3004, 3005
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 40, y: 14 with Ports: 3006, 3007
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 1, y: 48 with Ports: 3008, 3009
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 68, y: 76 with Ports: 3010, 3011
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 46, y: 77 with Ports: 3012, 3013
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 54, y: 18 with Ports: 3014, 3015
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 82, y: 8 with Ports: 3016, 3017
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 88, y: 14 with Ports: 3018, 3019
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 83, y: 13 with Ports: 3020, 3021
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 21, y: 38 with Ports: 3022, 3023
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 65, y: 83 with Ports: 3024, 3025
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 77, y: 14 with Ports: 3026, 3027
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 29, y: 56 with Ports: 3028, 3029
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 38, y: 21 with Ports: 3030, 3031
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 70, y: 5 with Ports: 3032, 3033
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 83, y: 66 with Ports: 3034, 3035
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 38, y: 77 with Ports: 3036, 3037
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 38, y: 14 with Ports: 3038, 3039
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 86, y: 71 with Ports: 3040, 3041
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 0, y: 29 with Ports: 3042, 3043
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 46, y: 14 with Ports: 3044, 3045
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 7, y: 81 with Ports: 3046, 3047
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 82, y: 19 with Ports: 3048, 3049
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 87, y: 39 with Ports: 3050, 3051
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 56, y: 76 with Ports: 3052, 3053
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 80, y: 81 with Ports: 3054, 3055
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 76, y: 66 with Ports: 3056, 3057
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 54, y: 19 with Ports: 3058, 3059
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 37, y: 58 with Ports: 3060, 3061
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 61, y: 54 with Ports: 3062, 3063
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 93, y: 75 with Ports: 3064, 3065
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 32, y: 61 with Ports: 3066, 3067
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 53, y: 42 with Ports: 3068, 3069
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 24, y: 96 with Ports: 3070, 3071
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 0, y: 6 with Ports: 3072, 3073
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 20, y: 62 with Ports: 3074, 3075
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 45, y: 71 with Ports: 3076, 3077
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 73, y: 9 with Ports: 3078, 3079
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 70, y: 94 with Ports: 3080, 3081
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 95, y: 32 with Ports: 3082, 3083
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 17, y: 21 with Ports: 3084, 3085
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 84, y: 74 with Ports: 3086, 3087
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 40, y: 55 with Ports: 3088, 3089
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 13, y: 10 with Ports: 3090, 3091
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 17, y: 9 with Ports: 3092, 3093
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 54, y: 77 with Ports: 3094, 3095
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 53, y: 88 with Ports: 3096, 3097
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 43, y: 46 with Ports: 3098, 3099
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 96, y: 17 with Ports: 3100, 3101
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 16, y: 71 with Ports: 3102, 3103
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 6, y: 60 with Ports: 3104, 3105
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 16, y: 46 with Ports: 3106, 3107
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 90, y: 8 with Ports: 3108, 3109
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 11, y: 81 with Ports: 3110, 3111
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 26, y: 74 with Ports: 3112, 3113
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 74, y: 88 with Ports: 3114, 3115
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 78, y: 78 with Ports: 3116, 3117
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 25, y: 63 with Ports: 3118, 3119
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 70, y: 51 with Ports: 3120, 3121
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 47, y: 43 with Ports: 3122, 3123
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 85, y: 59 with Ports: 3124, 3125
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 23, y: 85 with Ports: 3126, 3127
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 16, y: 83 with Ports: 3128, 3129
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 9, y: 74 with Ports: 3130, 3131
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 36, y: 72 with Ports: 3132, 3133
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 38, y: 82 with Ports: 3134, 3135
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 63, y: 48 with Ports: 3136, 3137
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 79, y: 90 with Ports: 3138, 3139
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 99, y: 99 with Ports: 3140, 3141
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 11, y: 17 with Ports: 3142, 3143
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 97, y: 78 with Ports: 3144, 3145
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 67, y: 76 with Ports: 3146, 3147
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 56, y: 6 with Ports: 3148, 3149
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 75, y: 37 with Ports: 3150, 3151
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 73, y: 24 with Ports: 3152, 3153
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 89, y: 29 with Ports: 3154, 3155
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 99, y: 67 with Ports: 3156, 3157
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 33, y: 9 with Ports: 3158, 3159
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 13, y: 68 with Ports: 3160, 3161
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 28, y: 34 with Ports: 3162, 3163
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 81, y: 87 with Ports: 3164, 3165
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 25, y: 68 with Ports: 3166, 3167
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 74, y: 41 with Ports: 3168, 3169
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 10, y: 79 with Ports: 3170, 3171
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 61, y: 17 with Ports: 3172, 3173
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 5, y: 39 with Ports: 3174, 3175
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 73, y: 5 with Ports: 3176, 3177
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 31, y: 5 with Ports: 3178, 3179
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 62, y: 16 with Ports: 3180, 3181
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 57, y: 2 with Ports: 3182, 3183
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 83, y: 57 with Ports: 3184, 3185
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 22, y: 68 with Ports: 3186, 3187
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 91, y: 58 with Ports: 3188, 3189
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 62, y: 66 with Ports: 3190, 3191
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 3, y: 32 with Ports: 3192, 3193
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 74, y: 7 with Ports: 3194, 3195
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 84, y: 51 with Ports: 3196, 3197
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 68, y: 5 with Ports: 3198, 3199
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 25, y: 15 with Ports: 3200, 3201
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 64, y: 36 with Ports: 3202, 3203
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 36, y: 17 with Ports: 3204, 3205
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 75, y: 61 with Ports: 3206, 3207
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 39, y: 10 with Ports: 3208, 3209
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 31, y: 49 with Ports: 3210, 3211
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 67, y: 73 with Ports: 3212, 3213
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 73, y: 86 with Ports: 3214, 3215
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 87, y: 35 with Ports: 3216, 3217
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 17, y: 74 with Ports: 3218, 3219
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 46, y: 88 with Ports: 3220, 3221
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 11, y: 87 with Ports: 3222, 3223
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 4, y: 82 with Ports: 3224, 3225
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 30, y: 30 with Ports: 3226, 3227
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 48, y: 84 with Ports: 3228, 3229
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 31, y: 61 with Ports: 3230, 3231
+
+Apr. 20, 2022 6:59:50 PM Field createNewDevice
+INFO: Device created at x: 30, y: 52 with Ports: 3232, 3233
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 97, y: 6 with Ports: 3234, 3235
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 94, y: 10 with Ports: 3236, 3237
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 79, y: 58 with Ports: 3238, 3239
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 41, y: 57 with Ports: 3240, 3241
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 45, y: 64 with Ports: 3242, 3243
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 73, y: 89 with Ports: 3244, 3245
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 97, y: 55 with Ports: 3246, 3247
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 59, y: 84 with Ports: 3248, 3249
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 20, y: 3 with Ports: 3250, 3251
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 4, y: 26 with Ports: 3252, 3253
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 46, y: 35 with Ports: 3254, 3255
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 17, y: 46 with Ports: 3256, 3257
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 72, y: 82 with Ports: 3258, 3259
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 1, y: 5 with Ports: 3260, 3261
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 97, y: 95 with Ports: 3262, 3263
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 80, y: 13 with Ports: 3264, 3265
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 28, y: 58 with Ports: 3266, 3267
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 86, y: 17 with Ports: 3268, 3269
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 21, y: 90 with Ports: 3270, 3271
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 33, y: 73 with Ports: 3272, 3273
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 74, y: 97 with Ports: 3274, 3275
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 99, y: 7 with Ports: 3276, 3277
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 1, y: 90 with Ports: 3278, 3279
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 72, y: 34 with Ports: 3280, 3281
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 60, y: 69 with Ports: 3282, 3283
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 75, y: 84 with Ports: 3284, 3285
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 27, y: 25 with Ports: 3286, 3287
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 74, y: 4 with Ports: 3288, 3289
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 7, y: 11 with Ports: 3290, 3291
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 5, y: 53 with Ports: 3292, 3293
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 12, y: 99 with Ports: 3294, 3295
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 62, y: 23 with Ports: 3296, 3297
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 11, y: 19 with Ports: 3298, 3299
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 24, y: 13 with Ports: 3300, 3301
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 73, y: 78 with Ports: 3302, 3303
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 30, y: 82 with Ports: 3304, 3305
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 30, y: 20 with Ports: 3306, 3307
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 95, y: 4 with Ports: 3308, 3309
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 53, y: 4 with Ports: 3310, 3311
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 1, y: 63 with Ports: 3312, 3313
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 19, y: 62 with Ports: 3314, 3315
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 65, y: 14 with Ports: 3316, 3317
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 67, y: 84 with Ports: 3318, 3319
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 28, y: 85 with Ports: 3320, 3321
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 50, y: 6 with Ports: 3322, 3323
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 35, y: 74 with Ports: 3324, 3325
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 22, y: 52 with Ports: 3326, 3327
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 52, y: 23 with Ports: 3328, 3329
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 8, y: 9 with Ports: 3330, 3331
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 57, y: 92 with Ports: 3332, 3333
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 23, y: 13 with Ports: 3334, 3335
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 85, y: 47 with Ports: 3336, 3337
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 80, y: 36 with Ports: 3338, 3339
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 42, y: 32 with Ports: 3340, 3341
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 72, y: 3 with Ports: 3342, 3343
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 95, y: 9 with Ports: 3344, 3345
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 62, y: 40 with Ports: 3346, 3347
+
+Apr. 20, 2022 6:59:51 PM Field createNewDevice
+INFO: Device created at x: 69, y: 96 with Ports: 3348, 3349
+
+Apr. 20, 2022 6:59:51 PM Field startRouter
+INFO: Devices startet successfully
+Apr. 20, 2022 6:59:53 PM Field moveDevice
+INFO: Devices 3046, 3047 moved from x: 7, y: 81 to x: 22, y: 41
+
+Apr. 20, 2022 6:59:55 PM Field moveDevice
+INFO: Devices 3244, 3245 moved from x: 73, y: 89 to x: 88, y: 51
+
+Apr. 20, 2022 6:59:57 PM Field moveDevice
+INFO: Devices 3042, 3043 moved from x: 0, y: 29 to x: 47, y: 98
+
+Apr. 20, 2022 6:59:59 PM Field moveDevice
+INFO: Devices 3190, 3191 moved from x: 62, y: 66 to x: 3, y: 11
+
+Apr. 20, 2022 7:00:01 PM Field moveDevice
+INFO: Devices 3306, 3307 moved from x: 30, y: 20 to x: 51, y: 40
+
+Apr. 20, 2022 7:00:03 PM Field moveDevice
+INFO: Devices 3036, 3037 moved from x: 38, y: 77 to x: 19, y: 30
+
+Apr. 20, 2022 7:00:06 PM Field moveDevice
+INFO: Devices 3348, 3349 moved from x: 69, y: 96 to x: 85, y: 87
+
+Apr. 20, 2022 7:00:08 PM Field moveDevice
+INFO: Devices 3116, 3117 moved from x: 78, y: 78 to x: 63, y: 95
+
+Apr. 20, 2022 7:00:10 PM Field moveDevice
+INFO: Devices 3234, 3235 moved from x: 97, y: 6 to x: 53, y: 14
+
+Apr. 20, 2022 7:00:12 PM Field moveDevice
+INFO: Devices 3250, 3251 moved from x: 20, y: 3 to x: 94, y: 74
+
+Apr. 20, 2022 7:00:14 PM Field moveDevice
+INFO: Devices 3060, 3061 moved from x: 37, y: 58 to x: 10, y: 42
+
+Apr. 20, 2022 7:00:16 PM Field moveDevice
+INFO: Devices 3192, 3193 moved from x: 3, y: 32 to x: 21, y: 67
+
+Apr. 20, 2022 7:00:18 PM Field moveDevice
+INFO: Devices 3048, 3049 moved from x: 82, y: 19 to x: 71, y: 94
+
+Apr. 20, 2022 7:00:20 PM Field moveDevice
+INFO: Devices 3326, 3327 moved from x: 22, y: 52 to x: 26, y: 26
+
+Apr. 20, 2022 7:00:22 PM Field moveDevice
+INFO: Devices 3206, 3207 moved from x: 75, y: 61 to x: 89, y: 37
+
+Apr. 20, 2022 7:00:24 PM Field moveDevice
+INFO: Devices 3252, 3253 moved from x: 4, y: 26 to x: 99, y: 33
+
+Apr. 20, 2022 7:00:26 PM Field moveDevice
+INFO: Devices 3334, 3335 moved from x: 23, y: 13 to x: 14, y: 41
+
+Apr. 20, 2022 7:00:28 PM Field moveDevice
+INFO: Devices 3052, 3053 moved from x: 56, y: 76 to x: 67, y: 21
+
+Apr. 20, 2022 7:00:30 PM Field moveDevice
+INFO: Devices 3200, 3201 moved from x: 25, y: 15 to x: 33, y: 65
+
+Apr. 20, 2022 7:00:32 PM Field moveDevice
+INFO: Devices 3348, 3349 moved from x: 85, y: 87 to x: 7, y: 42
+

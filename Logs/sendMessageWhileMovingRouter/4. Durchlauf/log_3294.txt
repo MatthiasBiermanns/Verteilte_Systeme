@@ -1,0 +1,5 @@
+Apr. 20, 2022 6:59:51 PM Router setUpLogger
+INFO: Router startet logging
+ Position: ( x: 12; y: 99 )
+Port: 3294
+
