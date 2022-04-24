@@ -1,0 +1,25 @@
+Apr. 20, 2022 6:54:43 PM Router setUpLogger
+INFO: Router startet logging
+ Position: ( x: 28; y: 1 )
+Port: 3042
+
+Apr. 20, 2022 6:54:45 PM Router logNewPosition
+INFO: 
+New Position: ( x: 93; y: 99 )
+
+Apr. 20, 2022 6:54:45 PM Router evaluateMessage
+INFO: 
+ID: 				f59cf94a-0c89-456e-8da7-0079f91f8697
+Command:			Send
+Source Port:			3043
+Destination Port: 		3193
+Path:				[]
+Content:			Hallo from 3043 to 3193
+
+Apr. 20, 2022 6:54:45 PM Router logStatus
+INFO: 
+Path Cache:
+Running Timer (Id - Sekunden):
+Known Ids:
+	f705ad3b-295a-4397-988c-27c325a8d9c3
+

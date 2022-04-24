@@ -1,0 +1,9 @@
+Apr. 19, 2022 4:21:49 PM Router setUpLogger
+INFO: Router startet logging
+ Position: ( x: 34; y: 10 )
+Port: 3028
+
+Apr. 19, 2022 4:22:19 PM Router logNewPosition
+INFO: 
+New Position: ( x: 28; y: 0 )
+

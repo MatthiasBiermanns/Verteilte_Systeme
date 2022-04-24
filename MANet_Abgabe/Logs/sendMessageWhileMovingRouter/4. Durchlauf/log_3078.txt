@@ -1,0 +1,354 @@
+Apr. 20, 2022 6:59:50 PM Router setUpLogger
+INFO: Router startet logging
+ Position: ( x: 73; y: 9 )
+Port: 3078
+
+Apr. 20, 2022 6:59:54 PM Router evaluateMessage
+INFO: 
+ID: 				12c5331b-6084-48d3-aeaa-1a32cc5ff027
+Command:			RouteRequest
+Source Port:			3060
+Destination Port: 		3157
+Path:				[3060, 3232, 3326, 3256, 3022, 3162, 3286, 3306, 3038, 3044, 3058, 3296, 3316]
+Content:			
+
+Apr. 20, 2022 6:59:56 PM Router evaluateMessage
+INFO: 
+ID: 				69ba0be4-cb38-47f0-8e49-55904708591b
+Command:			RouteRequest
+Source Port:			3312
+Destination Port: 		3043
+Path:				[3312, 3104, 3292, 3008, 3002, 3256, 3046, 3162, 3226, 3306, 3038, 3044, 3058, 3296, 3316]
+Content:			
+
+Apr. 20, 2022 6:59:57 PM Router evaluateMessage
+INFO: 
+ID: 				0ebab80c-588d-447a-a724-f72ed7bb4925
+Command:			RouteRequest
+Source Port:			3198
+Destination Port: 		3053
+Path:				[3198]
+Content:			
+
+Apr. 20, 2022 6:59:59 PM Router evaluateMessage
+INFO: 
+ID: 				7e46d6c1-ce11-488e-be08-f5a5bd92b93b
+Command:			RouteRequest
+Source Port:			3342
+Destination Port: 		3077
+Path:				[3342]
+Content:			
+
+Apr. 20, 2022 7:00:00 PM Router evaluateMessage
+INFO: 
+ID: 				7e46d6c1-ce11-488e-be08-f5a5bd92b93b
+Command:			RouteReply
+Source Port:			3076
+Destination Port: 		3342
+Path:				[3342, 3078, 3316, 3296, 3014, 3044, 3038, 3306, 3226, 3162, 3046, 3256, 3326, 3028, 3060, 3242, 3076]
+Content:			
+
+Apr. 20, 2022 7:00:00 PM Router logStatus
+INFO: 
+Path Cache:
+Running Timer (Id - Sekunden):
+Known Ids:
+	12c5331b-6084-48d3-aeaa-1a32cc5ff027	0ebab80c-588d-447a-a724-f72ed7bb4925	7e46d6c1-ce11-488e-be08-f5a5bd92b93b
+	69ba0be4-cb38-47f0-8e49-55904708591b
+
+Apr. 20, 2022 7:00:00 PM Router evaluateMessage
+INFO: 
+ID: 				bf741dca-6588-4858-a1b9-a3bf0d4f3377
+Command:			Forward
+Source Port:			3343
+Destination Port: 		3077
+Path:				[3342, 3078, 3316, 3296, 3014, 3044, 3038, 3306, 3226, 3162, 3046, 3256, 3326, 3028, 3060, 3242, 3076]
+Content:			Hallo from 3343 to 3077
+
+Apr. 20, 2022 7:00:00 PM Router logStatus
+INFO: 
+Path Cache:
+Running Timer (Id - Sekunden):
+bf741dca-6588-4858-a1b9-a3bf0d4f3377 - 10
+Known Ids:
+	12c5331b-6084-48d3-aeaa-1a32cc5ff027	0ebab80c-588d-447a-a724-f72ed7bb4925	7e46d6c1-ce11-488e-be08-f5a5bd92b93b
+	69ba0be4-cb38-47f0-8e49-55904708591b
+
+Apr. 20, 2022 7:00:00 PM Router evaluateMessage
+INFO: 
+ID: 				bf741dca-6588-4858-a1b9-a3bf0d4f3377
+Command:			Ack
+Source Port:			3316
+Destination Port: 		3078
+Path:				[3342, 3078, 3316, 3296, 3014, 3044, 3038, 3306, 3226, 3162, 3046, 3256, 3326, 3028, 3060, 3242, 3076]
+Content:			
+
+Apr. 20, 2022 7:00:00 PM Router logStatus
+INFO: 
+Path Cache:
+Running Timer (Id - Sekunden):
+Known Ids:
+	12c5331b-6084-48d3-aeaa-1a32cc5ff027	0ebab80c-588d-447a-a724-f72ed7bb4925	7e46d6c1-ce11-488e-be08-f5a5bd92b93b
+	69ba0be4-cb38-47f0-8e49-55904708591b
+
+Apr. 20, 2022 7:00:01 PM Router evaluateMessage
+INFO: 
+ID: 				d6de05f5-a2f4-4560-bcfd-fa60f8141dfe
+Command:			RouteRequest
+Source Port:			3032
+Destination Port: 		3137
+Path:				[3032]
+Content:			
+
+Apr. 20, 2022 7:00:02 PM Router evaluateMessage
+INFO: 
+ID: 				d6de05f5-a2f4-4560-bcfd-fa60f8141dfe
+Command:			RouteReply
+Source Port:			3136
+Destination Port: 		3032
+Path:				[3032, 3078, 3316, 3296, 3058, 3044, 3038, 3158, 3200, 3084, 3298, 3252, 3192, 3174, 3002, 3106, 3326, 3266, 3060, 3088, 3098, 3306, 3068, 3346, 3136]
+Content:			
+
+Apr. 20, 2022 7:00:02 PM Router logStatus
+INFO: 
+Path Cache:
+Running Timer (Id - Sekunden):
+Known Ids:
+	d6de05f5-a2f4-4560-bcfd-fa60f8141dfe	12c5331b-6084-48d3-aeaa-1a32cc5ff027	0ebab80c-588d-447a-a724-f72ed7bb4925
+	7e46d6c1-ce11-488e-be08-f5a5bd92b93b	69ba0be4-cb38-47f0-8e49-55904708591b
+
+Apr. 20, 2022 7:00:02 PM Router evaluateMessage
+INFO: 
+ID: 				6f57bd37-9efa-4b21-8d44-e1e24928001b
+Command:			Forward
+Source Port:			3033
+Destination Port: 		3137
+Path:				[3032, 3078, 3316, 3296, 3058, 3044, 3038, 3158, 3200, 3084, 3298, 3252, 3192, 3174, 3002, 3106, 3326, 3266, 3060, 3088, 3098, 3306, 3068, 3346, 3136]
+Content:			Hallo from 3033 to 3137
+
+Apr. 20, 2022 7:00:02 PM Router logStatus
+INFO: 
+Path Cache:
+Running Timer (Id - Sekunden):
+6f57bd37-9efa-4b21-8d44-e1e24928001b - 10
+Known Ids:
+	d6de05f5-a2f4-4560-bcfd-fa60f8141dfe	12c5331b-6084-48d3-aeaa-1a32cc5ff027	0ebab80c-588d-447a-a724-f72ed7bb4925
+	7e46d6c1-ce11-488e-be08-f5a5bd92b93b	69ba0be4-cb38-47f0-8e49-55904708591b
+
+Apr. 20, 2022 7:00:02 PM Router evaluateMessage
+INFO: 
+ID: 				6f57bd37-9efa-4b21-8d44-e1e24928001b
+Command:			Ack
+Source Port:			3316
+Destination Port: 		3078
+Path:				[3032, 3078, 3316, 3296, 3058, 3044, 3038, 3158, 3200, 3084, 3298, 3252, 3192, 3174, 3002, 3106, 3326, 3266, 3060, 3088, 3098, 3306, 3068, 3346, 3136]
+Content:			
+
+Apr. 20, 2022 7:00:02 PM Router logStatus
+INFO: 
+Path Cache:
+Running Timer (Id - Sekunden):
+Known Ids:
+	d6de05f5-a2f4-4560-bcfd-fa60f8141dfe	12c5331b-6084-48d3-aeaa-1a32cc5ff027	0ebab80c-588d-447a-a724-f72ed7bb4925
+	7e46d6c1-ce11-488e-be08-f5a5bd92b93b	69ba0be4-cb38-47f0-8e49-55904708591b
+
+Apr. 20, 2022 7:00:04 PM Router evaluateMessage
+INFO: 
+ID: 				5f4939d4-4d90-4200-a8b6-752fe1d2b4dc
+Command:			RouteRequest
+Source Port:			3176
+Destination Port: 		3279
+Path:				[3176]
+Content:			
+
+Apr. 20, 2022 7:00:06 PM Router evaluateMessage
+INFO: 
+ID: 				da70d2d0-9c6e-450e-82b1-02c8c6a0baee
+Command:			RouteRequest
+Source Port:			3258
+Destination Port: 		3315
+Path:				[3258, 3318, 3248, 3094, 3012, 3076, 3242, 3060, 3232, 3326, 3256, 3022, 3036, 3084, 3200, 3158, 3038, 3044, 3014, 3296, 3316]
+Content:			
+
+Apr. 20, 2022 7:00:08 PM Router evaluateMessage
+INFO: 
+ID: 				7d28e0ce-f422-405f-a516-ed7ae0400047
+Command:			RouteRequest
+Source Port:			3000
+Destination Port: 		3243
+Path:				[3000, 3348, 3054, 3302, 3024, 3248, 3096, 3220, 3134, 3304, 3272, 3166, 3066, 3028, 3326, 3106, 3022, 3036, 3084, 3200, 3158, 3006, 3044, 3014, 3296, 3316]
+Content:			
+
+Apr. 20, 2022 7:00:10 PM Router evaluateMessage
+INFO: 
+ID: 				d0a8848f-e50a-4f4c-a656-24ebdf281b65
+Command:			RouteRequest
+Source Port:			3010
+Destination Port: 		3023
+Path:				[3010, 3024, 3248, 3094, 3012, 3076, 3242, 3060, 3266, 3326, 3106, 3046, 3162, 3036, 3084, 3200, 3158, 3038, 3044, 3058, 3296, 3316]
+Content:			
+
+Apr. 20, 2022 7:00:12 PM Router evaluateMessage
+INFO: 
+ID: 				f6017f36-8cca-4348-b132-69b4b9a53d4f
+Command:			RouteRequest
+Source Port:			3068
+Destination Port: 		3101
+Path:				[3068, 3122, 3098, 3088, 3060, 3028, 3326, 3106, 3022, 3036, 3084, 3200, 3158, 3038, 3044, 3058, 3296, 3316]
+Content:			
+
+Apr. 20, 2022 7:00:12 PM Router evaluateMessage
+INFO: 
+ID: 				f6017f36-8cca-4348-b132-69b4b9a53d4f
+Command:			RouteReply
+Source Port:			3100
+Destination Port: 		3068
+Path:				[3068, 3122, 3098, 3088, 3060, 3028, 3326, 3106, 3022, 3036, 3084, 3200, 3158, 3038, 3044, 3058, 3296, 3316, 3078, 3016, 3018, 3100]
+Content:			
+
+Apr. 20, 2022 7:00:12 PM Router logStatus
+INFO: 
+Path Cache:
+Running Timer (Id - Sekunden):
+Known Ids:
+	5f4939d4-4d90-4200-a8b6-752fe1d2b4dc	d6de05f5-a2f4-4560-bcfd-fa60f8141dfe	d0a8848f-e50a-4f4c-a656-24ebdf281b65
+	7d28e0ce-f422-405f-a516-ed7ae0400047	12c5331b-6084-48d3-aeaa-1a32cc5ff027	0ebab80c-588d-447a-a724-f72ed7bb4925
+	f6017f36-8cca-4348-b132-69b4b9a53d4f	7e46d6c1-ce11-488e-be08-f5a5bd92b93b	69ba0be4-cb38-47f0-8e49-55904708591b
+	da70d2d0-9c6e-450e-82b1-02c8c6a0baee
+
+Apr. 20, 2022 7:00:12 PM Router evaluateMessage
+INFO: 
+ID: 				3ff615bc-9154-444f-a894-1407f1f63deb
+Command:			Forward
+Source Port:			3069
+Destination Port: 		3101
+Path:				[3068, 3122, 3098, 3088, 3060, 3028, 3326, 3106, 3022, 3036, 3084, 3200, 3158, 3038, 3044, 3058, 3296, 3316, 3078, 3016, 3018, 3100]
+Content:			Hallo from 3069 to 3101
+
+Apr. 20, 2022 7:00:12 PM Router logStatus
+INFO: 
+Path Cache:
+Running Timer (Id - Sekunden):
+3ff615bc-9154-444f-a894-1407f1f63deb - 10
+Known Ids:
+	5f4939d4-4d90-4200-a8b6-752fe1d2b4dc	d6de05f5-a2f4-4560-bcfd-fa60f8141dfe	d0a8848f-e50a-4f4c-a656-24ebdf281b65
+	7d28e0ce-f422-405f-a516-ed7ae0400047	12c5331b-6084-48d3-aeaa-1a32cc5ff027	0ebab80c-588d-447a-a724-f72ed7bb4925
+	f6017f36-8cca-4348-b132-69b4b9a53d4f	7e46d6c1-ce11-488e-be08-f5a5bd92b93b	69ba0be4-cb38-47f0-8e49-55904708591b
+	da70d2d0-9c6e-450e-82b1-02c8c6a0baee
+
+Apr. 20, 2022 7:00:12 PM Router evaluateMessage
+INFO: 
+ID: 				3ff615bc-9154-444f-a894-1407f1f63deb
+Command:			Ack
+Source Port:			3016
+Destination Port: 		3078
+Path:				[3068, 3122, 3098, 3088, 3060, 3028, 3326, 3106, 3022, 3036, 3084, 3200, 3158, 3038, 3044, 3058, 3296, 3316, 3078, 3016, 3018, 3100]
+Content:			
+
+Apr. 20, 2022 7:00:12 PM Router logStatus
+INFO: 
+Path Cache:
+Running Timer (Id - Sekunden):
+Known Ids:
+	5f4939d4-4d90-4200-a8b6-752fe1d2b4dc	d6de05f5-a2f4-4560-bcfd-fa60f8141dfe	d0a8848f-e50a-4f4c-a656-24ebdf281b65
+	7d28e0ce-f422-405f-a516-ed7ae0400047	12c5331b-6084-48d3-aeaa-1a32cc5ff027	0ebab80c-588d-447a-a724-f72ed7bb4925
+	f6017f36-8cca-4348-b132-69b4b9a53d4f	7e46d6c1-ce11-488e-be08-f5a5bd92b93b	69ba0be4-cb38-47f0-8e49-55904708591b
+	da70d2d0-9c6e-450e-82b1-02c8c6a0baee
+
+Apr. 20, 2022 7:00:14 PM Router evaluateMessage
+INFO: 
+ID: 				87a1c924-4b74-492c-b88a-5a91dc4d1801
+Command:			RouteRequest
+Source Port:			3028
+Destination Port: 		3113
+Path:				[3028, 3326, 3256, 3022, 3036, 3084, 3200, 3158, 3038, 3044, 3014, 3296, 3316]
+Content:			
+
+Apr. 20, 2022 7:00:18 PM Router evaluateMessage
+INFO: 
+ID: 				d40d9a0c-f0a0-4d48-a277-3ef7310947fc
+Command:			RouteRequest
+Source Port:			3008
+Destination Port: 		3165
+Path:				[3008, 3002, 3256, 3022, 3036, 3084, 3200, 3158, 3006, 3044, 3058, 3296, 3316]
+Content:			
+
+Apr. 20, 2022 7:00:22 PM Router evaluateMessage
+INFO: 
+ID: 				bfab766a-f8d0-41b4-80d0-2ce2d4cb5f7b
+Command:			RouteRequest
+Source Port:			3328
+Destination Port: 		3227
+Path:				[3328, 3296, 3316]
+Content:			
+
+Apr. 20, 2022 7:00:24 PM Router evaluateMessage
+INFO: 
+ID: 				0d03f1f6-ddd9-472b-b67e-77dfeb65fe83
+Command:			RouteRequest
+Source Port:			3176
+Destination Port: 		3003
+Path:				[3176]
+Content:			
+
+Apr. 20, 2022 7:00:24 PM Router evaluateMessage
+INFO: 
+ID: 				0d03f1f6-ddd9-472b-b67e-77dfeb65fe83
+Command:			RouteReply
+Source Port:			3002
+Destination Port: 		3176
+Path:				[3176, 3078, 3316, 3172, 3234, 3044, 3038, 3158, 3200, 3084, 3036, 3022, 3106, 3002]
+Content:			
+
+Apr. 20, 2022 7:00:24 PM Router logStatus
+INFO: 
+Path Cache:
+Running Timer (Id - Sekunden):
+Known Ids:
+	5f4939d4-4d90-4200-a8b6-752fe1d2b4dc	87a1c924-4b74-492c-b88a-5a91dc4d1801	7d28e0ce-f422-405f-a516-ed7ae0400047
+	bfab766a-f8d0-41b4-80d0-2ce2d4cb5f7b	12c5331b-6084-48d3-aeaa-1a32cc5ff027	f6017f36-8cca-4348-b132-69b4b9a53d4f
+	69ba0be4-cb38-47f0-8e49-55904708591b	da70d2d0-9c6e-450e-82b1-02c8c6a0baee	d6de05f5-a2f4-4560-bcfd-fa60f8141dfe
+	d0a8848f-e50a-4f4c-a656-24ebdf281b65	0d03f1f6-ddd9-472b-b67e-77dfeb65fe83	0ebab80c-588d-447a-a724-f72ed7bb4925
+	7e46d6c1-ce11-488e-be08-f5a5bd92b93b	d40d9a0c-f0a0-4d48-a277-3ef7310947fc
+
+Apr. 20, 2022 7:00:24 PM Router evaluateMessage
+INFO: 
+ID: 				ae390af0-c8b7-4fc6-a582-7b622b841e83
+Command:			Forward
+Source Port:			3177
+Destination Port: 		3003
+Path:				[3176, 3078, 3316, 3172, 3234, 3044, 3038, 3158, 3200, 3084, 3036, 3022, 3106, 3002]
+Content:			Hallo from 3177 to 3003
+
+Apr. 20, 2022 7:00:24 PM Router logStatus
+INFO: 
+Path Cache:
+Running Timer (Id - Sekunden):
+ae390af0-c8b7-4fc6-a582-7b622b841e83 - 10
+Known Ids:
+	5f4939d4-4d90-4200-a8b6-752fe1d2b4dc	87a1c924-4b74-492c-b88a-5a91dc4d1801	7d28e0ce-f422-405f-a516-ed7ae0400047
+	bfab766a-f8d0-41b4-80d0-2ce2d4cb5f7b	12c5331b-6084-48d3-aeaa-1a32cc5ff027	f6017f36-8cca-4348-b132-69b4b9a53d4f
+	69ba0be4-cb38-47f0-8e49-55904708591b	da70d2d0-9c6e-450e-82b1-02c8c6a0baee	d6de05f5-a2f4-4560-bcfd-fa60f8141dfe
+	d0a8848f-e50a-4f4c-a656-24ebdf281b65	0d03f1f6-ddd9-472b-b67e-77dfeb65fe83	0ebab80c-588d-447a-a724-f72ed7bb4925
+	7e46d6c1-ce11-488e-be08-f5a5bd92b93b	d40d9a0c-f0a0-4d48-a277-3ef7310947fc
+
+Apr. 20, 2022 7:00:24 PM Router evaluateMessage
+INFO: 
+ID: 				ae390af0-c8b7-4fc6-a582-7b622b841e83
+Command:			Ack
+Source Port:			3316
+Destination Port: 		3078
+Path:				[3176, 3078, 3316, 3172, 3234, 3044, 3038, 3158, 3200, 3084, 3036, 3022, 3106, 3002]
+Content:			
+
+Apr. 20, 2022 7:00:24 PM Router logStatus
+INFO: 
+Path Cache:
+Running Timer (Id - Sekunden):
+Known Ids:
+	5f4939d4-4d90-4200-a8b6-752fe1d2b4dc	87a1c924-4b74-492c-b88a-5a91dc4d1801	7d28e0ce-f422-405f-a516-ed7ae0400047
+	bfab766a-f8d0-41b4-80d0-2ce2d4cb5f7b	12c5331b-6084-48d3-aeaa-1a32cc5ff027	f6017f36-8cca-4348-b132-69b4b9a53d4f
+	69ba0be4-cb38-47f0-8e49-55904708591b	da70d2d0-9c6e-450e-82b1-02c8c6a0baee	d6de05f5-a2f4-4560-bcfd-fa60f8141dfe
+	d0a8848f-e50a-4f4c-a656-24ebdf281b65	0d03f1f6-ddd9-472b-b67e-77dfeb65fe83	0ebab80c-588d-447a-a724-f72ed7bb4925
+	7e46d6c1-ce11-488e-be08-f5a5bd92b93b	d40d9a0c-f0a0-4d48-a277-3ef7310947fc
+

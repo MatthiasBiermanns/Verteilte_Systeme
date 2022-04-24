@@ -1,0 +1,5 @@
+Apr. 19, 2022 4:21:49 PM Router setUpLogger
+INFO: Router startet logging
+ Position: ( x: 68; y: 39 )
+Port: 3058
+

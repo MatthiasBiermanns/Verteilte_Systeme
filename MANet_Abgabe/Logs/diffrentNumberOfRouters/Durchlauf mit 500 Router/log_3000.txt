@@ -1,0 +1,56 @@
+Apr. 21, 2022 12:43:10 NACHM. Router setUpLogger
+INFO: Router startet logging
+ Position: ( x: 5; y: 30 )
+Port: 3000
+
+Apr. 21, 2022 12:43:19 NACHM. Router evaluateMessage
+INFO: 
+ID: 				1f89f752-ad28-44b4-b9bd-cebd1c07df18
+Command:			Send
+Source Port:			3001
+Destination Port: 		3003
+Path:				[]
+Content:			Hallo
+
+Apr. 21, 2022 12:43:20 NACHM. Router logStatus
+INFO: 
+Path Cache:
+Running Timer (Id - Sekunden):
+Known Ids:
+	825665dc-a8b4-44b8-b9de-e6c0b0302121
+
+Apr. 21, 2022 12:43:21 NACHM. Router evaluateMessage
+INFO: 
+ID: 				825665dc-a8b4-44b8-b9de-e6c0b0302121
+Command:			RouteReply
+Source Port:			3002
+Destination Port: 		3000
+Path:				[3000, 3406, 3002]
+Content:			
+
+Apr. 21, 2022 12:43:22 NACHM. Router logStatus
+INFO: 
+Path Cache:
+3003( 12:43:22 ): [3000, 3406, 3002]
+Running Timer (Id - Sekunden):
+1f89f752-ad28-44b4-b9bd-cebd1c07df18 - 10
+Known Ids:
+	825665dc-a8b4-44b8-b9de-e6c0b0302121
+
+Apr. 21, 2022 12:43:23 NACHM. Router evaluateMessage
+INFO: 
+ID: 				1f89f752-ad28-44b4-b9bd-cebd1c07df18
+Command:			Ack
+Source Port:			3406
+Destination Port: 		3000
+Path:				[3000, 3406, 3002]
+Content:			
+
+Apr. 21, 2022 12:43:23 NACHM. Router logStatus
+INFO: 
+Path Cache:
+3003( 12:43:22 ): [3000, 3406, 3002]
+Running Timer (Id - Sekunden):
+Known Ids:
+	825665dc-a8b4-44b8-b9de-e6c0b0302121
+

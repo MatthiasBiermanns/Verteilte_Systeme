@@ -1,0 +1,305 @@
+Apr. 21, 2022 11:42:10 VORM. Field setUpLogger
+INFO: Startet Logging
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 46, y: 45 with Ports: 3000, 3001
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 53, y: 72 with Ports: 3002, 3003
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 57, y: 39 with Ports: 3004, 3005
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 12, y: 25 with Ports: 3006, 3007
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 84, y: 3 with Ports: 3008, 3009
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 46, y: 62 with Ports: 3010, 3011
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 24, y: 18 with Ports: 3012, 3013
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 18, y: 64 with Ports: 3014, 3015
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 42, y: 70 with Ports: 3016, 3017
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 34, y: 31 with Ports: 3018, 3019
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 28, y: 89 with Ports: 3020, 3021
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 21, y: 61 with Ports: 3022, 3023
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 55, y: 20 with Ports: 3024, 3025
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 35, y: 10 with Ports: 3026, 3027
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 80, y: 49 with Ports: 3028, 3029
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 36, y: 55 with Ports: 3030, 3031
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 23, y: 85 with Ports: 3032, 3033
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 97, y: 98 with Ports: 3034, 3035
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 0, y: 7 with Ports: 3036, 3037
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 98, y: 51 with Ports: 3038, 3039
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 35, y: 72 with Ports: 3040, 3041
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 94, y: 1 with Ports: 3042, 3043
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 90, y: 66 with Ports: 3044, 3045
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 2, y: 97 with Ports: 3046, 3047
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 94, y: 70 with Ports: 3048, 3049
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 36, y: 64 with Ports: 3050, 3051
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 56, y: 26 with Ports: 3052, 3053
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 14, y: 40 with Ports: 3054, 3055
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 43, y: 21 with Ports: 3056, 3057
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 94, y: 37 with Ports: 3058, 3059
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 20, y: 61 with Ports: 3060, 3061
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 59, y: 22 with Ports: 3062, 3063
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 9, y: 42 with Ports: 3064, 3065
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 31, y: 79 with Ports: 3066, 3067
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 14, y: 29 with Ports: 3068, 3069
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 80, y: 14 with Ports: 3070, 3071
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 26, y: 41 with Ports: 3072, 3073
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 82, y: 78 with Ports: 3074, 3075
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 68, y: 8 with Ports: 3076, 3077
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 40, y: 12 with Ports: 3078, 3079
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 99, y: 76 with Ports: 3080, 3081
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 18, y: 56 with Ports: 3082, 3083
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 27, y: 64 with Ports: 3084, 3085
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 11, y: 35 with Ports: 3086, 3087
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 13, y: 29 with Ports: 3088, 3089
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 98, y: 82 with Ports: 3090, 3091
+
+Apr. 21, 2022 11:42:10 VORM. Field createNewDevice
+INFO: Device created at x: 61, y: 6 with Ports: 3092, 3093
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 54, y: 2 with Ports: 3094, 3095
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 13, y: 95 with Ports: 3096, 3097
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 98, y: 9 with Ports: 3098, 3099
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 49, y: 76 with Ports: 3100, 3101
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 3, y: 79 with Ports: 3102, 3103
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 99, y: 25 with Ports: 3104, 3105
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 46, y: 10 with Ports: 3106, 3107
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 53, y: 73 with Ports: 3108, 3109
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 3, y: 18 with Ports: 3110, 3111
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 13, y: 61 with Ports: 3112, 3113
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 37, y: 85 with Ports: 3114, 3115
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 19, y: 26 with Ports: 3116, 3117
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 53, y: 36 with Ports: 3118, 3119
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 15, y: 49 with Ports: 3120, 3121
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 80, y: 50 with Ports: 3122, 3123
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 63, y: 43 with Ports: 3124, 3125
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 74, y: 97 with Ports: 3126, 3127
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 76, y: 31 with Ports: 3128, 3129
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 6, y: 44 with Ports: 3130, 3131
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 25, y: 25 with Ports: 3132, 3133
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 84, y: 7 with Ports: 3134, 3135
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 30, y: 35 with Ports: 3136, 3137
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 56, y: 7 with Ports: 3138, 3139
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 16, y: 4 with Ports: 3140, 3141
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 61, y: 28 with Ports: 3142, 3143
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 61, y: 29 with Ports: 3144, 3145
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 4, y: 22 with Ports: 3146, 3147
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 76, y: 45 with Ports: 3148, 3149
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 24, y: 62 with Ports: 3150, 3151
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 33, y: 1 with Ports: 3152, 3153
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 1, y: 13 with Ports: 3154, 3155
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 22, y: 39 with Ports: 3156, 3157
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 59, y: 84 with Ports: 3158, 3159
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 73, y: 75 with Ports: 3160, 3161
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 33, y: 48 with Ports: 3162, 3163
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 56, y: 51 with Ports: 3164, 3165
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 80, y: 0 with Ports: 3166, 3167
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 60, y: 97 with Ports: 3168, 3169
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 41, y: 0 with Ports: 3170, 3171
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 57, y: 18 with Ports: 3172, 3173
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 89, y: 76 with Ports: 3174, 3175
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 1, y: 22 with Ports: 3176, 3177
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 46, y: 43 with Ports: 3178, 3179
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 90, y: 10 with Ports: 3180, 3181
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 77, y: 62 with Ports: 3182, 3183
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 86, y: 1 with Ports: 3184, 3185
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 51, y: 98 with Ports: 3186, 3187
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 87, y: 86 with Ports: 3188, 3189
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 97, y: 93 with Ports: 3190, 3191
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 46, y: 61 with Ports: 3192, 3193
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 51, y: 67 with Ports: 3194, 3195
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 92, y: 22 with Ports: 3196, 3197
+
+Apr. 21, 2022 11:42:11 VORM. Field createNewDevice
+INFO: Device created at x: 81, y: 58 with Ports: 3198, 3199
+
+Apr. 21, 2022 11:42:14 VORM. Field startRouter
+INFO: Router startet successfully
