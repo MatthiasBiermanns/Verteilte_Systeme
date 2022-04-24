@@ -1,4 +1,5 @@
-package Exceptions;
+package MANet_Abgabe.src.Exceptions;
+
 public class DeviceNotFound extends Exception {
   public DeviceNotFound() {
     super("Router does not exist");

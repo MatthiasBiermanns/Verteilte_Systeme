@@ -1,3 +1,4 @@
+package MANet_Abgabe.src;
 /**
  * Class to get Testcase paralell. Extends class which implements Testcases.
  */

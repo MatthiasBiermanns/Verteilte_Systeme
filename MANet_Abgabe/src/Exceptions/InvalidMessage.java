@@ -1,4 +1,4 @@
-package Exceptions;
+package MANet_Abgabe.src.Exceptions;
 
 public class InvalidMessage extends Exception {
   public InvalidMessage() {

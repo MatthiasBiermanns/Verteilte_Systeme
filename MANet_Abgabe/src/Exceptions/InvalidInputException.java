@@ -1,4 +1,4 @@
-package Exceptions;
+package MANet_Abgabe.src.Exceptions;
 
 public class InvalidInputException extends Exception {
   public InvalidInputException() {

@@ -1,3 +1,5 @@
+package MANet_Abgabe.src;
+
 import Exceptions.InvalidMessage;
 import java.io.IOException;
 import java.net.*;

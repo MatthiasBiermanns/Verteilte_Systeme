@@ -1,4 +1,4 @@
-package Exceptions;
+package MANet_Abgabe.src.Exceptions;
 public class PlacementException extends Exception{
   public PlacementException() {
     super("Object cannot be placed here");
